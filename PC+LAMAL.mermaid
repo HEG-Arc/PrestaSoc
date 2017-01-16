@@ -1,0 +1,136 @@
+graph TD
+
+subgraph Commun
+Etat_civil
+Enfants_dans_logement
+Adultes_dans_logement
+Adresse --> District
+District --> Canton
+District --> Region_LAMAL
+Fortune_mobiliere
+Fortune_immobiliere_autre
+Est_proprietaire_de_son_logement_permanent --> Fortune_immobiliere_de_son_logement_permanent
+Fortune_immobiliere_de_son_logement_permanent --> Fortune_immobiliere_net_de_son_logement_permanent
+Dettes_hypothecaire_de_son_logement_permanent --> Fortune_immobiliere_net_de_son_logement_permanent
+Frais_accesoires_immeubles
+Montant_prevoyance_privee_annuel
+Age*
+end
+
+subgraph PC
+A_Rente_AVS --> Taux_imputation_de_la_fortune_PC
+A_Rente_AI --> Taux_imputation_de_la_fortune_PC
+A_Rente_Survivant --> Taux_imputation_de_la_fortune_PC
+
+Fortune_mobiliere --> Fortune_brute
+
+Fortune_immobiliere_net_de_son_logement_permanent --> Fortune_immobiliere
+Fortune_immobiliere_autre --> Fortune_immobiliere
+
+Fortune_immobiliere --> Fortune_brute
+
+Fortune_brute --> Fortune_nette
+
+Dettes_prive --> Dettes
+Dettes_hypothecaire_autre --> Dettes
+Dettes --> Fortune_nette
+
+Fortune_nette --> Imputation_de_la_fortune_PC
+Etat_civil --> Imputation_de_la_fortune_PC
+Est_proprietaire_de_son_logement_permanent --> Imputation_de_la_fortune_PC
+Conjoint_en_ems --> Imputation_de_la_fortune_PC
+Taux_imputation_de_la_fortune_PC --> Imputation_de_la_fortune_PC
+
+Est_proprietaire_de_son_logement_permanent -- Oui --> Valeur_locative_annuelle
+
+Etat_civil -- mariée --> Conjoint_en_ems
+Est_proprietaire_de_son_logement_permanent -- Oui --> Conjoint_en_ems
+
+
+Taux_prise_en_compte_revenu_PC --> Revenu_net_PC_annuel
+Etat_civil --> Deduction_activite_lucrative
+Deduction_activite_lucrative --> Revenu_net_PC_annuel
+Revenu_net_activite_lucrative --> Revenu_net_PC_annuel
+Revenu_net_PC_annuel --> Total_revenus_PC
+
+Rente_etrangeres --> Autres_rentes_PC
+Rente_d_accident --> Autres_rentes_PC
+Montant_prevoyance_privee_annuel --> Autres_rentes_PC
+
+
+Revenu_de_la_fortune --> Revenu_de_la_fortune_PC
+
+Imputation_de_la_fortune_PC --> Total_revenus_PC
+Revenu_de_la_fortune_PC --> Total_revenus_PC
+Valeur_locative_annuelle --> Total_revenus_PC
+Pension_alimentaire --> Total_revenus_PC
+Autres_rentes_PC --> Total_revenus_PC
+Montant_rente_AVS_annuel --> Total_revenus_PC
+Montant_rente_AI_annuel --> Total_revenus_PC
+Montant_caise_de_pension_annuel --> Total_revenus_PC
+
+Loyer_brute --> Loyer_brute_PC
+Est_proprietaire_de_son_logement_permanent --> Loyer_brute_PC
+Valeur_locative_imposable_annuelle --> Loyer_brute_PC
+Frais_accesoires_immeubles --> Frais_accesoires_immeubles_PC
+Limite_frais_accesoires_immeubles_PC --> Frais_accesoires_immeubles_PC
+Est_proprietaire_de_son_logement_permanent --> Frais_accesoires_immeubles_PC
+Enfants_dans_logement --> Loyer_brute_PC
+Etat_civil --> Loyer_brute_PC
+Logement_accessible_en_fauteuil --> Loyer_brute_PC
+Subvension_accessible_en_fauteuil_PC --> Loyer_brute_PC
+
+Loyer_brute_PC --> Total_depenses_PC
+
+Contributions_d_entretien_effectif --> Total_depenses_PC
+
+Cotisations_AI_AVS_APG --> Total_depenses_PC
+
+Age* --> Forfait_prime_assurance_maladie_PC
+Region_LAMAL --> Forfait_prime_assurance_maladie_PC
+Adultes_dans_logement --> Forfait_prime_assurance_maladie_PC
+Enfants_dans_logement --> Forfait_prime_assurance_maladie_PC
+
+Forfait_prime_assurance_maladie_PC --> Total_depenses_PC
+
+Enfants_dans_logement --> Forfait_besoins_vitaux_PC
+Etat_civil --> Forfait_besoins_vitaux_PC
+Forfait_besoins_vitaux_PC --> Total_depenses_PC
+
+Total_revenus_PC --> Montant_PC_annuel
+Total_depenses_PC --> Montant_PC_annuel
+Montant_PC_annuel --> A_PC
+end
+
+
+subgraph LAMAL
+Taux_imputation_de_la_fortune_RDU --> Franchise_fortune_RDU
+Etat_civil --> Franchise_fortune_RDU
+Adultes_dans_logement --> Franchise_fortune_RDU
+Franchise_fortune_RDU --> Imputation_de_la_fortune_RDU
+Fortune_mobiliere --> Imputation_de_la_fortune_RDU
+Fortune_immobiliere_autre --> Imputation_de_la_fortune_RDU
+Franchise_fortune_imobiliere_de_son_logement_permanent --> Imputation_de_la_fortune_RDU
+Fortune_immobiliere_net_de_son_logement_permanent --> Imputation_de_la_fortune_RDU
+
+Limite_frais_accesoires_immeubles_RDU --> Frais_accesoires_immeubles_RDU
+Frais_accesoires_immeubles -->  Frais_accesoires_immeubles_RDU
+Frais_accesoires_immeubles_RDU --> Revenu_determinant_unifie_LAMAL
+
+
+Enfants_dans_logement --> Revenu_determinant_unifie_LAMAL
+Montant_prevoyance_privee_annuel --> Revenu_determinant_unifie_LAMAL
+Revenu_net_imposable --> Revenu_determinant_unifie_LAMAL
+Imputation_de_la_fortune_RDU --> Revenu_determinant_unifie_LAMAL
+
+Revenu_determinant_unifie_LAMAL --> Subside_LAMAL_annuel
+Personne_en_formation* --> Subside_LAMAL_annuel
+Age* --> Subside_LAMAL_annuel
+
+Age* --> Forfait_LAMAL
+Region_LAMAL --> Forfait_LAMAL
+Forfait_LAMAL --> Subside_LAMAL_annuel
+A_RI --> Subside_LAMAL_annuel
+A_PC --> Subside_LAMAL_annuel
+Subside_LAMAL_annuel --> Subside_LAMAL_annuel_min_max
+end
