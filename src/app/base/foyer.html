@@ -1,0 +1,56 @@
+
+<base-nav></base-nav>
+<md-content layout-padding>
+  <div class="box-background" md-whiteframe="1">
+    <h2>Votre foyer</h2>
+
+    <div layout="row" layout-wrap>
+      <div class="avatar-box" md-whiteframe="1" ui-sref="vous">
+        <span>You</span>
+        {{$ctrl.sim.dateNaissance | date}}
+      </div>
+
+      <div class="avatar-box" md-whiteframe="1" ng-repeat="p in $ctrl.sim.persons" ng-click="$ctrl.editPerson = p">
+        <span>{{p.prenom}}</span>
+        {{p.dateNaissance | date}}
+
+        <md-button class="md-warn md-icon-button" aria-label="supprimer" ng-click="$ctrl.removePerson(p)">
+          <md-icon>delete</md-icon>
+        </md-button>
+      </div>
+
+      <md-button class="avatar-box add" ng-click="$ctrl.addPerson()">
+        <span>+</span>
+      </md-button>
+    </div>
+
+    // TODO: maybe add partner? constraints?
+    // add other none family?
+    <div ng-if="$ctrl.currentPerson" layout="column">
+      <p>Edit details (maybe popup?)</p>
+
+      <md-input-container>
+        <label>Prénom</label>
+        <input ng-model="$ctrl.currentPerson.prenom">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Date de naissance</label>
+        <input ng-model="$ctrl.currentPerson.dateNaissance">
+      </md-input-container>
+
+      <label>Est</label>
+      <md-input-container layout="column">
+        <md-checkbox ng-model="$ctrl.currentPerson.etudiant" aria-label="Etudiant">Etudiant</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.garde" aria-label="Etudiant">En garde alternée</md-checkbox>
+      </md-input-container>
+
+    </div>
+
+    <div layout="row">
+      <md-button ui-sref="vous" class="md-raised">Précédent</md-button>
+      <span flex></span>
+      <md-button ui-sref="logement" class="md-primary md-raised">Suivant</md-button>
+    </div>
+  </div>
+</md-content>
