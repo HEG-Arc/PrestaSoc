@@ -5,15 +5,15 @@ import {footer} from './footer';
 describe('footer component', () => {
   beforeEach(() => {
     angular
-      .module('fountainFooter', ['app/footer.html'])
-      .component('fountainFooter', footer);
-    angular.mock.module('fountainFooter');
+      .module('appFooter', ['app/footer.html'])
+      .component('appFooter', footer);
+    angular.mock.module('appFooter');
   });
 
-  it('should render \'FountainJS team\'', angular.mock.inject(($rootScope, $compile) => {
-    const element = $compile('<fountain-footer></fountain-footer>')($rootScope);
+  it('should render \'heg-arc\'', angular.mock.inject(($rootScope, $compile) => {
+    const element = $compile('<app-footer></app-footer>')($rootScope);
     $rootScope.$digest();
     const footer = element.find('a');
-    expect(footer.html().trim()).toEqual('FountainJS team');
+    expect(footer.html().trim()).toEqual('heg-arc');
   }));
 });
