@@ -10,7 +10,12 @@
     </md-radio-group>
 
 
-<div>TODO si marié conjoint ems? proprietaire?</div>
+    <div ng-if="$ctrl.sim.etatCivil == 'Marié' || $ctrl.sim.etatCivil == 'Partenariat'">
+      <md-input-container layout="column">
+        <md-checkbox ng-if="$ctrl.sim.logement == 'proprietaire'" ng-model="$ctrl.sim.conjointEMS" aria-label="Etudiant">Conjoint en EMS</md-checkbox>
+        <md-checkbox ng-if="$ctrl.sim.logement == 'maison_retraite'" ng-model="$ctrl.sim.conjointProprietaire" aria-label="Etudiant">Conjoint proprietaire</md-checkbox>
+      </md-input-container>
+    </div>
 
 
     <div layout="column">
@@ -18,13 +23,13 @@
           md-selected-item="$ctrl.selectedItem"
           md-search-text="$ctrl.searchText"
           md-items="item in $ctrl.filterList($ctrl.searchText)"
-          md-item-text="item"
-          md-min-length="0"
+          md-item-text="item.label"
+          md-min-length="3"
           md-require-match
           md-floating-label="NPA / Commune?"
           placeholder="NPA / Commune?">
         <md-item-template>
-          <span md-highlight-text="$ctrl.searchText" md-highlight-flags="i">{{item}}</span>
+          <span md-highlight-text="$ctrl.searchText" md-highlight-flags="i">{{item.label}}</span>
         </md-item-template>
         <md-not-found>
           No entry matching "{{$ctrl.searchText}}" were found.

@@ -1,15 +1,9 @@
 class LogementController {
   /** @ngInject */
-  constructor(simulation) {
+  constructor(simulation, regions) {
     this.sim = simulation;
-    this.npaList = [
-      '2000 Neuchâtel',
-      '1000 Lausanne'
-    ];
     this.filterList = txt => {
-      return this.npaList.filter(item => {
-        return item.indexOf(txt) >= 0;
-      });
+      return regions.search(txt);
     };
   }
 }
