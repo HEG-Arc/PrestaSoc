@@ -20,7 +20,7 @@ import {lamalModule} from './app/lamal/index';
 import {pcModule} from './app/pc/index';
 
 // Material design css
-import 'angular-material/angular-material.css';
+import 'angular-material/angular-material.min.css';
 
 // Icons
 // import 'font-awesome/css/font-awesome.css';
