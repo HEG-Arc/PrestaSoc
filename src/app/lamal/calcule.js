@@ -18,7 +18,7 @@ class CalculeLamal {
   subsideMax() {
     return 100;
   }
-  
+
   subsideLamal(sim) {
     this.sim = sim;
     // TODO minmax
