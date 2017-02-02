@@ -6,7 +6,7 @@ class VousController {
 }
 
 export const vous = {
-  templateUrl: 'app/base/vous.html',
+  template: require('./vous.html'),
   controller: VousController
 };
 

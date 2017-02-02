@@ -20,7 +20,7 @@ class FoyerController {
 }
 
 export const foyer = {
-  templateUrl: 'app/base/foyer.html',
+  template: require('./foyer.html'),
   controller: FoyerController
 };
 

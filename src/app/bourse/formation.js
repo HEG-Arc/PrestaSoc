@@ -5,7 +5,7 @@ class FormationController {
 }
 
 export const formation = {
-  templateUrl: 'app/bourse/formation.html',
+  template: require('./formation.html'),
   controller: FormationController
 };
 

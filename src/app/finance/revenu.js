@@ -5,7 +5,7 @@ class RevenuController {
 }
 
 export const revenu = {
-  templateUrl: 'app/finance/revenu.html',
+  template: require('./revenu.html'),
   controller: RevenuController
 };
 

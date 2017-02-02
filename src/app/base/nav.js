@@ -5,7 +5,7 @@ class NavController {
 }
 
 export const nav = {
-  templateUrl: 'app/base/nav.html',
+  template: require('./nav.html'),
   controller: NavController
 };
 

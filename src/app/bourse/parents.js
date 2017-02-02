@@ -5,7 +5,7 @@ class ParentsController {
 }
 
 export const parents = {
-  templateUrl: 'app/bourse/parents.html',
+  template: require('./parents.html'),
   controller: ParentsController
 };
 

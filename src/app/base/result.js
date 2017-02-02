@@ -5,7 +5,7 @@ class ResultController {
 }
 
 export const result = {
-  templateUrl: 'app/base/result.html',
+  template: require('./result.html'),
   controller: ResultController
 };
 

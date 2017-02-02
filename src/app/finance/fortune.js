@@ -5,7 +5,7 @@ class FortuneController {
 }
 
 export const fortune = {
-  templateUrl: 'app/finance/fortune.html',
+  template: require('./fortune.html'),
   controller: FortuneController
 };
 

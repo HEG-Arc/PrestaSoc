@@ -6,7 +6,7 @@ class StatutController {
 }
 
 export const statut = {
-  templateUrl: 'app/base/statut.html',
+  template: require('./statut.html'),
   controller: StatutController
 };
 

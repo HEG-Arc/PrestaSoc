@@ -9,7 +9,7 @@ class LogementController {
 }
 
 export const logement = {
-  templateUrl: 'app/base/logement.html',
+  template: require('./logement.html'),
   controller: LogementController
 };
 

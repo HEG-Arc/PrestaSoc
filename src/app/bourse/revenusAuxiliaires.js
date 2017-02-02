@@ -5,7 +5,7 @@ class RevenusAuxiliairesController {
 }
 
 export const revenusAuxiliaires = {
-  templateUrl: 'app/bourse/revenusAuxiliaires.html',
+  template: require('./revenusAuxiliaires.html'),
   controller: RevenusAuxiliairesController
 };
 

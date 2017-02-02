@@ -5,7 +5,7 @@ class DepensesController {
 }
 
 export const depenses = {
-  templateUrl: 'app/pc/depenses.html',
+  template: require('./depenses.html'),
   controller: DepensesController
 };
 

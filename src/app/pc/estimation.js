@@ -5,7 +5,7 @@ class EstimationController {
 }
 
 export const estimation = {
-  templateUrl: 'app/pc/estimation.html',
+  template: require('./estimation.html'),
   controller: EstimationController
 };
 
