@@ -75,6 +75,9 @@
     "globals": {
       "expect": true
     },
+    "rules": {
+      "linebreak-style": 0
+    },
     "root": true,
     "env": {
       "browser": true,
