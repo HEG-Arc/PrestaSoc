@@ -14,6 +14,10 @@ import {header} from './app/header';
 import {footer} from './app/footer';
 
 import {baseModule} from './app/base/index';
+import {financeModule} from './app/finance/index';
+import {bourseModule} from './app/bourse/index';
+import {lamalModule} from './app/lamal/index';
+import {pcModule} from './app/pc/index';
 
 // Material design css
 import 'angular-material/angular-material.css';
@@ -26,6 +30,10 @@ import './index.scss';
 angular
   .module('app', [
     baseModule,
+    financeModule,
+    bourseModule,
+    lamalModule,
+    pcModule,
     angularMaterial,
     angularAnimate,
     angularUIRouter])
