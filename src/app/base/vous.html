@@ -11,11 +11,11 @@
       </md-input-container>
       <label>Vous êtes</label>
       <md-input-container layout="column">
-        <md-checkbox ng-model="$ctrl.sim.etudiant" aria-label="Etudiant">Etudiant</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.retraite" aria-label="Etudiant">Retraité</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.handicape" aria-label="Etudiant">Handicapé</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.inaptAuTravail" aria-label="Etudiant">Inapte au travail</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.rechercheDemploi" aria-label="Etudiant">Recherche d'emploi</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estEtudiant" aria-label="Etudiant">Etudiant</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estRetraite" aria-label="Retraité">Retraité</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estHandicap" aria-label="En situation de handicap">En situation de handicap</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estInapteAuTravail" aria-label="Inapte au travail">Inapte au travail</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
       </md-input-container>
       <md-input-container>
         <label>Etat civil</label>
@@ -24,11 +24,15 @@
           <md-option>Marié</md-option>
           <md-option>Divorcé</md-option>
           <md-option>Veuf</md-option>
-          <md-option>Partenariat</md-option>
+          <md-option>Partenariat enregistré</md-option>
           <md-option>Union libre</md-option>
         </md-select>
       </md-input-container>
-
+      <label>Vous recevez</label>
+      <md-input-container layout="column">
+        <md-checkbox ng-model="$ctrl.sim.estBeneficiaireAVS" aria-label="AVS">Des prestations AVS</md-checkbox>
+        <md-checkbox ng-model="$ctrl.sim.estBeneficiaireRI" aria-label="RI">Un revenu d'insertion (RI)</md-checkbox>
+      </md-input-container>
     </div>
     <div layout="row">
       <span flex></span>
