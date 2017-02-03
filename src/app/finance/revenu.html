@@ -1,4 +1,22 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-</div>
-<md-button ui-sref="fortune" class="md-primary md-raised">Suivant</md-button>
+
+<base-nav></base-nav>
+<md-content layout-padding>
+  <div class="box-background" md-whiteframe="1">
+    <h2>Votre revenu</h2>
+
+    <div layout="column">
+      <md-input-container>
+        <label>Revenu net imposable</label>
+        <input type="text" ng-model="$ctrl.sim.revenuNetImposable" aria-label="Etudiant">
+      </md-input-container>
+      <md-input-container>
+        <label>Revenu provenant d'une activité lucrative</label>
+        <input type="text" ng-model="$ctrl.sim.revenuActiviteLucrative" aria-label="Etudiant">
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <span flex></span>
+      <md-button ui-sref="fortune" class="md-primary md-raised">Suivant</md-button>
+    </div>
+  </div>
+</md-content>
