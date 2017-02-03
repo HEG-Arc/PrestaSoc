@@ -4,20 +4,20 @@
     <h2>Votre logement principal</h2>
 
     <md-radio-group ng-model="$ctrl.sim.logement" class="md-primary" layout="row">
-        <md-radio-button value="locataire">Locataire</md-radio-button>
-        <md-radio-button value="proprietaire">Propriétaire</md-radio-button>
-        <md-radio-button value="maison_retraite">Maison de retraite</md-radio-button>
+        <md-radio-button value="estLocataire">Locataire</md-radio-button>
+        <md-radio-button value="estProprietaire">Propriétaire</md-radio-button>
+        <md-radio-button value="estEMS">Maison de retraite</md-radio-button>
     </md-radio-group>
 
 
     <div ng-if="$ctrl.sim.etatCivil == 'Marié' || $ctrl.sim.etatCivil == 'Partenariat'">
       <md-input-container layout="column">
-        <md-checkbox ng-if="$ctrl.sim.logement == 'proprietaire'" ng-model="$ctrl.sim.conjointEMS" aria-label="Etudiant">Conjoint en EMS</md-checkbox>
-        <md-checkbox ng-if="$ctrl.sim.logement == 'maison_retraite'" ng-model="$ctrl.sim.conjointProprietaire" aria-label="Etudiant">Conjoint proprietaire</md-checkbox>
+        <md-checkbox ng-if="$ctrl.sim.logement == 'estProprietaire'" ng-model="$ctrl.sim.aConjointEMS" aria-label="Etudiant">Conjoint en EMS</md-checkbox>
+        <md-checkbox ng-if="$ctrl.sim.logement == 'estEMS'" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Etudiant">Conjoint proprietaire</md-checkbox>
       </md-input-container>
     </div>
 
-
+<!-- TODO: Adapter pour objet lieuLogement -->
     <div layout="column">
       <md-autocomplete
           md-selected-item="$ctrl.selectedItem"
