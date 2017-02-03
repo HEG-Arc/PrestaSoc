@@ -41,8 +41,14 @@
 
       <label>Est</label>
       <md-input-container layout="column">
-        <md-checkbox ng-model="$ctrl.currentPerson.etudiant" aria-label="Etudiant">Etudiant</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.garde" aria-label="Etudiant">En garde alternée</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estEtudiant" aria-label="Etudiant">Etudiant</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estGardeAlternee" aria-label="Etudiant">En garde alternée</md-checkbox>   
+        <md-checkbox ng-model="$ctrl.currentPerson.estRetraite" aria-label="Retraité">Retraité</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estHandicap" aria-label="En situation de handicap">En situation de handicap</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estInapteAuTravail" aria-label="Inapte au travail">Inapte au travail</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estBeneficiaireAVS" aria-label="AVS">Bénéficiaire de prestations AVS</md-checkbox>
+        <md-checkbox ng-model="$ctrl.currentPerson.estBeneficiaireRI" aria-label="RI">Bénéficiaire d'un revenu d'insertion (RI)</md-checkbox>
       </md-input-container>
 
     </div>
