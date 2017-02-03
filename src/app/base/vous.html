@@ -18,6 +18,15 @@
         <md-checkbox ng-model="$ctrl.sim.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
       </md-input-container>
       <md-input-container>
+        <label>Type de formation</label>
+        <md-select ng-model="$ctrl.sim.niveauEtude">
+          <md-option>Niveau primaire</md-option>
+          <md-option>Niveau secondaire 1</md-option>
+          <md-option>Niveau secondaire 2</md-option>
+          <md-option>Niveau tertiaire (Université, EPF, HES)</md-option>
+        </md-select>
+      </md-input-container>
+      <md-input-container>
         <label>Etat civil</label>
         <md-select ng-model="$ctrl.sim.etatCivil">
           <md-option>Célibataire</md-option>
