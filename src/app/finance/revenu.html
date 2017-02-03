@@ -1,5 +1,5 @@
-
-<base-nav></base-nav>
+<base-nav>
+</base-nav>
 <md-content layout-padding>
   <div class="box-background" md-whiteframe="1">
     <h2>Votre revenu</h2>
@@ -7,12 +7,64 @@
     <div layout="column">
       <md-input-container>
         <label>Revenu net imposable</label>
-        <input type="text" ng-model="$ctrl.sim.revenuNetImposable" aria-label="Etudiant">
+        <input type="text" ng-model="$ctrl.sim.revenuNetImposable" aria-label="Revenu net imposable">
       </md-input-container>
       <md-input-container>
         <label>Revenu provenant d'une activité lucrative</label>
-        <input type="text" ng-model="$ctrl.sim.revenuActiviteLucrative" aria-label="Etudiant">
+        <input type="text" ng-model="$ctrl.sim.revenuActiviteLucrative" aria-label="Revenu activité lucrative">
       </md-input-container>
+        <md-input-container>
+          <label>Revenu de la fortune</label>
+          <input type="text" ng-model="$ctrl.sim.revenuFortune" aria-label="Revenu de la fortune">
+        </md-input-container>
+      <h3> Rentes et pensions </h3>
+
+      <div ng-if="$ctrl.sim.estBeneficiaireAVS">
+        <md-input-container>
+          <label>Rente AVS</label>
+          <input type="text" ng-model="$ctrl.sim.renteAVS" aria-label="Rente AVS">
+        </md-input-container>
+      </div>
+
+      <div ng-if="$ctrl.sim.estHandicap || $ctrl.sim.estInapteAuTravail">
+        <md-input-container>
+          <label>Rente AI</label>
+          <input type="text" ng-model="$ctrl.sim.renteAI" aria-label="Rente AI">
+        </md-input-container>
+      </div>
+
+      <div ng-if="$ctrl.sim.etatCivil === 'Veuf'">
+        <md-input-container>
+          <label>Rente de survivant</label>
+          <input type="text" ng-model="$ctrl.sim.renteSurvivant" aria-label="Rente survivant">
+        </md-input-container>
+      </div>
+
+      <md-input-container>
+        <label>Rente accident</label>
+        <input type="text" ng-model="$ctrl.sim.renteAccident" aria-label="Rente accident">
+      </md-input-container>
+
+      <div ng-if="$ctrl.sim.estRetraite">
+        <md-input-container>
+          <label>Versements prévoyance privée (3e pilier)</label>
+          <input type="text" ng-model="$ctrl.sim.rentePrevoyancePrivee" aria-label="Versements prévoyance privée">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Rente prévoyance professionnelle (2e pilier)</label>
+          <input type="text" ng-model="$ctrl.sim.rentePrevoyanceProfessionelle" aria-label="Rente prévoyance professionnelle (2e pilier)">
+        </md-input-container>
+      </div>
+      
+      <div ng-if="$ctrl.sim.estBeneficiaireRI">
+        <md-input-container>
+          <label>Revenu d'insertion</label>
+          <input type="text" ng-model="$ctrl.sim.revenuInsertion" aria-label="Revenu d'insertion">
+        </md-input-container>
+      </div>
+
+
     </div>
     <div layout="row">
       <span flex></span>

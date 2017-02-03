@@ -1,6 +1,7 @@
 class RevenuController {
-  constructor() {
-    this.text = 'revenu';
+  /** @ngInject */
+  constructor(simulation) {
+    this.sim = simulation;
   }
 }
 
