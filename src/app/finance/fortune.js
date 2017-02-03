@@ -1,6 +1,7 @@
 class FortuneController {
-  constructor() {
-    this.text = 'fortune';
+  /** @ngInject */
+  constructor(simulation) {
+    this.sim = simulation;
   }
 }
 
