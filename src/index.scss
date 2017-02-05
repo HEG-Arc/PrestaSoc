@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+button, html, input, select, textarea {
+  font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
+}
+
 base-nav .active {
   background-color: #2196F3;
   color: #fff;
