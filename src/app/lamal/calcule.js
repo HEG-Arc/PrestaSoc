@@ -48,14 +48,18 @@ class CalculeLamal {
       }, 0);
     };
 
-    const reductionEnfants = function (enfants) {
-      const table = new Map();
-      table.set(0, (x => 0 + x * 0));
-      table.set(1, (x => 6000 + x * 0));
-      table.set(2, (x => 13000 + x * 0));
-      table.set(3, (x => 7000 * x));
-      const reduction = table.get(Math.min(enfants, table.size - 1))(enfants);
-      return reduction;
+
+    const reductionEnfants = function (nbEnfants) {
+      switch (nbEnfants) {
+        case 0:
+          return 0;
+        case 1:
+          return 6000;
+        case 2:
+          return 13000;
+        default:
+          return 7000 * nbEnfants;
+      }
     };
 
     const imputationFortune = function (sim) {
