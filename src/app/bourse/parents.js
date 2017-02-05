@@ -1,6 +1,7 @@
 class ParentsController {
-  constructor() {
-    this.text = 'bourse parents';
+  /** @ngInject */
+  constructor(simulation) {
+    this.sim = simulation;
   }
 }
 
