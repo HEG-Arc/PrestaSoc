@@ -1,6 +1,10 @@
 class FormationController {
-  constructor() {
-    this.text = 'bourse formation';
+  /** @ngInject */
+  constructor(simulation, regions) {
+    this.sim = simulation;
+    this.filterList = txt => {
+      return regions.search(txt);
+    };
   }
 }
 

@@ -101,7 +101,10 @@
   "dettesPrivees": {
     "nomFR": "Dettes privées"
   },
-  "logementLoyer": {
+  "estLogementAccessible": {
+    "nomFR": ""
+  },
+  "logementLoyerBrut": {
     "nomFR": ""
   },
   "logementValeurLocative": {
@@ -119,7 +122,7 @@
   "fortuneImmobiliereLogement": {
     "nomFR": "Fortune immobilière du logement permanent"
   },
-  "fortuneImmobiliere": {
+  "fortuneImmobiliereAutre": {
     "nomFR": "Autre fortune immobilière"
   },
   "dettesImmobiliereLogement": {
@@ -129,6 +132,24 @@
     "nomFR": ""
   },
   "fraisAccessoiresLogement": {
+    "nomFR": ""
+  },
+  "personne.lieuInstitution": {
+    "nomFR": ""
+  },
+  "personne.formationRedoublementOuTempsPartiel": {
+    "nomFR": ""
+  },
+  "personne.aLogementSepare": {
+    "nomFR": ""
+  },
+  "personne.aParentLogementAutreFoyer": {
+    "nomFR": ""
+  },
+  "revenueAuxiliaireContributionsEntretien": {
+    "nomFR": ""
+  },
+  "revenueAuxiliairesAutresPrestationsFinancieres": {
     "nomFR": ""
   }
 }
