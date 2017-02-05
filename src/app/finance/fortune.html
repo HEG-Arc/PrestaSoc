@@ -24,7 +24,16 @@
           <label>Dette hypothécaire de votre logement permanent</label>
           <input type="text" ng-model="$ctrl.sim.dettesImmobiliereLogement" aria-label="Dette hypothécaire de votre logement permanent">
         </md-input-container>
-        <h3>Autres biens immobiliers</h3>
+        <md-input-container>
+          <label>Frais accessoires immeuble de votre logement permanent</label>
+          <input type="text" ng-model="$ctrl.sim.fraisAccessoiresLogement" aria-label="Frais accessoires immeuble de votre logement permanent">
+        </md-input-container>
+      </div>
+      <h3>Autres biens immobiliers</h3>
+      <md-checkbox ng-model="autreImmobilier" aria-label="Autre immobilier">
+        Etes-vous propriétaire d'un immeuble qui ne serait pas votre logement principal?
+      </md-checkbox>
+      <div ng-if="autreImmobilier" layout="column">
         <md-input-container>
           <label>Autre fortune immobilière</label>
           <input type="text" ng-model="$ctrl.sim.fortuneImmobiliere" aria-label="Autre fortune immobilière">
@@ -33,13 +42,12 @@
           <label>Autres dettes hypothécaires</label>
           <input type="text" ng-model="$ctrl.sim.dettesImmobiliere" aria-label="Autres dettes hypothécaires">
         </md-input-container>
-      </div>
 
+      </div>
+      TODO depending on mod result or details
+      <div layout="row">
+        <span flex></span>
+        <md-button ui-sref="result" class="md-primary md-raised">Suivant</md-button>
+      </div>
     </div>
-    TODO depending on mod result or details
-    <div layout="row">
-      <span flex></span>
-      <md-button ui-sref="result" class="md-primary md-raised">Suivant</md-button>
-    </div>
-  </div>
 </md-content>
