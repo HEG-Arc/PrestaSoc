@@ -10,20 +10,19 @@ class CalculeLamal {
   rduLookup(menage, estEtudiant = 0, age, rdu) {
     const subside = this.subsides.find(x => {
       return x.menage === menage &&
-             x.formation === estEtudiant &&
-             x.ageMin <= age &&
-             x.ageMax >= age &&
-             x.rduMin <= rdu &&
-             x.rduMax >= rdu;
+        x.formation === estEtudiant &&
+        x.ageMin <= age &&
+        x.ageMax >= age &&
+        x.rduMin <= rdu &&
+        x.rduMax >= rdu;
     });
     const subsideEstime = Math.round(rdu.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) * (subside.subsideMax - subside.subsideMin));
-    return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
+    return { subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime };
   }
 
-  subsideLamalCalcule() {
+  subsideLamalCalcule(rdu) {
     const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
-    const rdu = 0;
-    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+    const subsideTotal = { subsideMin: 0, subsideMax: 0, subsideEstime: 0 };
     for (let i = 0; i < this.sim.personnes.length; i++) {
       const person = this.sim.personnes[i];
       person.subsideLamal = this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu);
@@ -36,8 +35,57 @@ class CalculeLamal {
 
   subsideLamal(sim) {
     this.sim = sim;
-    return this.subsideLamalCalcule();
+    return this.subsideLamalCalcule(calculRDU());
   }
+
+  calculRDU() {
+
+    nombreEnfants(personnes) {
+      return personnes.reduce((count, person) => {
+        if (!person.estAdulte) {
+          count++;
+        }
+        return count;
+      }, 0);
+    }
+
+    reductionEnfants(enfants) {
+      const table = new Map();
+      table.set(0, (x => 0));
+      table.set(1, (x => 6000));
+      table.set(2, (x => 13000));
+      table.set(3, (x => 7000 * x));
+      let reduction = table.get(Math.min(enfants, table.size - 1))(enfants);
+      return reduction;
+    }
+
+    imputationFortune(){
+      const franchiseFortune = {
+        "seul": 56000,
+        "couple": 112000
+      };
+      const tauxMajoration = 1/15;
+      const menageRDU = this.sim.etatCivil === 'C' ||
+        this.sim.etatCivil === 'D' ||
+        this.sim.etatCivil === 'V' ? "seul" : "couple";
+      let fortune = this.sim.fortuneImmobiliereLogement;
+      fortune -= Math.min(300000, this.sim.fortuneImmobiliereLogement);
+      fortune += this.sim.fortuneImmobiliereAutre;
+      fortune += this.sim.fortuneMobiliere;
+      fortune -= franchiseFortune[menageRDU];
+      fortune = Math.max(fortune, 0);
+      return fortune * tauxMajoration;
+    }
+    const nbEnfants = nombreEnfants(this.sim.personnes);
+
+    let rdu = this.sim.revenuNetImposable;
+    rdu += this.sim.rentePrevoyancePrivee;
+    rdu -= this.sim.fraisAccessoiresLogement;
+    rdu -= reductionEnfants(nbEnfants);
+    rdu += imputationFortune();
+    return rdu;
+  }
+
 }
 
 export default CalculeLamal;
