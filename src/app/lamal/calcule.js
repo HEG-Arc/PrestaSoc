@@ -17,27 +17,26 @@ class CalculeLamal {
              x.rduMax >= rdu;
     });
     const subsideEstime = Math.round(rdu.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) * (subside.subsideMax - subside.subsideMin));
-    return {subsideMin: subside.subsideMin, subsideMax: rdu.subsideMax, subsideEstime};
+    return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
   }
 
   subsideLamalCalcule() {
     const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
     const rdu = 0;
-    const subsideTotal = this.sim.personnes.reduce((total, person) => {
-      return total + this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu).subsideEstime;
-    }, 0);
-
+    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+    for (let i = 0; i < this.sim.personnes.length; i++) {
+      const person = this.sim.personnes[i];
+      person.subsideLamal = this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu);
+      subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
+      subsideTotal.subsideMin += person.subsideLamal.subsideMin;
+      subsideTotal.subsideMax += person.subsideLamal.subsideMax;
+    }
     return subsideTotal;
-  }
-
-  subsideMax() {
-    return 100;
   }
 
   subsideLamal(sim) {
     this.sim = sim;
-    // TODO minmax
-    return Math.min(this.subsideLamalCalcule(), this.subsideMax());
+    return this.subsideLamalCalcule();
   }
 }
 
