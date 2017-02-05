@@ -37,7 +37,7 @@ class CalculeLamal {
     const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
     const rdu = 0;
     const subsideTotal = this.sim.personnes.reduce((total, person) => {
-      return total + this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu);
+      return total + this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu).subsideEstime;
     }, 0);
 
     return subsideTotal;
