@@ -1,6 +1,7 @@
 class DepensesController {
-  constructor() {
-    this.text = 'PC depenses';
+  /** @ngInject */
+  constructor(simulation) {
+    this.sim = simulation;
   }
 }
 
