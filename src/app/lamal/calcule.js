@@ -48,7 +48,6 @@ class CalculeLamal {
       }, 0);
     };
 
-
     const reductionEnfants = function (nbEnfants) {
       switch (nbEnfants) {
         case 0:
