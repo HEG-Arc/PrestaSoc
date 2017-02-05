@@ -10,7 +10,7 @@
         {{$ctrl.sim.dateNaissance | date}}
       </div>
 
-      <div class="avatar-box" md-whiteframe="1" ng-repeat="p in $ctrl.sim.persons" ng-click="$ctrl.editPerson = p">
+      <div class="avatar-box" md-whiteframe="1" ng-repeat="p in $ctrl.sim.personnes" ng-click="$ctrl.editPerson = p">
         <span>{{p.prenom}}</span>
         {{p.dateNaissance | date}}
 
@@ -26,33 +26,33 @@
 
     // TODO: maybe add partner? constraints?
     // add other none family?
-    <div ng-if="$ctrl.currentPerson" layout="column">
+    <div ng-if="$ctrl.personne" layout="column">
       <p>Edit details (maybe popup?)</p>
 
       <md-input-container>
         <label>Prénom</label>
-        <input ng-model="$ctrl.currentPerson.prenom">
+        <input ng-model="$ctrl.personne.prenom">
       </md-input-container>
 
       <md-input-container>
         <label>Date de naissance</label>
-        <input ng-model="$ctrl.currentPerson.dateNaissance">
+        <input ng-model="$ctrl.personne.dateNaissance">
       </md-input-container>
 
       <label>Est</label>
       <md-input-container layout="column">
-        <md-checkbox ng-model="$ctrl.currentPerson.estEtudiant" aria-label="Etudiant">Etudiant</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estGardeAlternee" aria-label="Etudiant">En garde alternée</md-checkbox>   
-        <md-checkbox ng-model="$ctrl.currentPerson.estRetraite" aria-label="Retraité">Retraité</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estHandicap" aria-label="En situation de handicap">En situation de handicap</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estInapteAuTravail" aria-label="Inapte au travail">Inapte au travail</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estBeneficiaireAVS" aria-label="AVS">Bénéficiaire de prestations AVS</md-checkbox>
-        <md-checkbox ng-model="$ctrl.currentPerson.estBeneficiaireRI" aria-label="RI">Bénéficiaire d'un revenu d'insertion (RI)</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estEtudiant" aria-label="Etudiant">Etudiant</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estGardeAlternee" aria-label="Etudiant">En garde alternée</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estRetraite" aria-label="Retraité">Retraité</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estHandicap" aria-label="En situation de handicap">En situation de handicap</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estInapteAuTravail" aria-label="Inapte au travail">Inapte au travail</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estBeneficiaireAVS" aria-label="AVS">Bénéficiaire de prestations AVS</md-checkbox>
+        <md-checkbox ng-model="$ctrl.personne.estBeneficiaireRI" aria-label="RI">Bénéficiaire d'un revenu d'insertion (RI)</md-checkbox>
       </md-input-container>
       <md-input-container>
         <label>Type de formation</label>
-        <md-select ng-model="$ctrl.currentPerson.niveauEtude">
+        <md-select ng-model="$ctrl.personne.niveauEtude">
           <md-option>Niveau primaire</md-option>
           <md-option>Niveau secondaire 1</md-option>
           <md-option>Niveau secondaire 2</md-option>

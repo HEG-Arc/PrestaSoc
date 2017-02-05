@@ -27,10 +27,10 @@ function other() {
 const gutil = require('gulp-util');
 const through = require('through2');
 
-const regex = /\$ctrl.sim.(.*?)[" ]/g;
+const regex = /\$ctrl\.(?:sim.(.*?)|(personne\..*?))[" ]/g;
 
-function extractVars(file) {
-  gutil.log(gutil.colors.green(file.path));
+function extractVars(file, vars, seen) {
+  gutil.log(gutil.colors.cyan(file.path));
   let m;
   const foundVars = [];
   while ((m = regex.exec(file.contents)) !== null) {
@@ -38,22 +38,41 @@ function extractVars(file) {
     if (m.index === regex.lastIndex) {
       regex.lastIndex++;
     }
-    foundVars.push(m[1]);
+    if (m[1]) {
+      foundVars.push(m[1]);
+    }
+    if (m[2]) {
+      foundVars.push(m[2]);
+    }
   }
   let previous = '';
   foundVars.sort().forEach(v => {
     if (v !== previous) {
-      gutil.log(v);
+      if (vars.hasOwnProperty(v)) {
+        gutil.log(gutil.colors.green(v));
+      } else {
+        gutil.log(gutil.colors.red(v));
+      }
+      seen[v] = true;
       previous = v;
     }
   });
 }
 
 function simvars() {
+  const vars = require('../src/app/vars.fr.json');
+  const seen = {};
   return gulp.src([path.join(conf.paths.src, '/**/*.html')])
     .pipe(through.obj((file, encoding, callback) => {
-      callback(null, extractVars(file));
-    }));
+      callback(null, extractVars(file, vars, seen));
+    })).on('end', () => {
+      gutil.log(gutil.colors.cyan('Unused variables:'));
+      for (const v in vars) {
+        if (!seen.hasOwnProperty(v)) {
+          gutil.log(gutil.colors.red(v));
+        }
+      }
+    });
 }
 
 gulp.task('simvars', simvars);

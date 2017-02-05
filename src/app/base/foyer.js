@@ -5,16 +5,16 @@ class FoyerController {
 
     // TODO: move to service
     this.addPerson = () => {
-      const person = {};
-      this.currentPerson = person;
+      const personne = {};
+      this.personne = personne;
       if (!angular.isArray(this.sim.persons)) {
-        this.sim.persons = [];
+        this.sim.personnes = [];
       }
-      this.sim.persons.push(person);
+      this.sim.personnes.push(personne);
     };
 
     this.removePerson = p => {
-      this.sim.persons.splice(this.sim.persons.indexOf(p), 1);
+      this.sim.personnes.splice(this.sim.personnes.indexOf(p), 1);
     };
   }
 }

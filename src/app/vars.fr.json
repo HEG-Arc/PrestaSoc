@@ -1,0 +1,125 @@
+{
+  "estLocataire": {
+    "nomFR": "Locataire du logement principal"
+  },
+  "estProprietaire": {
+    "nomFR": "Propriétaire du logement principal"
+  },
+  "estEMS": {
+    "nomFR": "Vis dans une institution"
+  },
+  "aConjointEMS": {
+    "nomFR": "Mon conjoint vit dans un EMS"
+  },
+  "aConjointProprietaire": {
+    "nomFR": "Mon conjoint est propriétaire de son logement principal"
+  },
+  "lieuLogement": {
+    "nomFR": ""
+  },
+  "personnes": {
+    "nomFR": "Membre du foyer"
+  },
+  "personne.prenom": {
+    "nomFR": ""
+  },
+  "personne.dateNaissance": {
+    "nomFR": ""
+  },
+  "personne.etatCivil": {
+    "nomFR": ""
+  },
+  "personne.estEtudiant": {
+    "nomFR": ""
+  },
+  "personne.niveauEtude": {
+    "nomFR": ""
+  },
+  "personne.estGardeAlternee": {
+    "nomFR": ""
+  },
+  "personne.estBeneficiairePC": {
+    "nomFR": ""
+  },
+  "personne.estHandicap": {
+    "nomFR": ""
+  },
+  "personne.estInapteAuTravail": {
+    "nomFR": ""
+  },
+  "personne.estAdulte": {
+    "nomFR": ""
+  },
+  "personne.estEnRechercheEmploi": {
+    "nomFR": ""
+  },
+  "personne.estRetraite": {
+    "nomFR": ""
+  },
+  "personne.estBeneficiaireRI": {
+    "nomFR": ""
+  },
+  "revenuNetImposable": {
+    "nomFR": "Revenu net imposable"
+  },
+  "revenuActiviteLucrative": {
+    "nomFR": ""
+  },
+  "renteAVS": {
+    "nomFR": ""
+  },
+  "renteAI": {
+    "nomFR": ""
+  },
+  "renteSurvivant": {
+    "nomFR": "Rente de survivant"
+  },
+  "rentePrevoyancePrivee": {
+    "nomFR": "rentePrevoyancePrivee"
+  },
+  "renteAccident": {
+    "nomFR": "Rente accident"
+  },
+  "rentePrevoyanceProfessionelle": {
+    "nomFR": "Rente prévoyance professionnelle (2e pilier)"
+  },
+  "revenuInsertion": {
+    "nomFR": "Revenu d'insertion"
+  },
+  "revenuFortune": {
+    "nomFR": "Revenu de la fortune"
+  },
+  "fortuneMobiliere": {
+    "nomFR": "fortuneMobiliere"
+  },
+  "dettesPrivees": {
+    "nomFR": "Dettes privées"
+  },
+  "logementLoyer": {
+    "nomFR": ""
+  },
+  "logementValeurLocative": {
+    "nomFR": ""
+  },
+  "depensesAssuranceMaladie": {
+    "nomFR": ""
+  },
+  "depensesCotisationsAVS": {
+    "nomFR": ""
+  },
+  "depensesContributionsEntretien": {
+    "nomFR": ""
+  },
+  "fortuneImmobiliereLogement": {
+    "nomFR": "Fortune immobilière du logement permanent"
+  },
+  "fortuneImmobiliere": {
+    "nomFR": "Autre fortune immobilière"
+  },
+  "dettesImmobiliereLogement": {
+    "nomFR": "Dette hypothécaire de votre logement permanent"
+  },
+  "dettesImmobiliere": {
+    "nomFR": ""
+  }
+}
