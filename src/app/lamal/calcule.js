@@ -50,9 +50,9 @@ class CalculeLamal {
 
     const reductionEnfants = function (enfants) {
       const table = new Map();
-      table.set(0, (x => 0));
-      table.set(1, (x => 6000));
-      table.set(2, (x => 13000));
+      table.set(0, (x => 0 + x * 0));
+      table.set(1, (x => 6000 + x * 0));
+      table.set(2, (x => 13000 + x * 0));
       table.set(3, (x => 7000 * x));
       const reduction = table.get(Math.min(enfants, table.size - 1))(enfants);
       return reduction;
@@ -64,9 +64,9 @@ class CalculeLamal {
         couple: 112000
       };
       const tauxMajoration = 1 / 15;
-      const menageRDU = sim.etatCivil === 'C' ||
-        sim.etatCivil === 'D' ||
-        sim.etatCivil === 'V' ? "seul" : "couple";
+      const menageRDU = sim.personnes[0].etatCivil === 'C' ||
+        sim.personnes[0].etatCivil === 'D' ||
+        sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
       let fortune = sim.fortuneImmobiliereLogement;
       fortune -= Math.min(300000, sim.fortuneImmobiliereLogement);
       fortune += sim.fortuneImmobiliereAutre;
@@ -81,7 +81,7 @@ class CalculeLamal {
     rdu += this.sim.rentePrevoyancePrivee;
     rdu -= this.sim.fraisAccessoiresLogement;
     rdu -= reductionEnfants(nbEnfants);
-    rdu += imputationFortune();
+    rdu += imputationFortune(this.sim);
     return rdu;
   }
 
