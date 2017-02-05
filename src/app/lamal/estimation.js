@@ -1,6 +1,9 @@
 class EstimationController {
-  constructor() {
+  /** @ngInject */
+  constructor(simulation, lamalCalcule) {
+    this.sim = simulation;
     this.text = 'lamal estimation';
+    this.lamalCalcule = lamalCalcule;
   }
 }
 
