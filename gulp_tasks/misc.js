@@ -27,7 +27,7 @@ function other() {
 const gutil = require('gulp-util');
 const through = require('through2');
 
-const regex = /\$ctrl\.(?:sim.(.*?)|(personne\..*?))[" ]/g;
+const regex = /(?:\$ctrl\.)?(?:sim.(.*?)|(personne\..*?))[}") ]/g;
 
 function extractVars(file, vars, seen) {
   gutil.log(gutil.colors.cyan(file.path));
