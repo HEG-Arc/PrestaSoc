@@ -6,6 +6,7 @@ import {logement} from './logement';
 import {statut} from './statut';
 import {result} from './result';
 import {nav} from './nav';
+import {personne} from './personne';
 
 export const baseModule = 'app.base';
 import {servicesModule} from '../services/index';
@@ -17,4 +18,5 @@ angular
   .component('baseFoyer', foyer)
   .component('baseLogement', logement)
   .component('baseStatut', statut)
-  .component('baseResult', result);
+  .component('baseResult', result)
+  .component('basePersonne', personne);

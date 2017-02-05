@@ -7,9 +7,6 @@ class FoyerController {
     this.addPerson = () => {
       const personne = {};
       this.personne = personne;
-      if (!angular.isArray(this.sim.persons)) {
-        this.sim.personnes = [];
-      }
       this.sim.personnes.push(personne);
     };
 
