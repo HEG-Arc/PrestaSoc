@@ -27,7 +27,7 @@ function other() {
 const gutil = require('gulp-util');
 const through = require('through2');
 
-const regex = /\$ctrl\.(?:sim.(.*?)|(personne\..*?))[" ]/g;
+const regex = /(?:\$ctrl\.)?(?:sim.(.*?)|(personne\..*?))[}") ]/g;
 
 function extractVars(file, vars, seen) {
   gutil.log(gutil.colors.cyan(file.path));
@@ -39,7 +39,9 @@ function extractVars(file, vars, seen) {
       regex.lastIndex++;
     }
     if (m[1]) {
-      foundVars.push(m[1]);
+      // transform personnes[*] to personne
+      const p = m[1].replace(/s\[.*?\]\./, '.');
+      foundVars.push(p);
     }
     if (m[2]) {
       foundVars.push(m[2]);

@@ -1,4 +1,51 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-</div>
-<md-button ui-sref="revenusAuxiliaires" class="md-primary md-raised">Suivant</md-button>
+<md-content layout-padding>
+  <div class="box-background" md-whiteframe="1">
+    <h2>Etudiants du foyer</h2>
+
+    <div layout="column">
+      <div md-whiteframe="1" ng-repeat="personne in $ctrl.sim.personnes | filter: {estEtudiant: true}">
+        <span>{{personne.prenom}}</span>
+        {{personne.dateNaissance | date}}
+
+      // reask?
+      <md-input-container>
+        <label>Type de formation</label>
+        <md-select ng-model="personne.niveauEtude">
+          <md-option value="l0">Niveau primaire</md-option>
+          <md-option value="l1">Niveau secondaire 1</md-option>
+          <md-option value="l2">Niveau secondaire 2</md-option>
+          <md-option value="l3">Niveau tertiaire (Université, EPF, HES)</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-autocomplete
+          md-selected-item="personne.lieuInstitution"
+          md-search-text="personne.$searchText"
+          md-items="item in $ctrl.filterList(personne.$searchText)"
+          md-item-text="item.label"
+          md-min-length="3"
+          md-require-match
+          md-floating-label="NPA / Commune de l'institution"
+          placeholder="NPA / Commune de l'institution">
+        <md-item-template>
+          <span md-highlight-text="personne.$searchText" md-highlight-flags="i">{{item.label}}</span>
+        </md-item-template>
+        <md-not-found>
+          No entry matching "{{personne.$searchText}}" were found.
+        </md-not-found>
+      </md-autocomplete>
+
+      <md-input-container layout="column">
+          <md-checkbox ng-model="personne.formationRedoublementOuTempsPartiel" aria-label="Redoublement ou temps partiel">Redoublement ou temps partiel</md-checkbox>
+          <md-checkbox ng-model="personne.aLogementSepare" aria-label="Logement séparé">Logement séparé</md-checkbox>
+          <md-checkbox ng-model="personne.aParentLogementAutreFoyer" aria-label="Un parent vit-il dans un autre foyer">Un parent vit-il dans un autre foyer?</md-checkbox>
+      </md-input-container>
+      </div>
+    </div>
+
+    <div layout="row">
+      <span flex></span>
+      <md-button ui-sref="revenusAuxiliaires" class="md-primary md-raised">Suivant</md-button>
+    </div>
+  </div>
+</md-content>

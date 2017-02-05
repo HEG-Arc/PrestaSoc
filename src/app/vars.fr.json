@@ -8,6 +8,9 @@
   "estEMS": {
     "nomFR": "Vis dans une institution"
   },
+  "logement": {
+    "nomFR": ""
+  },
   "aConjointEMS": {
     "nomFR": "Mon conjoint vit dans un EMS"
   },
@@ -21,43 +24,46 @@
     "nomFR": "Membre du foyer"
   },
   "personne.prenom": {
-    "nomFR": ""
+    "nomFR": "Prénom"
   },
   "personne.dateNaissance": {
-    "nomFR": ""
+    "nomFR": "Date de naissance"
   },
   "personne.etatCivil": {
-    "nomFR": ""
+    "nomFR": "Etat civil"
   },
   "personne.estEtudiant": {
-    "nomFR": ""
+    "nomFR": "Etudiant"
   },
   "personne.niveauEtude": {
     "nomFR": ""
   },
   "personne.estGardeAlternee": {
-    "nomFR": ""
+    "nomFR": "En garde alternée"
   },
   "personne.estBeneficiairePC": {
     "nomFR": ""
   },
   "personne.estHandicap": {
-    "nomFR": ""
+    "nomFR": "En situation de handicap"
   },
   "personne.estInapteAuTravail": {
-    "nomFR": ""
+    "nomFR": "Inapte au travail"
   },
   "personne.estAdulte": {
     "nomFR": ""
   },
   "personne.estEnRechercheEmploi": {
-    "nomFR": ""
+    "nomFR": "En recherche d'emploi"
   },
   "personne.estRetraite": {
-    "nomFR": ""
+    "nomFR": "Retraité"
   },
   "personne.estBeneficiaireRI": {
-    "nomFR": ""
+    "nomFR": "Un revenu d'insertion (RI)"
+  },
+  "personne.estBeneficiaireAVS": {
+    "nomFR": "Des prestations AVS"
   },
   "revenuNetImposable": {
     "nomFR": "Revenu net imposable"
@@ -95,7 +101,10 @@
   "dettesPrivees": {
     "nomFR": "Dettes privées"
   },
-  "logementLoyer": {
+  "estLogementAccessible": {
+    "nomFR": ""
+  },
+  "logementLoyerBrut": {
     "nomFR": ""
   },
   "logementValeurLocative": {
@@ -113,13 +122,34 @@
   "fortuneImmobiliereLogement": {
     "nomFR": "Fortune immobilière du logement permanent"
   },
-  "fortuneImmobiliere": {
+  "fortuneImmobiliereAutre": {
     "nomFR": "Autre fortune immobilière"
   },
   "dettesImmobiliereLogement": {
     "nomFR": "Dette hypothécaire de votre logement permanent"
   },
   "dettesImmobiliere": {
+    "nomFR": ""
+  },
+  "fraisAccessoiresLogement": {
+    "nomFR": ""
+  },
+  "personne.lieuInstitution": {
+    "nomFR": ""
+  },
+  "personne.formationRedoublementOuTempsPartiel": {
+    "nomFR": ""
+  },
+  "personne.aLogementSepare": {
+    "nomFR": ""
+  },
+  "personne.aParentLogementAutreFoyer": {
+    "nomFR": ""
+  },
+  "revenueAuxiliaireContributionsEntretien": {
+    "nomFR": ""
+  },
+  "revenueAuxiliairesAutresPrestationsFinancieres": {
     "nomFR": ""
   }
 }

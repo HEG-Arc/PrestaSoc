@@ -1,6 +1,7 @@
 class RevenusAuxiliairesController {
-  constructor() {
-    this.text = 'bourse revenue aux';
+  /** @ngInject */
+  constructor(simulation) {
+    this.sim = simulation;
   }
 }
 

@@ -10,17 +10,16 @@
     </md-radio-group>
 
 
-    <div ng-if="$ctrl.sim.etatCivil == 'Marié' || $ctrl.sim.etatCivil == 'Partenariat'">
+    <div ng-if="$ctrl.sim.personnes[0].etatCivil == 'M' || $ctrl.sim.personnes[0].etatCivil == 'P'">
       <md-input-container layout="column">
-        <md-checkbox ng-if="$ctrl.sim.logement == 'estProprietaire'" ng-model="$ctrl.sim.aConjointEMS" aria-label="Etudiant">Conjoint en EMS</md-checkbox>
-        <md-checkbox ng-if="$ctrl.sim.logement == 'estEMS'" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Etudiant">Conjoint proprietaire</md-checkbox>
+        <md-checkbox ng-if="$ctrl.sim.estProprietaire" ng-model="$ctrl.sim.aConjointEMS" aria-label="Conjoint en EMS">Conjoint en EMS</md-checkbox>
+        <md-checkbox ng-if="$ctrl.sim.estEMS" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Conjoint proprietaire">Conjoint proprietaire</md-checkbox>
       </md-input-container>
     </div>
 
-<!-- TODO: Adapter pour objet lieuLogement -->
     <div layout="column">
       <md-autocomplete
-          md-selected-item="$ctrl.selectedItem"
+          md-selected-item="$ctrl.sim.lieuLogement"
           md-search-text="$ctrl.searchText"
           md-items="item in $ctrl.filterList($ctrl.searchText)"
           md-item-text="item.label"
@@ -37,7 +36,7 @@
       </md-autocomplete>
 
     </div>
-    TODO demander s'il possède d'autres biens immobiliers ici?
+
     <div layout="row">
       <md-button ui-sref="foyer" class="md-raised">Précédent</md-button>
       <span flex></span>

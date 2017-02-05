@@ -4,45 +4,8 @@
   <div class="box-background" md-whiteframe="1">
     <h2>Vous</h2>
 
-    <div layout="column">
-      <md-input-container>
-        <label>Date de naissance</label>
-        <md-datepicker ng-model="$ctrl.sim.dateNaissance" flex></md-datepicker>
-      </md-input-container>
-      <label>Vous êtes</label>
-      <md-input-container layout="column">
-        <md-checkbox ng-model="$ctrl.sim.estEtudiant" aria-label="Etudiant">Etudiant</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.estRetraite" aria-label="Retraité">Retraité</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.estHandicap" aria-label="En situation de handicap">En situation de handicap</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.estInapteAuTravail" aria-label="Inapte au travail">Inapte au travail</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.estEnRechercheEmploi" aria-label="En recherche d'emploi">En recherche d'emploi</md-checkbox>
-      </md-input-container>
-      <md-input-container>
-        <label>Type de formation</label>
-        <md-select ng-model="$ctrl.sim.niveauEtude">
-          <md-option>Niveau primaire</md-option>
-          <md-option>Niveau secondaire 1</md-option>
-          <md-option>Niveau secondaire 2</md-option>
-          <md-option>Niveau tertiaire (Université, EPF, HES)</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <label>Etat civil</label>
-        <md-select ng-model="$ctrl.sim.etatCivil">
-          <md-option>Célibataire</md-option>
-          <md-option>Marié</md-option>
-          <md-option>Divorcé</md-option>
-          <md-option>Veuf</md-option>
-          <md-option>Partenariat enregistré</md-option>
-          <md-option>Union libre</md-option>
-        </md-select>
-      </md-input-container>
-      <label>Vous recevez</label>
-      <md-input-container layout="column">
-        <md-checkbox ng-model="$ctrl.sim.estBeneficiaireAVS" aria-label="AVS">Des prestations AVS</md-checkbox>
-        <md-checkbox ng-model="$ctrl.sim.estBeneficiaireRI" aria-label="RI">Un revenu d'insertion (RI)</md-checkbox>
-      </md-input-container>
-    </div>
+    <base-personne personne="$ctrl.sim.personnes[0]"></base-personne>
+
     <div layout="row">
       <span flex></span>
       <md-button ui-sref="foyer" class="md-primary md-raised">Suivant</md-button>
