@@ -38,6 +38,22 @@ angular
     angularAnimate,
     angularUIRouter])
   .config(routesConfig)
+  .config($mdThemingProvider => {
+    $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('green', {
+      100: 'd6ead8',
+      200: 'a8d3af',
+      300: '6fbd84',
+      400: '1ca75e',
+      500: '009640',
+      600: '008538',
+      700: '007933',
+      800: '006228',
+      900: '00461A',
+      contrastDefaultColor: 'light',
+      contrastDarkColors: ['50', '100', '200', '300', '400']
+    }));
+    $mdThemingProvider.theme('default').primaryPalette('primaryPalette');
+  })
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer);

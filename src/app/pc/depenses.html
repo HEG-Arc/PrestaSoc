@@ -6,27 +6,27 @@
 
     <div layout="column">
       <md-input-container>
-          <md-checkbox ng-model="$ctrl.sim.estLogementAccessible" aria-label="Logement accessible en fauteuil roulant">Logement accessible en fauteuil roulant</md-checkbox>
+          <md-checkbox class="md-primary" ng-model="$ctrl.sim.estLogementAccessible" aria-label="Logement accessible en fauteuil roulant">Logement accessible en fauteuil roulant</md-checkbox>
       </md-input-container>
 
       <md-input-container>
         <label>Loyer brut</label>
-        <input type="text" ng-model="$ctrl.sim.logementLoyerBrut" aria-label="Loyer brut">
+        <input type="number" ng-model="$ctrl.sim.logementLoyerBrut" aria-label="Loyer brut">
       </md-input-container>
 
       <md-input-container ng-if="$ctrl.sim.estProprietaire">
         <label>Valeur locative</label>
-        <input type="text" ng-model="$ctrl.sim.logementValeurLocative" aria-label="Valeur locative">
+        <input type="number" ng-model="$ctrl.sim.logementValeurLocative" aria-label="Valeur locative">
       </md-input-container>
 
       <md-input-container ng-if="!$ctrl.sim.personnes[0].estBeneficiaireAVS">
         <label>Cotisations AI/AVS/APG</label>
-        <input type="text" ng-model="$ctrl.sim.depensesCotisationsAVS" aria-label="Cotisations AI/AVS/APG">
+        <input type="number" ng-model="$ctrl.sim.depensesCotisationsAVS" aria-label="Cotisations AI/AVS/APG">
       </md-input-container>
 
       <md-input-container>
         <label>depensesContributionsEntretien</label>
-        <input type="text" ng-model="$ctrl.sim.depensesContributionsEntretien" aria-label="depensesContributionsEntretien">
+        <input type="number" ng-model="$ctrl.sim.depensesContributionsEntretien" aria-label="depensesContributionsEntretien">
       </md-input-container>
 
       <div layout="row">

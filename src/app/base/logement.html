@@ -12,8 +12,8 @@
 
     <div ng-if="$ctrl.sim.personnes[0].etatCivil == 'M' || $ctrl.sim.personnes[0].etatCivil == 'P'">
       <md-input-container layout="column">
-        <md-checkbox ng-if="$ctrl.sim.estProprietaire" ng-model="$ctrl.sim.aConjointEMS" aria-label="Conjoint en EMS">Conjoint en EMS</md-checkbox>
-        <md-checkbox ng-if="$ctrl.sim.estEMS" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Conjoint proprietaire">Conjoint proprietaire</md-checkbox>
+        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estProprietaire" ng-model="$ctrl.sim.aConjointEMS" aria-label="Conjoint en EMS">Conjoint en EMS</md-checkbox>
+        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estEMS" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Conjoint proprietaire">Conjoint proprietaire</md-checkbox>
       </md-input-container>
     </div>
 

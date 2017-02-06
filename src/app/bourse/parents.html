@@ -8,47 +8,47 @@
 
       <md-input-container>
         <label>Nombre d'adultes vivant dans ce foyer</label>
-        <input type="text" ng-model="$ctrl.personne.nbAdultesFoyer2" aria-label="Fortune mobilière">
+        <input type="number" ng-model="$ctrl.personne.nbAdultesFoyer2" aria-label="Fortune mobilière">
       </md-input-container>
 
       <md-input-container>
         <label>Nombre d'enfants vivant dans ce foyer</label>
-        <input type="text" ng-model="$ctrl.personne.nbEnfantsFoyer2" aria-label="Fortune mobilière">
+        <input type="number" ng-model="$ctrl.personne.nbEnfantsFoyer2" aria-label="Fortune mobilière">
       </md-input-container>
 
       <md-input-container>
         <label>Revenu net impossable du foyer</label>
-        <input type="text" ng-model="$ctrl.personne.revenuNetFoyer2" aria-label="Fortune mobilière">
+        <input type="number" ng-model="$ctrl.personne.revenuNetFoyer2" aria-label="Fortune mobilière">
       </md-input-container>
 
       <md-input-container>
         <label>Versements 3e pilier</label>
-        <input type="text" ng-model="$ctrl.personne.troisiemePilierFoyer2" aria-label="Fortune mobilière">
+        <input type="number" ng-model="$ctrl.personne.troisiemePilierFoyer2" aria-label="Fortune mobilière">
       </md-input-container>
 
       <md-input-container>
         <label>Fortune mobilière</label>
-        <input type="text" ng-model="$ctrl.personne.fortuneMobiliereFoyer2" aria-label="Fortune mobilière">
+        <input type="number" ng-model="$ctrl.personne.fortuneMobiliereFoyer2" aria-label="Fortune mobilière">
       </md-input-container>
 
-      <md-checkbox ng-model="$ctrl.personne.estProprietaireFoyer2" aria-label="Autre immobilier">
+      <md-checkbox class="md-primary" ng-model="$ctrl.personne.estProprietaireFoyer2" aria-label="Autre immobilier">
         Sont-il propriétaire?
       </md-checkbox>
 
       <div ng-if="$ctrl.personne.estProprietaireFoyer2" layout="column">
         <md-input-container>
           <label>Fortune immobilière de votre logement permanent</label>
-          <input type="text" ng-model="$ctrl.personne.fortuneImmobiliereFoyer2" aria-label="Fortune immobilière de votre logement permanent">
+          <input type="number" ng-model="$ctrl.personne.fortuneImmobiliereFoyer2" aria-label="Fortune immobilière de votre logement permanent">
         </md-input-container>
 
         <md-input-container>
           <label>Autre fortune immobilière</label>
-          <input type="text" ng-model="$ctrl.personne.autresFortuneImmobiliereFoyer2" aria-label="Dette hypothécaire de votre logement permanent">
+          <input type="number" ng-model="$ctrl.personne.autresFortuneImmobiliereFoyer2" aria-label="Dette hypothécaire de votre logement permanent">
         </md-input-container>
 
         <md-input-container>
           <label>Frais d'entretient immeuble</label>
-          <input type="text" ng-model="$ctrl.personne.fraisAccessoiresFoyer2" aria-label="Frais accessoires immeuble de votre logement permanent">
+          <input type="number" ng-model="$ctrl.personne.fraisAccessoiresFoyer2" aria-label="Frais accessoires immeuble de votre logement permanent">
         </md-input-container>
       </div>
 
