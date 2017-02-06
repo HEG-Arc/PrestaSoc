@@ -9,10 +9,4 @@ describe('statut component', () => {
       .component('statut', statut);
     angular.mock.module('statut');
   });
-
-  it('should...', angular.mock.inject(($rootScope, $compile) => {
-    const element = $compile('<statut></statut>')($rootScope);
-    $rootScope.$digest();
-    expect(element).not.toBeNull();
-  }));
 });

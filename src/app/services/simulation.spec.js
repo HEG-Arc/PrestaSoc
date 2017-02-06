@@ -9,8 +9,4 @@ describe('Simulation service', () => {
       .service('simulation', Simulation);
     angular.mock.module('Simulation');
   });
-
-  it('should', angular.mock.inject(simulation => {
-    expect(simulation.getData()).toEqual(3);
-  }));
 });

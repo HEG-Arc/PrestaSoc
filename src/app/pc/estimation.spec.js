@@ -9,10 +9,4 @@ describe('estimation component', () => {
       .component('estimation', estimation);
     angular.mock.module('estimation');
   });
-
-  it('should...', angular.mock.inject(($rootScope, $compile) => {
-    const element = $compile('<estimation></estimation>')($rootScope);
-    $rootScope.$digest();
-    expect(element).not.toBeNull();
-  }));
 });

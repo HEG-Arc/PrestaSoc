@@ -9,8 +9,4 @@ describe('Regions service', () => {
       .service('Regions', Regions);
     angular.mock.module('Regions');
   });
-
-  it('should', angular.mock.inject(Regions => {
-    expect(Regions.getData()).toEqual(3);
-  }));
 });
