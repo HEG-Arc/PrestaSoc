@@ -1,12 +1,12 @@
 import angular from 'angular';
 import 'angular-mocks';
-import {etudiant} from './etudiant';
+import {etudiants} from './etudiants';
 
 describe('etudiant component', () => {
   beforeEach(() => {
     angular
       .module('etudiant', ['app/bourse/etudiant.html'])
-      .component('etudiant', etudiant);
+      .component('etudiant', etudiants);
     angular.mock.module('etudiant');
   });
 });
