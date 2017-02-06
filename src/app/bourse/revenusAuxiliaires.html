@@ -5,17 +5,17 @@
     <div layout="column">
       <md-input-container>
         <label>Contributions d'entretien</label>
-        <input type="text" ng-model="$ctrl.sim.revenueAuxiliaireContributionsEntretien" aria-label="contributionsEntretien">
+        <input type="text" ng-model="$ctrl.personne.revenueAuxiliaireContributionsEntretien" aria-label="contributionsEntretien">
       </md-input-container>
 
       <md-input-container>
         <label>Dettes privées</label>
-        <input type="text" ng-model="$ctrl.sim.revenueAuxiliairesAutresPrestationsFinancieres" aria-label="Dettes privées">
+        <input type="text" ng-model="$ctrl.personne.revenueAuxiliairesAutresPrestationsFinancieres" aria-label="Dettes privées">
       </md-input-container>
 
       <div layout="row">
         <span flex></span>
-        <md-button ui-sref="parents" class="md-primary md-raised">Suivant</md-button>
+        <md-button ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
       </div>
     </div>
 </md-content>

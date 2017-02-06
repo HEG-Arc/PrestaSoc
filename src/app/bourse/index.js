@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import {etudiants} from './etudiants';
 import {formation} from './formation';
 import {revenusAuxiliaires} from './revenusAuxiliaires';
 import {parents} from './parents';
@@ -13,4 +14,5 @@ angular
   .component('bourseFormation', formation)
   .component('bourseRevenusAuxiliaires', revenusAuxiliaires)
   .component('bourseParents', parents)
-  .component('bourseEstimation', estimation);
+  .component('bourseEstimation', estimation)
+  .component('bourseEtudiants', etudiants);

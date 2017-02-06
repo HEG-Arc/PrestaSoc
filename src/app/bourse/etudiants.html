@@ -1,0 +1,4 @@
+<div md-whiteframe="1">
+  <md-button ng-repeat="personne in $ctrl.sim.personnes | filter: {estEtudiant: true}" ng-class="{active: $ctrl.index == $index}" ui-sref="{index: $index}">{{personne.prenom}}</md-button>
+</div>
+<ui-view></ui-view>

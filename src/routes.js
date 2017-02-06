@@ -38,16 +38,25 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/fortune',
       component: 'financeFortune'
     })
-    .state('formation', {
+    .state('bourse', {
+      url: '/bourse/:index',
+      component: 'bourseEtudiants',
+      resolve: {
+        personne: (simulation, $stateParams) => {
+          return simulation.etudiants[$stateParams.index];
+        }
+      }
+    })
+    .state('bourse.formation', {
       url: '/formation',
       component: 'bourseFormation'
     })
-    .state('revenusAuxiliaires', {
-      url: '/revenusAuxiliaires',
+    .state('bourse.revenusAuxiliaires', {
+      url: '/:index/revenusAuxiliaires',
       component: 'bourseRevenusAuxiliaires'
     })
-    .state('parents', {
-      url: '/parents',
+    .state('bourse.parents', {
+      url: '/:index/parents',
       component: 'bourseParents'
     })
     .state('bourseEstimation', {
