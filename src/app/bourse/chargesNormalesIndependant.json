@@ -1,0 +1,38 @@
+[
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 1790
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2510
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 1760
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2465
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 1680
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2350
+ }
+]

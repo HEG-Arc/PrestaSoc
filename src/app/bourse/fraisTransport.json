@@ -1,0 +1,134 @@
+[
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "1",
+   "fraisTransport": 400
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "2",
+   "fraisTransport": 400
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "3",
+   "fraisTransport": 600
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "4",
+   "fraisTransport": 800
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "5",
+   "fraisTransport": 900
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "6",
+   "fraisTransport": 1100
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "7",
+   "fraisTransport": 1200
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "8",
+   "fraisTransport": 1250
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "9",
+   "fraisTransport": 1300
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "10",
+   "fraisTransport": 1400
+ },
+ {
+   "ageMin": 0,
+   "ageMax": 25,
+   "zones": "AG",
+   "fraisTransport": 2400
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "1",
+   "fraisTransport": 600
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "2",
+   "fraisTransport": 600
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "3",
+   "fraisTransport": 1000
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "4",
+   "fraisTransport": 1300
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "5",
+   "fraisTransport": 1500
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "6",
+   "fraisTransport": 1700
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "7",
+   "fraisTransport": 1900
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "8",
+   "fraisTransport": 2000
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "9",
+   "fraisTransport": 2100
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "10",
+   "fraisTransport": 2300
+ },
+ {
+   "ageMin": 25,
+   "ageMax": 130,
+   "zones": "AG",
+   "fraisTransport": 3300
+ }
+]

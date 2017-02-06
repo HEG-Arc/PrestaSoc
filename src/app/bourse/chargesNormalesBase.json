@@ -1,0 +1,362 @@
+[
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 2000
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 1,
+   "chargesNormales": 3200
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 2,
+   "chargesNormales": 3600
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 3,
+   "chargesNormales": 4500
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 4,
+   "chargesNormales": 5000
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 5,
+   "chargesNormales": 5500
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 6,
+   "chargesNormales": 5900
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 7,
+   "chargesNormales": 6350
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 8,
+   "chargesNormales": 6800
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 1,
+   "nbEnfants": 9,
+   "chargesNormales": 7250
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2800
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 1,
+   "chargesNormales": 3800
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 2,
+   "chargesNormales": 4200
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 3,
+   "chargesNormales": 5000
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 4,
+   "chargesNormales": 5500
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 5,
+   "chargesNormales": 5700
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 6,
+   "chargesNormales": 6200
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 7,
+   "chargesNormales": 6650
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 8,
+   "chargesNormales": 7100
+ },
+ {
+   "zone": 1,
+   "nbAdultes": 2,
+   "nbEnfants": 9,
+   "chargesNormales": 7550
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 1960
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 1,
+   "chargesNormales": 3200
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 2,
+   "chargesNormales": 3600
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 3,
+   "chargesNormales": 4400
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 4,
+   "chargesNormales": 4900
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 5,
+   "chargesNormales": 5400
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 6,
+   "chargesNormales": 5800
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 7,
+   "chargesNormales": 6250
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 8,
+   "chargesNormales": 6700
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 1,
+   "nbEnfants": 9,
+   "chargesNormales": 7150
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2700
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 1,
+   "chargesNormales": 3700
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 2,
+   "chargesNormales": 4200
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 3,
+   "chargesNormales": 4900
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 4,
+   "chargesNormales": 5400
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 5,
+   "chargesNormales": 5600
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 6,
+   "chargesNormales": 6100
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 7,
+   "chargesNormales": 6550
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 8,
+   "chargesNormales": 7000
+ },
+ {
+   "zone": 2,
+   "nbAdultes": 2,
+   "nbEnfants": 9,
+   "chargesNormales": 7450
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 0,
+   "chargesNormales": 1850
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 1,
+   "chargesNormales": 3000
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 2,
+   "chargesNormales": 3400
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 3,
+   "chargesNormales": 4200
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 4,
+   "chargesNormales": 4700
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 5,
+   "chargesNormales": 5100
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 6,
+   "chargesNormales": 5600
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 7,
+   "chargesNormales": 6050
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 8,
+   "chargesNormales": 6500
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 1,
+   "nbEnfants": 9,
+   "chargesNormales": 6950
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 0,
+   "chargesNormales": 2600
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 1,
+   "chargesNormales": 3600
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 2,
+   "chargesNormales": 4000
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 3,
+   "chargesNormales": 4700
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 4,
+   "chargesNormales": 5100
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 5,
+   "chargesNormales": 5400
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 6,
+   "chargesNormales": 5800
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 7,
+   "chargesNormales": 6250
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 8,
+   "chargesNormales": 6700
+ },
+ {
+   "zone": 3,
+   "nbAdultes": 2,
+   "nbEnfants": 9,
+   "chargesNormales": 7150
+ }
+]

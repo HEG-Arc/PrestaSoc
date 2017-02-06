@@ -1,0 +1,98 @@
+[
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Passerelles et transitions",
+   "fraisEtude": 300
+ },
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Gymnases",
+   "fraisEtude": 1500
+ },
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Apprentissages",
+   "fraisEtude": 600
+ },
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Formation en école",
+   "fraisEtude": 1500
+ },
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Maturité post CFC",
+   "fraisEtude": 600
+ },
+ {
+   "mode": "pt",
+   "niveau": "l3",
+   "categorie": "Ecole supérieure",
+   "fraisEtude": 2500
+ },
+ {
+   "mode": "pt",
+   "niveau": "l3",
+   "categorie": "Haute école",
+   "fraisEtude": 2500
+ },
+ {
+   "mode": "pt",
+   "niveau": "l3",
+   "categorie": "Université",
+   "fraisEtude": 2500
+ },
+ {
+   "mode": "pt",
+   "niveau": "l2",
+   "categorie": "Passerelles et transitions",
+   "fraisEtude": 0
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l2",
+   "categorie": "Gymnases",
+   "fraisEtude": 1100
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l2",
+   "categorie": "Apprentissages",
+   "fraisEtude": 300
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l2",
+   "categorie": "Formation en école",
+   "fraisEtude": 800
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l2",
+   "categorie": "Maturité post CFC",
+   "fraisEtude": 0
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l3",
+   "categorie": "Ecole supérieure",
+   "fraisEtude": 2000
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l3",
+   "categorie": "Haute école",
+   "fraisEtude": 1800
+ },
+ {
+   "mode": "tpr",
+   "niveau": "l3",
+   "categorie": "Université",
+   "fraisEtude": 1800
+ }
+]
