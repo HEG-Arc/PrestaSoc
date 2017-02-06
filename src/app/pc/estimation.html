@@ -1,4 +1,26 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-</div>
-<md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+<base-nav>
+</base-nav>
+<md-content layout-padding>
+  <div class="box-background" md-whiteframe="1">
+    <h2>Estimation des prestations complémentaires (PC)</h2>
+
+    <div layout="column">
+
+      <table>
+        <tr>
+          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus }} CHF</td>
+        </tr>
+        <tr>
+          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses }} CHF</td>
+        </tr>
+          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationPC }} CHF</b></td>
+        </tr>
+      </table>
+
+      <div layout="row">
+        <span flex></span>
+        <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+      </div>
+
+    </div>
+</md-content>
