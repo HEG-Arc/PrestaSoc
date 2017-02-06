@@ -24,6 +24,10 @@ module.exports = {
       },
       {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
       {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&minetype=image/svg+xml'
+      },
+      {
         test: /.html$/,
         loaders: [
           'html-loader'
