@@ -30,6 +30,7 @@ module.exports = {
           loader: 'css-loader?minimize!sass-loader!postcss-loader'
         })
       },
+      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
       {
         test: /\.js$/,
         exclude: /node_modules/,
