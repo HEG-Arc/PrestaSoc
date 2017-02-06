@@ -5,7 +5,7 @@
     <h2>Estimation des subsides LAMAL</h2>
     <div layout="column">
 
-      <table ng-init="total = $ctrl.lamalCalcule.subsideLamal($ctrl.sim)">
+      <table >
         <tr>
           <th>Famille</th>
           <th>Subside minimum</th>
@@ -14,9 +14,9 @@
         </tr>
         <tr>
           <td>Total</td>
-          <td>{{ total.subsideMin }}</td>
-          <td>{{ total.subsideMax }}</td>
-          <td><b>{{ total.subsideEstime }}</b></td>
+          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideMin }}</td>
+          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideMax }}</td>
+          <td><b>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime }}</b></td>
         </tr>
       </table>
       

@@ -1,6 +1,10 @@
 class ResultController {
-  constructor() {
-    this.text = 'Result!';
+  /** @ngInject */
+  constructor(lamalCalcule, simulation) {
+    this.text = 'Résultats';
+    this.sim = simulation;
+    this.lamalCalcule = lamalCalcule;
+    this.sim.subsidesLAMALTotal = this.lamalCalcule.subsideLamal(this.sim);
   }
 }
 
