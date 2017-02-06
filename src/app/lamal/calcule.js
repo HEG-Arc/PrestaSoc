@@ -45,7 +45,7 @@ class CalculeLamal {
     for (let i = 0; i < this.sim.personnes.length; i++) {
       const person = this.sim.personnes[i];
       person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-                                              , person.estBeneficiareRI, this.sim.age(person), rdu
+                                              , person.estBeneficiareRI, person.age, rdu
                                               , this.sim.lieuLogement.region);
       subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
       subsideTotal.subsideMin += person.subsideLamal.subsideMin;
