@@ -62,7 +62,7 @@ class CalculeLamal {
   calculRDU() {
     const nombreEnfants = function (sim) {
       return sim.personnes.reduce((count, person) => {
-        if (sim.age(person) < 18) {
+        if (!person.estAdulte) {
           count++;
         }
         return count;
