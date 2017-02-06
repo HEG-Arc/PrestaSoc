@@ -1,5 +1,42 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-  {{$ctrl.lamalCalcule.subsideLamal($ctrl.sim)}}
-</div>
-<md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+<md-content layout-padding>
+
+  <div class="box-background" md-whiteframe="1">
+
+    <h2>Estimation des subsides LAMAL</h2>
+    <div layout="column">
+
+      <table ng-init="total = $ctrl.lamalCalcule.subsideLamal($ctrl.sim)">
+        <tr>
+          <th>Famille</th>
+          <th>Subside minimum</th>
+          <th>Subside maximum</th>
+          <th><b>Subside estimé</b></th>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ total.subsideMin }}</td>
+          <td>{{ total.subsideMax }}</td>
+          <td><b>{{ total.subsideEstime }}</b></td>
+        </tr>
+      </table>
+      
+      <md-checkbox ng-model="details" aria-label="Détails">Détails</md-checkbox>
+      <table ng-if="details">
+        <tr>
+          <th>Prénom</th>
+          <th>Subside minimum</th>
+          <th>Subside maximum</th>
+          <th>Subside estimé</th>
+        </tr>
+        <tr ng-repeat="personne in $ctrl.sim.personnes">
+          <td>{{ personne.prenom}}</td>
+          <td>{{ personne.subsideLamal.subsideMin}}</td>
+          <td>{{ personne.subsideLamal.subsideMax}}</td>
+          <td>{{ personne.subsideLamal.subsideEstime}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+</md-content>
