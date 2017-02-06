@@ -3,22 +3,37 @@ class CalculeLamal {
   /** @ngInject */
   constructor($http) {
     $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
-      this.subsides = resp.data;
+      this.subsidesRDU = resp.data;
+    });
+    $http.get('app/lamal/lamalVDSubsidesRIPC.json').then(resp => {
+      this.subsidesRIPC = resp.data;
     });
   }
 
-  rduLookup(menage, estEtudiant = false, age, rdu) {
-    const subside = this.subsides.find(x => {
-      return x.menage === menage &&
-        x.formation === estEtudiant &&
-        x.ageMin <= age &&
-        x.ageMax >= age &&
-        x.rduMin <= rdu &&
-        x.rduMax >= rdu;
-    });
+  subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
+                , estBeneficiareRI = false, age, rdu, region) {
+    let subside = {};
+    if (estBeneficiarePC || estBeneficiareRI) {
+      subside = this.subsidesRIPC.find(x => {
+        return x.menage === menage &&
+          x.formation === estEtudiant &&
+          x.ageMin <= age &&
+          x.ageMax >= age &&
+          x.region === region;
+      });
+    } else {
+      subside = this.subsidesRDU.find(x => {
+        return x.menage === menage &&
+          x.formation === estEtudiant &&
+          x.ageMin <= age &&
+          x.ageMax >= age &&
+          x.rduMin <= rdu &&
+          x.rduMax >= rdu;
+      });
+    }
     if (angular.isDefined(subside)) {
       const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
-                                                          (subside.subsideMax - subside.subsideMin));
+        (subside.subsideMax - subside.subsideMin));
       return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
     }
     return {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
@@ -29,7 +44,9 @@ class CalculeLamal {
     const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
     for (let i = 0; i < this.sim.personnes.length; i++) {
       const person = this.sim.personnes[i];
-      person.subsideLamal = this.rduLookup(menage, person.estEtudiant, this.sim.age(person), rdu);
+      person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
+                                              , person.estBeneficiareRI, this.sim.age(person), rdu
+                                              , this.sim.lieuLogement.region);
       subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
       subsideTotal.subsideMin += person.subsideLamal.subsideMin;
       subsideTotal.subsideMax += person.subsideLamal.subsideMax;
