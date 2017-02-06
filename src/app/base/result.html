@@ -1,12 +1,15 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-</div>
-
+<div layout-padding>
+    <div class="box-background" md-whiteframe="1">
+      <h1>Résultats</h1>
 TODO: estimation or questions depending on state
 
-<md-button ui-sref="bourse.formation({index:0})" class="md-primary md-raised" ng-enabled="$ctrl.sim.etudiants.length > 0">Bourse</md-button>
+<div layout="column">
+  <md-button ui-sref="bourse.formation({index:0})" class="md-primary md-raised" ng-enabled="$ctrl.sim.etudiants.length > 0">Bourse</md-button>
 
-<md-button ui-sref="lamalEstimation" class="md-warn md-raised">LAMAL : {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}}
-CHF/mois</md-button>
+  <md-button ui-sref="lamalEstimation" class="md-warn md-raised">LAMAL : {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}} CHF/mois</md-button>
 
-<md-button ui-sref="pcDepenses" class="md-accent md-raised">PC</md-button>
+  <md-button ui-sref="pcDepenses" class="md-accent md-raised">PC</md-button>
+</div>
+
+    </div>
+</div>

@@ -42,6 +42,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/bourse/:index',
       component: 'bourseEtudiants',
       resolve: {
+         /** @ngInject */
         personne: (simulation, $stateParams) => {
           return simulation.etudiants[$stateParams.index];
         }

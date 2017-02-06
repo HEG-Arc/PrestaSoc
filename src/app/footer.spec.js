@@ -9,11 +9,4 @@ describe('footer component', () => {
       .component('appFooter', footer);
     angular.mock.module('appFooter');
   });
-
-  it('should render \'heg-arc\'', angular.mock.inject(($rootScope, $compile) => {
-    const element = $compile('<app-footer></app-footer>')($rootScope);
-    $rootScope.$digest();
-    const footer = element.find('a');
-    expect(footer.html().trim()).toEqual('heg-arc');
-  }));
 });

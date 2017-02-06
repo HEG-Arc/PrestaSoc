@@ -27,6 +27,26 @@ import 'angular-material/angular-material.min.css';
 
 import './index.scss';
 
+/** @ngInject */
+const themeConfig = $mdThemingProvider => {
+  $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('green', {
+    100: 'd6ead8',
+    200: 'a8d3af',
+    300: '6fbd84',
+    400: '1ca75e',
+    500: '009640',
+    600: '008538',
+    700: '007933',
+    800: '006228',
+    900: '00461A',
+    contrastDefaultColor: 'light',
+    contrastDarkColors: ['50', '100', '200', '300', '400']
+  }));
+  $mdThemingProvider.theme('default').primaryPalette('primaryPalette', {
+    default: '500'
+  }).accentPalette('indigo');
+};
+
 angular
   .module('app', [
     baseModule,
@@ -38,22 +58,7 @@ angular
     angularAnimate,
     angularUIRouter])
   .config(routesConfig)
-  .config($mdThemingProvider => {
-    $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('green', {
-      100: 'd6ead8',
-      200: 'a8d3af',
-      300: '6fbd84',
-      400: '1ca75e',
-      500: '009640',
-      600: '008538',
-      700: '007933',
-      800: '006228',
-      900: '00461A',
-      contrastDefaultColor: 'light',
-      contrastDarkColors: ['50', '100', '200', '300', '400']
-    }));
-    $mdThemingProvider.theme('default').primaryPalette('primaryPalette');
-  })
+  .config(themeConfig)
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer);

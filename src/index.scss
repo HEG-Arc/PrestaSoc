@@ -4,8 +4,12 @@ button, html, input, select, textarea {
   font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
 }
 
+base-nav div{
+  background-color: #fff;
+}
+
 .active {
-  background-color: #2196F3;
+  background-color: #006228;
   color: #fff;
 }
 
@@ -23,6 +27,7 @@ button, html, input, select, textarea {
     font-size: 15px;
     font-weight: bold;
     z-index: 10;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.47);
 }
 
 .box-background {
@@ -37,6 +42,8 @@ body {
   overflow-x: hidden;
 }
 .wrapper {
+  background: url('assets/junglebanner.jpg');
+  background-size: contain;
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
