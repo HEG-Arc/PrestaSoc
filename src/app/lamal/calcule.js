@@ -40,6 +40,9 @@ class CalculeLamal {
   }
 
   subsideLamalCalcule(rdu) {
+    if (!this.sim.lieuLogement) {
+      return 0;
+    }
     const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
     const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
     for (let i = 0; i < this.sim.personnes.length; i++) {
