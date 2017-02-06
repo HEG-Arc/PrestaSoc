@@ -11,18 +11,15 @@ class CalculePC {
     this.franchiseFortune = {couple: 60000, seul: 37500, proprietaire: 112500, proprietaireAVSAI: 300000};
     this.tauxPartFortune = {survivant: 0.067, avs: 0.1, ai: 0.067};
     this.deductionActiviteLucrative = {couple: 1500, seul: 1000, taux: 0.667};
-    const nombreEnfants = function () {
-      return this.sim.personnes.reduce((count, person) => {
-        if (this.sim.age(person) < 18) {
-          count++;
-        }
-        return count;
-      }, 0);
-    };
-    this.nombreEnfants = nombreEnfants;
-    this.couple = this.sim.personnes[0].etatCivil === 'C' ||
-      this.sim.personnes[0].etatCivil === 'D' ||
-      this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
+  }
+
+  calculeNombreEnfants() {
+    return this.sim.personnes.reduce((count, person) => {
+      if (person.estAdulte) {
+        count++;
+      }
+      return count;
+    }, 0);
   }
 
   calculRevenu() {
@@ -87,6 +84,11 @@ class CalculePC {
 
   subsidePC(sim) {
     this.sim = sim;
+    this.nombreEnfants = this.calculeNombreEnfants();
+    this.couple = this.sim.personnes[0].etatCivil === 'C' ||
+      this.sim.personnes[0].etatCivil === 'D' ||
+      this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
+
     return {revenu: this.calculRevenu(), depenses: this.calculRevenu(), estimationPC: this.calculDepenses() - this.calculRevenu()};
   }
 
