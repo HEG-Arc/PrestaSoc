@@ -9,10 +9,4 @@ describe('parents component', () => {
       .component('parents', parents);
     angular.mock.module('parents');
   });
-
-  it('should...', angular.mock.inject(($rootScope, $compile) => {
-    const element = $compile('<parents></parents>')($rootScope);
-    $rootScope.$digest();
-    expect(element).not.toBeNull();
-  }));
 });
