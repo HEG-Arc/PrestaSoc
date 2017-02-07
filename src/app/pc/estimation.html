@@ -8,12 +8,22 @@
 
       <table>
         <tr>
-          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus }} CHF</td>
+          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF</td>
+        </tr>
+        <tr>
+          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF</td>
+        </tr>
+        <tr>
+          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationPC }} CHF</b></td>
+        </tr>
+      </table>
+      <h3>Détails du calcul</h3>
+      <table>
+        <tr>
+          <th>Revenus</th><td>{{ $ctrl.sim.pc.revenus }}</td>
         </tr>
         <tr>
           <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses }} CHF</td>
-        </tr>
-          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationPC }} CHF</b></td>
         </tr>
       </table>
 

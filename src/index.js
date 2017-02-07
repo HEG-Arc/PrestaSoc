@@ -7,6 +7,8 @@ import angularMaterial from 'angular-material';
 // Router
 import angularUIRouter from 'angular-ui-router';
 
+import angularGoogleAnalytics from 'angular-google-analytics';
+
 import routesConfig from './routes';
 
 import {main} from './app/main';
@@ -47,6 +49,20 @@ const themeConfig = $mdThemingProvider => {
   }).accentPalette('indigo');
 };
 
+/** @ngInject */
+const analyticsConfig = AnalyticsProvider => {
+  AnalyticsProvider.setAccount('UA-55173430-6');
+  AnalyticsProvider.trackPages(true);
+  AnalyticsProvider.trackUrlParams(true);
+  AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+  AnalyticsProvider.setDomainName('none');
+};
+
+/** @ngInject */
+const init = saver => {
+  saver.start();
+};
+
 angular
   .module('app', [
     baseModule,
@@ -56,9 +72,12 @@ angular
     pcModule,
     angularMaterial,
     angularAnimate,
-    angularUIRouter])
+    angularUIRouter,
+    angularGoogleAnalytics])
   .config(routesConfig)
   .config(themeConfig)
+  .config(analyticsConfig)
   .component('appMain', main)
   .component('appHeader', header)
-  .component('appFooter', footer);
+  .component('appFooter', footer)
+  .run(init);
