@@ -1,6 +1,13 @@
 class NavController {
-  constructor() {
-    this.text = 'My brand new component!';
+  /** @ngInject */
+  constructor(saver, $state) {
+    this.saver = saver;
+    this.$state = $state;
+  }
+
+  restart() {
+    this.saver.restart();
+    this.$state.go('vous');
   }
 }
 

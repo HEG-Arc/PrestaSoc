@@ -47,6 +47,11 @@ const themeConfig = $mdThemingProvider => {
   }).accentPalette('indigo');
 };
 
+/** @ngInject */
+const init = saver => {
+  saver.start();
+};
+
 angular
   .module('app', [
     baseModule,
@@ -61,4 +66,5 @@ angular
   .config(themeConfig)
   .component('appMain', main)
   .component('appHeader', header)
-  .component('appFooter', footer);
+  .component('appFooter', footer)
+  .run(init);
