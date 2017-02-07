@@ -15,7 +15,8 @@
 
       <div layout="row">
         <span flex></span>
-        <md-button ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
+        <md-button ng-if="$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
+        <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourseEstimation" class="md-primary md-raised">Suivant</md-button>
       </div>
     </div>
 </md-content>

@@ -36,7 +36,7 @@ class CalculeBourse {
     return this.sim.personnes.filter(personne => (!personne.estAdulte)).length;
   }
 
-  calculRDU() {
+  calculRDU() { // TODO calcul du rdu pour le foyer du 2e parent
     const reductionEnfants = function (nbEnfants) {
       switch (nbEnfants) {
         case 0:
@@ -116,9 +116,9 @@ class CalculeBourse {
   }
 
   bourseEtudeCalcule(rdu, etudiant) {
-    let charges = 0;
-    let revenus = 0;
-    let bourse = 0;
+    const charges = [];
+    const revenus = [];
+    let montantBourse = 0;
     // TODO zones bourses etudes
     const nbAdultes = this.sim.personnes.filter(personne => (personne.estAdulte)).length;
     const nbEnfants = this.nombreEnfants(this.sim);
@@ -128,21 +128,21 @@ class CalculeBourse {
     } else {
       chargesNormalesBaseFoyer = this.chargesNormalesBaseLookup(nbAdultes, nbEnfants);
     }
-    charges += chargesNormalesBaseFoyer;
+    charges.push(["chargesNormalesBaseFoyer", chargesNormalesBaseFoyer]);
 
     const chargesNormalesComplementaires = this.chargesNormalesComplementairesLookup(etudiant.age);
-    charges += chargesNormalesComplementaires;
+    charges.push(["chargesNormalesComplementaires", chargesNormalesComplementaires]);
 
     const fraisRepasForfait = 1500;
-    charges += fraisRepasForfait;
+    charges.push(["fraisRepasForfait", fraisRepasForfait]);
 
     if (etudiant.aLogementSepare) {
       const fraisLogementSepareForfait = (500 + 280) * 10;
-      charges += fraisLogementSepareForfait;
+      charges.push(["fraisLogementSepareForfait", fraisLogementSepareForfait]);
     }
     // TODO compute frais transports
     const fraisTransportForfait = 1000;
-    charges += fraisTransportForfait;
+    charges.push(["fraisTransportForfait", fraisTransportForfait]);
 
     // TODO compute frais etudes
     let fraisEtudeForfait = 0;
@@ -153,25 +153,26 @@ class CalculeBourse {
         break;
       default: break;
     }
+    charges.push(["fraisEtudeForfait", fraisEtudeForfait]);
 
-    charges += fraisEtudeForfait;
-
-    revenus += rdu;
+    revenus.push(["rdu", rdu]);
     if (etudiant.revenueAuxiliaireContributionsEntretien) {
-      revenus += etudiant.revenueAuxiliaireContributionsEntretien;
+      revenus.push(["revenueAuxiliaireContributionsEntretien", etudiant.revenueAuxiliaireContributionsEntretien]);
     }
     if (etudiant.revenueAuxiliairesAutresPrestationsFinancieres) {
-      revenus += etudiant.revenueAuxiliairesAutresPrestationsFinancieres;
+      revenus.push(["revenueAuxiliairesAutresPrestationsFinancieres", etudiant.revenueAuxiliairesAutresPrestationsFinancieres]);
     }
 
     // TODO part contributive des autres parents
-    this.sim.charges = charges;
-    this.sim.revenus = revenus;
 
     // TODO charges fiscales
-    bourse = Math.min(revenus - charges, 0);
-    bourse = Math.abs(bourse);
-    return bourse;
+    const chargesTotales = charges.reduce((total, charge) => total + charge[1], 0);
+    const revenusTotaux = revenus.reduce((total, revenu) => total + revenu[1], 0);
+    montantBourse = Math.min(revenusTotaux - chargesTotales, 0);
+    montantBourse = Math.abs(montantBourse);
+    const bourseEtude = {charges, revenus, chargesTotales, revenusTotaux, montantBourse};
+    etudiant.bourseEtude = bourseEtude;
+    return bourseEtude;
   }
 
   bourseEtude(sim) {

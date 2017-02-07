@@ -1,4 +1,25 @@
-<div class="component">
-  <h2>{{$ctrl.text}}</h2>
-</div>
-<md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+<md-content layout-padding>
+
+  <div class="box-background" md-whiteframe="1">
+
+    <h2>Estimation des bourses d'études</h2>
+    <div layout="column">
+      <table>
+        <tr>
+          <th>Prénom</th>
+          <th>Revenus totaux</th>
+          <th>Charges totales</th>
+          <th>Montant estimé de la bourse</th>
+        </tr>
+        <tr ng-repeat="etudiant in $ctrl.sim.etudiants">
+          <td>{{ etudiant.prenom}}</td>
+          <td>{{ etudiant.bourseEtude.revenusTotaux}}</td>
+          <td>{{ etudiant.bourseEtude.chargesTotales}}</td>
+          <td>{{ etudiant.bourseEtude.montantBourse}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+</md-content>
