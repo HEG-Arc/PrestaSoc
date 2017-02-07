@@ -15,7 +15,7 @@ class CalculePC {
 
   calculeNombreEnfants() {
     return this.sim.personnes.reduce((count, person) => {
-      if (person.estAdulte) {
+      if (!person.estAdulte) {
         count++;
       }
       return count;
@@ -32,20 +32,72 @@ class CalculePC {
       return 0;
     };
 
-    const revenuPrevoyance = this.sim.rentePrevoyanceProfessionelle + this.sim.rentePrevoyancePrivee;
-    const revenuRentes = this.sim.renteAVS + this.sim.renteAI + this.sim.renteSurvivant + this.sim.renteAccident + this.sim.revenuInsertion;
-    const totalFortune = this.sim.fortuneMobiliere - this.sim.dettesPrivees +
-                         this.sim.fortuneImmobiliereLogement - this.sim.dettesImmobiliereLogement +
-                         this.sim.fortuneImmobiliereAutre - this.sim.dettesImmobiliere;
+    const revenuPrevoyance = () => {
+      let revenu = 0;
+      if (this.sim.rentePrevoyanceProfessionelle) {
+        revenu += this.sim.rentePrevoyanceProfessionelle;
+      }
+      if (this.sim.rentePrevoyancePrivee) {
+        revenu += this.sim.rentePrevoyancePrivee;
+      }
+      return revenu;
+    };
+
+    const revenuRentes = () => {
+      let revenu = 0;
+      if (this.sim.renteAVS) {
+        revenu += this.sim.renteAVS;
+      }
+      if (this.sim.renteAI) {
+        revenu += this.sim.renteAI;
+      }
+      if (this.sim.renteSurvivant) {
+        revenu += this.sim.renteSurvivant;
+      }
+      if (this.sim.renteAccident) {
+        revenu += this.sim.renteAccident;
+      }
+      if (this.sim.revenuInsertion) {
+        revenu += this.sim.revenuInsertion;
+      }
+      return revenu;
+    };
+
+    const totalFortune = () => {
+      let revenu = 0;
+      if (this.sim.fortuneMobiliere) {
+        revenu += this.sim.fortuneMobiliere;
+      }
+      if (this.sim.dettesPrivees) {
+        revenu -= this.sim.dettesPrivees;
+      }
+      if (this.sim.fortuneImmobiliereLogement) {
+        revenu += this.sim.fortuneImmobiliereLogement;
+      }
+      if (this.sim.dettesImmobiliereLogement) {
+        revenu -= this.sim.dettesImmobiliereLogement;
+      }
+      if (this.sim.fortuneImmobiliereAutre) {
+        revenu += this.sim.fortuneImmobiliereAutre;
+      }
+      if (this.sim.dettesImmobiliere) {
+        revenu -= this.sim.dettesImmobiliere;
+      }
+      if (revenu > 0) {
+        return revenu;
+      }
+      /** We don't want a negative fortune */
+      return 0;
+    };
 
     const revenuFortune = () => {
       if (this.sim.revenuFortune) {
         return this.sim.revenuFortune;
       }
-      return totalFortune * 0.04;
+      return totalFortune() * 0.04;
     };
 
-    const fortuneAvecDeductions = () => {
+    const deductionsFortune = () => {
       let deductionsFortune = this.franchiseFortune[this.couple];
       if (this.sim.logement === 'estProprietaire') {
         if (this.sim.aConjointEMS || this.sim.aConjointProprietaire) {
@@ -66,10 +118,22 @@ class CalculePC {
       } else {
         taux = this.tauxPartFortune.avs;
       }
-      return (totalFortune - fortuneAvecDeductions) * taux;
+      if (totalFortune() - deductionsFortune() > 0) {
+        return (totalFortune() - deductionsFortune()) * taux;
+      }
+      return 0;
     };
-    /** TODO: Ajouter valeur locative */
-    return revenuBase() + revenuPrevoyance + revenuRentes + revenuFortune() + imputationFortune();
+
+    const valeurLocativeLogement = () => {
+      if (this.sim.valeurLocativeLogement) {
+        return this.sim.valeurLocativeLogement;
+      }
+      return 0;
+    };
+
+    const revenus = revenuBase() + revenuPrevoyance() + revenuRentes() + revenuFortune() + imputationFortune() + valeurLocativeLogement();
+    return {revenuBase: revenuBase(), revenuPrevoyance: revenuPrevoyance(), revenuRentes: revenuRentes(), revenuFortune: revenuFortune(),
+      imputationFortune: imputationFortune(), valeurLocativeLogement: valeurLocativeLogement(), revenus};
   }
 
   calculDepenses() {
@@ -90,7 +154,13 @@ class CalculePC {
       this.sim.personnes[0].etatCivil === 'D' ||
       this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
     }
-    return {revenu: this.calculRevenu(), depenses: this.calculRevenu(), estimationPC: this.calculDepenses() - this.calculRevenu()};
+    const estimationSubsidePC = () => {
+      if (this.calculDepenses() - this.calculRevenu() <= 0) {
+        return 0;
+      }
+      return this.calculDepenses() - this.calculRevenu();
+    };
+    return {revenus: this.calculRevenu(), depenses: this.calculDepenses(), estimationPC: estimationSubsidePC()};
   }
 
 }
