@@ -2,6 +2,11 @@ class CalculeBourse {
 
   /** @ngInject */
   constructor($http) {
+    this.chargesNormalesBase = {};
+    this.fraisEtude = {};
+    this.chargesNormalesIndependant = {};
+    this.fraisTransport = {};
+
     $http.get('app/bourse/chargesNormalesBase.json').then(resp => {
       this.chargesNormalesBase = resp.data;
     });
@@ -16,7 +21,7 @@ class CalculeBourse {
     });
   }
 
-  subsideLamal(sim) {
+  bourseEtude(sim) {
     this.sim = sim;
     return this.bourseEtudeCalcule(this.calculRDU());
   }
