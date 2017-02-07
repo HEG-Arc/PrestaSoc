@@ -154,15 +154,13 @@ class CalculePC {
         this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
     }
 
-    const revenus = this.calculRevenu();
-    const depenses = this.calculDepenses();
 
     let estimationSubsidePC = 0;
     if (depenses.depenses - revenus.revenus > 0) {
       estimationSubsidePC = depenses.depenses - revenus.revenus;
     }
-
-    return {revenus, depenses, estimationSubsidePC};
+    const estimationSubsidePCMensuel = estimationSubsidePC / 12;
+    return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel};
   }
 
 }
