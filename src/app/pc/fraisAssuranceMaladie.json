@@ -1,0 +1,212 @@
+[
+  {
+    "canton": "AG",
+    "region": 0,
+    "prime": 5004
+  },
+  {
+    "canton": "AI",
+    "region": 0,
+    "prime": 4176
+  },
+  {
+    "canton": "AR",
+    "region": 0,
+    "prime": 4632
+  },
+  {
+    "canton": "BS",
+    "region": 0,
+    "prime": 6804
+  },
+  {
+    "canton": "GE",
+    "region": 0,
+    "prime": 6648
+  },
+  {
+    "canton": "GL",
+    "region": 0,
+    "prime": 4776
+  },
+  {
+    "canton": "JU",
+    "region": 0,
+    "prime": 5856
+  },
+  {
+    "canton": "NE",
+    "region": 0,
+    "prime": 5808
+  },
+  {
+    "canton": "NW",
+    "region": 0,
+    "prime": 4332
+  },
+  {
+    "canton": "OW",
+    "region": 0,
+    "prime": 4512
+  },
+  {
+    "canton": "SO",
+    "region": 0,
+    "prime": 5292
+  },
+  {
+    "canton": "SZ",
+    "region": 0,
+    "prime": 4740
+  },
+  {
+    "canton": "TG",
+    "region": 0,
+    "prime": 4800
+  },
+  {
+    "canton": "UR",
+    "region": 0,
+    "prime": 4428
+  },
+  {
+    "canton": "ZG",
+    "region": 0,
+    "prime": 4512
+  },
+  {
+    "canton": "BL",
+    "region": 1,
+    "prime": 5988
+  },
+  {
+    "canton": "BL",
+    "region": 2,
+    "prime": 5520
+  },
+  {
+    "canton": "FR",
+    "region": 1,
+    "prime": 5388
+  },
+  {
+    "canton": "FR",
+    "region": 2,
+    "prime": 4896
+  },
+  {
+    "canton": "SH",
+    "region": 1,
+    "prime": 5340
+  },
+  {
+    "canton": "SH",
+    "region": 2,
+    "prime": 4932
+  },
+  {
+    "canton": "TI",
+    "region": 1,
+    "prime": 5724
+  },
+  {
+    "canton": "TI",
+    "region": 2,
+    "prime": 5424
+  },
+  {
+    "canton": "VD",
+    "region": 1,
+    "prime": 6036
+  },
+  {
+    "canton": "VD",
+    "region": 2,
+    "prime": 5724
+  },
+  {
+    "canton": "VS",
+    "region": 1,
+    "prime": 4872
+  },
+  {
+    "canton": "VS",
+    "region": 2,
+    "prime": 4380
+  },
+  {
+    "canton": "BE",
+    "region": 1,
+    "prime": 6108
+  },
+  {
+    "canton": "BE",
+    "region": 2,
+    "prime": 5472
+  },
+  {
+    "canton": "BE",
+    "region": 3,
+    "prime": 5136
+  },
+  {
+    "canton": "GR",
+    "region": 1,
+    "prime": 4884
+  },
+  {
+    "canton": "GR",
+    "region": 2,
+    "prime": 4536
+  },
+  {
+    "canton": "GR",
+    "region": 3,
+    "prime": 4284
+  },
+  {
+    "canton": "LU",
+    "region": 1,
+    "prime": 5124
+  },
+  {
+    "canton": "LU",
+    "region": 2,
+    "prime": 4716
+  },
+  {
+    "canton": "LU",
+    "region": 3,
+    "prime": 4524
+  },
+  {
+    "canton": "SG",
+    "region": 1,
+    "prime": 5244
+  },
+  {
+    "canton": "SG",
+    "region": 2,
+    "prime": 4872
+  },
+  {
+    "canton": "SG",
+    "region": 3,
+    "prime": 4692
+  },
+  {
+    "canton": "ZH",
+    "region": 1,
+    "prime": 5856
+  },
+  {
+    "canton": "ZH",
+    "region": 2,
+    "prime": 5268
+  },
+  {
+    "canton": "ZH",
+    "region": 3,
+    "prime": 4896
+  }
+]

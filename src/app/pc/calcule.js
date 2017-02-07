@@ -5,10 +5,19 @@ function sum(list) {
 class CalculePC {
 
   /** @ngInject */
-  constructor($http) {
-    $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
-      this.subsides = resp.data;
+  constructor($http, $q) {
+    this.subsidesLAMAL = {};
+    this.$q = $q;
+    const deferred = $q.defer();
+    $q.all([
+      $http.get('app/pc/fraisAssuranceMaladie.json').then(resp => {
+        this.subsidesLAMAL = resp.data;
+      })
+    ]).then(() => {
+      deferred.resolve(true);
     });
+    this.ready = deferred.promise;
+
     this.couvertureBesoinsVitaux = {couple: 28935, seul: 19290, enfants1: 10080, enfants2: 6720, enfants3: 3360};
     this.loyerAnnuelMaximum = {couple: 15000, seul: 13200, enfants: 15000, chaiseRoulante: 3600};
     this.fraisAccessoiresImmeuble = 1680;
@@ -35,7 +44,7 @@ class CalculePC {
       revenuBase = this.sim.revenuNetImposable * this.deductionActiviteLucrative.taux;
     }
 
-    const revenuPrevoyance = sum([this.sim.rentePrevoyanceProfessionelle, this.sim.rentePrevoyancePrivee]);
+    const revenuPrevoyance = sum([this.sim.rentePrevoyanceProfessionelle + this.sim.rentePrevoyancePrivee]);
 
     const revenuRentes = sum([
       this.sim.renteAVS,
@@ -78,7 +87,7 @@ class CalculePC {
       imputationFortune = (totalFortune - deductionsFortune) * taux;
     }
 
-    const revenus = revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune + this.sim.logementValeurLocative;
+    const revenus = sum([revenuBase, revenuPrevoyance, revenuRentes, revenuFortune, imputationFortune, this.sim.logementValeurLocative]);
     return {
       revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
       imputationFortune, valeurLocativeLogement: this.sim.valeurLocativeLogement, revenus
@@ -122,12 +131,18 @@ class CalculePC {
       depensesLoyer += Math.min(this.fraisAccessoiresImmeuble, this.sim.fraisAccessoiresLogement);
     }
 
-    const primesAssuranceMaladie = 0;
+    let primeMaladie = {};
+    primeMaladie = this.subsidesLAMAL.find(x => {
+      return x.region === this.sim.lieuLogement.region &&
+        x.canton === this.sim.lieuLogement.canton;
+    });
+    const primesAssuranceMaladie = primeMaladie.prime * this.sim.personnes.length;
+
     const cotisationsAVS = sum([this.sim.depensesCotisationsAVS]);
     const contributionsEntretien = sum([this.sim.depensesContributionsEntretien]);
 
-    const depenses = sum([besoinsVitaux + depensesLoyer + primesAssuranceMaladie + cotisationsAVS + contributionsEntretien]);
-    return {besoinsVitaux, depensesLoyer, primesAssuranceMaladie, cotisationsAVS, contributionsEntretien, depenses};
+    const depenses = sum([besoinsVitaux, depensesLoyer, primesAssuranceMaladie, cotisationsAVS, contributionsEntretien]);
+    return {besoinsVitaux, depensesLoyer, primesAssuranceMaladie, primeMaladie, cotisationsAVS, contributionsEntretien, depenses};
   }
 
   subsidePC(sim) {
