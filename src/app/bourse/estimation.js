@@ -1,6 +1,8 @@
 class EstimationController {
-  constructor() {
-    this.text = 'bourse estimation';
+  /** @ngInject */
+  constructor(bourseCalcule, simulation) {
+    this.sim = simulation;
+    this.bourseCalcule = bourseCalcule;
   }
 }
 

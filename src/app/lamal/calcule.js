@@ -2,8 +2,8 @@ class CalculeLamal {
 
   /** @ngInject */
   constructor($http) {
-    this.subsidesRDU = {};
-    this.subsidesRIPC = {};
+    this.subsidesRDU = [];
+    this.subsidesRIPC = [];
     $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
       this.subsidesRDU = resp.data;
     });
@@ -38,7 +38,7 @@ class CalculeLamal {
         (subside.subsideMax - subside.subsideMin));
       return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
     }
-    return {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+    return {subsideMin: 0, subsideMax: 0, subsideEstime: 0}; // TODO cas ou la personne n'a pas droit au subside
   }
 
   subsideLamalCalcule(rdu) {

@@ -30,7 +30,7 @@ describe('CalculeLamal service', () => {
       20,
       4000,
       1
-    )).toEqual({subsideMin: 1, subsideMax: 0, subsideEstime: 0});
+    )).toEqual({subsideMin: 300, subsideMax: 336, subsideEstime: 330});
   });
 
   // TODO: other intermediate result test?
