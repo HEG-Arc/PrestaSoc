@@ -49,6 +49,7 @@ const themeConfig = $mdThemingProvider => {
   }).accentPalette('indigo');
 };
 
+/** @ngInject */
 const analyticsConfig = AnalyticsProvider => {
   AnalyticsProvider.setAccount('UA-55173430-6');
   AnalyticsProvider.trackPages(true);
