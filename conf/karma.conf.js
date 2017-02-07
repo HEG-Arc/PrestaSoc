@@ -33,8 +33,11 @@ module.exports = function (config) {
     },
     reporters: ['progress', 'coverage'],
     coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
+      dir: 'coverage/',
+      reporters: [
+        {type: 'html'},
+        {type: 'lcovonly', subdir: '.', file: 'report.lcov'}
+      ]
     },
     webpack: require('./webpack-test.conf'),
     webpackMiddleware: {

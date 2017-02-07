@@ -23,7 +23,7 @@ class CalculePC {
   }
 
   calculRevenu() {
-    const revenuBase = function () {
+    const revenuBase = () => {
       if (this.sim.revenuActiviteLucrative) {
         return (this.sim.revenuActiviteLucrative - this.deductionActiviteLucrative[this.couple]) * this.deductionActiviteLucrative.taux;
       } else if (this.sim.revenuNetImposable) {
@@ -38,14 +38,14 @@ class CalculePC {
                          this.sim.fortuneImmobiliereLogement - this.sim.dettesImmobiliereLogement +
                          this.sim.fortuneImmobiliereAutre - this.sim.dettesImmobiliere;
 
-    const revenuFortune = function () {
+    const revenuFortune = () => {
       if (this.sim.revenuFortune) {
         return this.sim.revenuFortune;
       }
       return totalFortune * 0.04;
     };
 
-    const fortuneAvecDeductions = function () {
+    const fortuneAvecDeductions = () => {
       let deductionsFortune = this.franchiseFortune[this.couple];
       if (this.sim.logement === 'estProprietaire') {
         if (this.sim.aConjointEMS || this.sim.aConjointProprietaire) {
@@ -57,7 +57,7 @@ class CalculePC {
       return deductionsFortune;
     };
 
-    const imputationFortune = function () {
+    const imputationFortune = () => {
       let taux = 0;
       if (this.sim.renteAI) {
         taux = this.tauxPartFortune.ai;
@@ -69,7 +69,7 @@ class CalculePC {
       return (totalFortune - fortuneAvecDeductions) * taux;
     };
     /** TODO: Ajouter valeur locative */
-    return revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune;
+    return revenuBase() + revenuPrevoyance + revenuRentes + revenuFortune() + imputationFortune();
   }
 
   calculDepenses() {
@@ -85,10 +85,11 @@ class CalculePC {
   subsidePC(sim) {
     this.sim = sim;
     this.nombreEnfants = this.calculeNombreEnfants();
-    this.couple = this.sim.personnes[0].etatCivil === 'C' ||
+    if (this.sim.personnes.length > 0) {
+      this.couple = this.sim.personnes[0].etatCivil === 'C' ||
       this.sim.personnes[0].etatCivil === 'D' ||
       this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
-
+    }
     return {revenu: this.calculRevenu(), depenses: this.calculRevenu(), estimationPC: this.calculDepenses() - this.calculRevenu()};
   }
 
