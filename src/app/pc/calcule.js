@@ -78,7 +78,6 @@ class CalculePC {
       imputationFortune = (totalFortune - deductionsFortune) * taux;
     }
 
-
     const revenus = sum([revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune + this.sim.valeurLocativeLogement]);
     return {
       revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
