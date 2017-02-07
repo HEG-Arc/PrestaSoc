@@ -2,6 +2,8 @@ class CalculeLamal {
 
   /** @ngInject */
   constructor($http) {
+    this.subsidesRDU = {};
+    this.subsidesRIPC = {};
     $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
       this.subsidesRDU = resp.data;
     });
