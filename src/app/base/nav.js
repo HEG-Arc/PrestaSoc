@@ -27,7 +27,7 @@ class NavController {
 
   restart() {
     this.saver.restart();
-    this.$state.go('vous');
+    this.$state.go('vous', null, {reload: true});
   }
 }
 
