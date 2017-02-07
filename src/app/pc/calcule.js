@@ -1,5 +1,5 @@
 function sum(list) {
-  return list.reduce((total, x) => total + x ? x : 0, 0);
+  return list.reduce((total, x) => total + (isNaN(x) ? 0 : x), 0);
 }
 
 class CalculePC {
