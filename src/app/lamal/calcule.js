@@ -1,15 +1,24 @@
 class CalculeLamal {
 
   /** @ngInject */
-  constructor($http) {
-    this.subsidesRDU = [];
-    this.subsidesRIPC = [];
-    $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
-      this.subsidesRDU = resp.data;
+
+  constructor($http, $q) {
+    this.subsidesRDU = {};
+    this.subsidesRIPC = {};
+    this.$q = $q;
+    const deferred = $q.defer();
+
+    $q.all([
+      $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
+        this.subsidesRDU = resp.data;
+      }),
+      $http.get('app/lamal/lamalVDSubsidesRIPC.json').then(resp => {
+        this.subsidesRIPC = resp.data;
+      })
+    ]).then(() => {
+      deferred.resolve(true);
     });
-    $http.get('app/lamal/lamalVDSubsidesRIPC.json').then(resp => {
-      this.subsidesRIPC = resp.data;
-    });
+    this.ready = deferred.promise;
   }
 
   subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
@@ -61,7 +70,9 @@ class CalculeLamal {
 
   subsideLamal(sim) {
     this.sim = sim;
-    return this.subsideLamalCalcule(this.calculRDU());
+    return this.ready.then(() => {
+      return this.subsideLamalCalcule(this.calculRDU());
+    });
   }
 
   calculRDU() {
