@@ -1,6 +1,6 @@
 <md-content layout-padding>
   <div class="box-background" md-whiteframe="1">
-    <h2>Revenues auxiliaires</h2>
+    <h2>Revenus auxiliaires</h2>
 
     <div layout="column">
       <md-input-container>
@@ -9,13 +9,14 @@
       </md-input-container>
 
       <md-input-container>
-        <label>Dettes privées</label>
+        <label>Autres prestations financières</label>
         <input type="number" ng-model="$ctrl.personne.revenueAuxiliairesAutresPrestationsFinancieres" aria-label="Dettes privées">
       </md-input-container>
 
       <div layout="row">
         <span flex></span>
-        <md-button ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
+        <md-button ng-if="$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
+        <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourseEstimation" class="md-primary md-raised">Suivant</md-button>
       </div>
     </div>
 </md-content>

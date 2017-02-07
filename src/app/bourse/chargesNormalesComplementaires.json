@@ -1,0 +1,17 @@
+[
+ {
+   "ageMin": 0,
+   "ageMax": 17,
+   "forfait": 1100
+ },
+ {
+   "ageMin": 18,
+   "ageMax": 25,
+   "forfait": 3500
+ },
+ {
+   "ageMin": 26,
+   "ageMax": 130,
+   "forfait": 3850
+ }
+]
