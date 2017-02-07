@@ -1,36 +1,42 @@
 class CalculeBourse {
 
   /** @ngInject */
-  constructor($http) {
+  constructor($http, $q) {
     this.chargesNormalesBase = [];
     this.fraisEtude = [];
     this.chargesNormalesIndependant = [];
     this.fraisTransport = [];
+    this.chargesNormalesComplementaires = [];
+    this.$q = $q;
+    const deferred = $q.defer();
 
-    $http.get('app/bourse/chargesNormalesBase.json').then(resp => {
-      this.chargesNormalesBase = resp.data;
+    $q.all([
+      $http.get('app/bourse/chargesNormalesBase.json').then(resp => {
+        this.chargesNormalesBase = resp.data;
+      }),
+      $http.get('app/bourse/fraisEtude.json').then(resp => {
+        this.fraisEtude = resp.data;
+      }),
+      $http.get('app/bourse/chargesNormalesComplementaires.json').then(resp => {
+        this.chargesNormalesComplementaires = resp.data;
+      }),
+      $http.get('app/bourse/chargesNormalesIndependant.json').then(resp => {
+        this.chargesNormalesIndependant = resp.data;
+      }),
+      $http.get('app/bourse/fraisTransport.json').then(resp => {
+        this.fraisTransport = resp.data;
+      })
+    ]).then(() => {
+      deferred.resolve(true);
     });
-    $http.get('app/bourse/fraisEtude.json').then(resp => {
-      this.fraisEtude = resp.data;
-    });
-    $http.get('app/bourse/chargesNormalesIndependant.json').then(resp => {
-      this.chargesNormalesIndependant = resp.data;
-    });
-    $http.get('app/bourse/fraisTransport.json').then(resp => {
-      this.fraisTransport = resp.data;
-    });
+    this.ready = deferred.promise;
+  }
+
+  nombreEnfants() {
+    return this.sim.personnes.filter(personne => (!personne.estAdulte)).length;
   }
 
   calculRDU() {
-    const nombreEnfants = function (sim) {
-      return sim.personnes.reduce((count, person) => {
-        if (!person.estAdulte) {
-          count++;
-        }
-        return count;
-      }, 0);
-    };
-
     const reductionEnfants = function (nbEnfants) {
       switch (nbEnfants) {
         case 0:
@@ -80,7 +86,7 @@ class CalculeBourse {
     if (angular.isDefined(this.sim.fraisAccessoiresLogement)) {
       rdu -= parseInt(this.sim.fraisAccessoiresLogement, 10);
     }
-    const nbEnfants = nombreEnfants(this.sim);
+    const nbEnfants = this.nombreEnfants(this.sim);
     rdu -= reductionEnfants(nbEnfants);
     rdu += imputationFortune(this.sim);
     return rdu;
@@ -94,14 +100,75 @@ class CalculeBourse {
     }).chargesNormales;
   }
 
-  bourseEtudeCalcule(rdu) {
+  chargesNormalesIndependantLookup(nbAdultes = 1, nbEnfants = 0, zone = 2) {
+    return this.chargesNormalesIndependant.find(x => {
+      return x.zone === zone &&
+        x.nbAdultes === nbAdultes &&
+        x.nbEnfants === nbEnfants;
+    }).chargesNormales;
+  }
+
+  chargesNormalesComplementairesLookup(age) {
+    return this.chargesNormalesComplementaires.find(x => {
+      return x.ageMin <= age &&
+        x.ageMax >= age;
+    }).forfait;
+  }
+
+  bourseEtudeCalcule(rdu, etudiant) {
     let charges = 0;
-    const revenus = rdu;
+    let revenus = 0;
     let bourse = 0;
     // TODO zones bourses etudes
     const nbAdultes = this.sim.personnes.filter(personne => (personne.estAdulte)).length;
-    const chargesNormalesBaseFoyer = this.chargesNormalesBaseLookup(nbAdultes);
+    const nbEnfants = this.nombreEnfants(this.sim);
+    let chargesNormalesBaseFoyer = 0;
+    if (etudiant.estIndependanceFinanciere) {
+      chargesNormalesBaseFoyer = this.chargesNormalesIndependantLookup(nbAdultes);
+    } else {
+      chargesNormalesBaseFoyer = this.chargesNormalesBaseLookup(nbAdultes, nbEnfants);
+    }
     charges += chargesNormalesBaseFoyer;
+
+    const chargesNormalesComplementaires = this.chargesNormalesComplementairesLookup(etudiant.age);
+    charges += chargesNormalesComplementaires;
+
+    const fraisRepasForfait = 1500;
+    charges += fraisRepasForfait;
+
+    if (etudiant.aLogementSepare) {
+      const fraisLogementSepareForfait = (500 + 280) * 10;
+      charges += fraisLogementSepareForfait;
+    }
+    // TODO compute frais transports
+    const fraisTransportForfait = 1000;
+    charges += fraisTransportForfait;
+
+    // TODO compute frais etudes
+    let fraisEtudeForfait = 0;
+    switch (etudiant.niveauEtude) {
+      case 'l2': fraisEtudeForfait = 1500;
+        break;
+      case 'l3': fraisEtudeForfait = 2500;
+        break;
+      default: break;
+    }
+
+    charges += fraisEtudeForfait;
+
+    revenus += rdu;
+    if (etudiant.revenueAuxiliaireContributionsEntretien) {
+      revenus += etudiant.revenueAuxiliaireContributionsEntretien;
+    }
+    if (etudiant.revenueAuxiliairesAutresPrestationsFinancieres) {
+      revenus += etudiant.revenueAuxiliairesAutresPrestationsFinancieres;
+    }
+
+    // TODO part contributive des autres parents
+    this.sim.charges = charges;
+    this.sim.revenus = revenus;
+
+    // TODO charges fiscales
     bourse = Math.min(revenus - charges, 0);
     bourse = Math.abs(bourse);
     return bourse;
@@ -109,7 +176,13 @@ class CalculeBourse {
 
   bourseEtude(sim) {
     this.sim = sim;
-    return this.bourseEtudeCalcule(this.calculRDU());
+    return this.ready.then(() => {
+      const bourses = [];
+      for (let i = 0; i < this.sim.etudiants.length; i++) {
+        bourses.push(this.bourseEtudeCalcule(this.calculRDU(), this.sim.etudiants[i]));
+      }
+      return bourses;
+    });
   }
 
 }

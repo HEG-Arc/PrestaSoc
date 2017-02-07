@@ -3,6 +3,9 @@ class EstimationController {
   constructor(bourseCalcule, simulation) {
     this.sim = simulation;
     this.bourseCalcule = bourseCalcule;
+    this.bourseCalcule.bourseEtude(this.sim).then(result => {
+      this.sim.bourseEtude = result;
+    });
   }
 }
 
