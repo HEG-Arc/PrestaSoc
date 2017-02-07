@@ -1,3 +1,7 @@
+function sum(list) {
+  return list.reduce((total, x) => total + x ? x : 0, 0);
+}
+
 class CalculePC {
 
   /** @ngInject */
@@ -23,117 +27,63 @@ class CalculePC {
   }
 
   calculRevenu() {
-    const revenuBase = () => {
-      if (this.sim.revenuActiviteLucrative) {
-        return (this.sim.revenuActiviteLucrative - this.deductionActiviteLucrative[this.couple]) * this.deductionActiviteLucrative.taux;
-      } else if (this.sim.revenuNetImposable) {
-        return this.sim.revenuNetImposable * this.deductionActiviteLucrative.taux;
-      }
-      return 0;
-    };
+    let revenuBase = 0;
+    if (this.sim.revenuActiviteLucrative) {
+      revenuBase = (this.sim.revenuActiviteLucrative - this.deductionActiviteLucrative[this.couple]) * this.deductionActiviteLucrative.taux;
+    }
+    if (this.sim.revenuNetImposable) {
+      revenuBase = this.sim.revenuNetImposable * this.deductionActiviteLucrative.taux;
+    }
 
-    const revenuPrevoyance = () => {
-      let revenu = 0;
-      if (this.sim.rentePrevoyanceProfessionelle) {
-        revenu += this.sim.rentePrevoyanceProfessionelle;
-      }
-      if (this.sim.rentePrevoyancePrivee) {
-        revenu += this.sim.rentePrevoyancePrivee;
-      }
-      return revenu;
-    };
+    const revenuPrevoyance = sum([this.sim.rentePrevoyanceProfessionelle, this.sim.rentePrevoyancePrivee]);
 
-    const revenuRentes = () => {
-      let revenu = 0;
-      if (this.sim.renteAVS) {
-        revenu += this.sim.renteAVS;
-      }
-      if (this.sim.renteAI) {
-        revenu += this.sim.renteAI;
-      }
-      if (this.sim.renteSurvivant) {
-        revenu += this.sim.renteSurvivant;
-      }
-      if (this.sim.renteAccident) {
-        revenu += this.sim.renteAccident;
-      }
-      if (this.sim.revenuInsertion) {
-        revenu += this.sim.revenuInsertion;
-      }
-      return revenu;
-    };
+    const revenuRentes = sum([
+      this.sim.renteAVS,
+      this.sim.renteAI,
+      this.sim.renteSurvivant,
+      this.sim.renteAccident,
+      this.sim.revenuInsertion]);
 
-    const totalFortune = () => {
-      let revenu = 0;
-      if (this.sim.fortuneMobiliere) {
-        revenu += this.sim.fortuneMobiliere;
-      }
-      if (this.sim.dettesPrivees) {
-        revenu -= this.sim.dettesPrivees;
-      }
-      if (this.sim.fortuneImmobiliereLogement) {
-        revenu += this.sim.fortuneImmobiliereLogement;
-      }
-      if (this.sim.dettesImmobiliereLogement) {
-        revenu -= this.sim.dettesImmobiliereLogement;
-      }
-      if (this.sim.fortuneImmobiliereAutre) {
-        revenu += this.sim.fortuneImmobiliereAutre;
-      }
-      if (this.sim.dettesImmobiliere) {
-        revenu -= this.sim.dettesImmobiliere;
-      }
-      if (revenu > 0) {
-        return revenu;
-      }
-      /** We don't want a negative fortune */
-      return 0;
-    };
+    /** We don't want a negative fortune */
+    const totalFortune = Math.max(0, sum([this.sim.fortuneMobiliere,
+      this.sim.dettesPrivees,
+      this.sim.fortuneImmobiliereLogement,
+      this.sim.dettesImmobiliereLogement,
+      this.sim.fortuneImmobiliereAutre,
+      this.sim.dettesImmobiliere]));
 
-    const revenuFortune = () => {
-      if (this.sim.revenuFortune) {
-        return this.sim.revenuFortune;
-      }
-      return totalFortune() * 0.04;
-    };
+    // TODO: please name me
+    const facteur = 0.04;
+    const revenuFortune = this.sim.revenuFortune ? this.sim.revenuFortune : totalFortune * facteur;
 
-    const deductionsFortune = () => {
-      let deductionsFortune = this.franchiseFortune[this.couple];
-      if (this.sim.logement === 'estProprietaire') {
-        if (this.sim.aConjointEMS || this.sim.aConjointProprietaire) {
-          deductionsFortune += this.franchiseFortune.proprietaireAVSAI;
-        } else {
-          deductionsFortune += this.franchiseFortune.proprietaire;
-        }
-      }
-      return deductionsFortune;
-    };
-
-    const imputationFortune = () => {
-      let taux = 0;
-      if (this.sim.renteAI) {
-        taux = this.tauxPartFortune.ai;
-      } else if (this.sim.renteSurvivant) {
-        taux = this.tauxPartFortune.survivant;
+    let deductionsFortune = this.franchiseFortune[this.couple];
+    if (this.sim.estProprietaire) {
+      if (this.sim.aConjointEMS || this.sim.aConjointProprietaire) {
+        deductionsFortune += this.franchiseFortune.proprietaireAVSAI;
       } else {
-        taux = this.tauxPartFortune.avs;
+        deductionsFortune += this.franchiseFortune.proprietaire;
       }
-      if (totalFortune() - deductionsFortune() > 0) {
-        return (totalFortune() - deductionsFortune()) * taux;
-      }
-      return 0;
-    };
+    }
 
-    const valeurLocativeLogement = () => {
-      if (this.sim.valeurLocativeLogement) {
-        return this.sim.valeurLocativeLogement;
-      }
-      return 0;
-    };
+    let imputationFortune = 0;
+    let taux = 0;
+    if (this.sim.renteAI) {
+      taux = this.tauxPartFortune.ai;
+    } else if (this.sim.renteSurvivant) {
+      taux = this.tauxPartFortune.survivant;
+    } else {
+      taux = this.tauxPartFortune.avs;
+    }
+    if (totalFortune - deductionsFortune > 0) {
+      imputationFortune = (totalFortune - deductionsFortune) * taux;
+    }
 
-    const revenus = revenuBase() + revenuPrevoyance() + revenuRentes() + revenuFortune() + imputationFortune() + valeurLocativeLogement();
-    return {revenuBase: revenuBase(), revenuPrevoyance: revenuPrevoyance(), revenuRentes: revenuRentes(), revenuFortune: revenuFortune(),
-      imputationFortune: imputationFortune(), valeurLocativeLogement: valeurLocativeLogement(), revenus};
+
+    const revenus = sum([revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune + this.sim.valeurLocativeLogement]);
+    return {
+      revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
+      imputationFortune, valeurLocativeLogement: this.sim.valeurLocativeLogement, revenus
+    };
   }
 
   calculDepenses() {
@@ -151,10 +101,12 @@ class CalculePC {
     this.nombreEnfants = this.calculeNombreEnfants();
     if (this.sim.personnes.length > 0) {
       this.couple = this.sim.personnes[0].etatCivil === 'C' ||
-      this.sim.personnes[0].etatCivil === 'D' ||
-      this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
+        this.sim.personnes[0].etatCivil === 'D' ||
+        this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
     }
     const estimationSubsidePC = () => {
+      // WRONG calculeRevenue is object!
+      // cache result to not compute twice!!
       if (this.calculDepenses() - this.calculRevenu() <= 0) {
         return 0;
       }
