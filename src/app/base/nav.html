@@ -1,7 +1,37 @@
 <div layout="row">
-  <md-button ui-sref-active="active" ui-sref="vous">vous</md-button>
-  <md-button ui-sref-active="active" ui-sref="foyer">foyer</md-button>
-  <md-button ui-sref-active="active" ui-sref="logement">logement</md-button>
+  <div ng-if="$ctrl.isBase()">
+    <md-button ui-sref-active="active" ui-sref="vous">vous</md-button>
+    <md-button ui-sref-active="active" ui-sref="foyer">foyer</md-button>
+    <md-button ui-sref-active="active" ui-sref="logement">logement</md-button>
+  </div>
+  <md-button ng-if="!$ctrl.isBase()" ui-sref-active="active" ui-sref="vous">base</md-button>
+  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="statut"><md-icon>book</md-icon></md-button>
+  <div ng-if="$ctrl.isFinance()">
+    <md-button ui-sref-active="active" ui-sref="revenu">revenu</md-button>
+    <md-button ui-sref-active="active" ui-sref="fortune">fortune</md-button>
+  </div>
+  <md-button ng-if="!$ctrl.isFinance()" ui-sref-active="active" ui-sref="revenu">finance</md-button>
+  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="result"><md-icon>attach_money</md-icon></md-button>
+
+  <div ng-if="$ctrl.isLamal()">
+    <span>LAMAL</span>
+    <md-button ui-sref-active="active" ui-sref="lamalEstimation">Estimation</md-button>
+  </div>
+
+  <div ng-if="$ctrl.isPC()">
+    <span>PC</span>
+    <md-button ui-sref-active="active" ui-sref="pcDepenses">Dépenses</md-button>
+    <md-button ui-sref-active="active" ui-sref="pcEstimation">Estimation</md-button>
+  </div>
+
+  <div ng-if="$ctrl.isBourse()">
+    <span>Bourse</span>
+    <md-button ui-sref-active="active" ui-sref="bourse.formation">Formation</md-button>
+    <md-button ui-sref-active="active" ui-sref="bourse.revenusAuxiliaires">Revenu</md-button>
+    <md-button ui-sref-active="active" ui-sref="bourse.parents">Parents</md-button>
+    <md-button ui-sref-active="active" ui-sref="bourseEstimation">Estimation</md-button>
+  </div>
+
   <span flex></span>
   <md-button class="md-warn" ng-click="$ctrl.restart()">Recommencer</md-button>
 </div>
