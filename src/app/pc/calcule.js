@@ -78,7 +78,7 @@ class CalculePC {
       imputationFortune = (totalFortune - deductionsFortune) * taux;
     }
 
-    const revenus = sum([revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune + this.sim.valeurLocativeLogement]);
+    const revenus = revenuBase + revenuPrevoyance + revenuRentes + revenuFortune + imputationFortune + this.sim.logementValeurLocative;
     return {
       revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
       imputationFortune, valeurLocativeLogement: this.sim.valeurLocativeLogement, revenus
@@ -86,13 +86,48 @@ class CalculePC {
   }
 
   calculDepenses() {
-    const besoinsVitaux = 0 * this.nombreEnfants;
-    const loyerBrut = 0;
-    const primesAssuranceMaladie = 0;
-    const cotisationsAVS = 0;
-    const contributionsEntretien = 0;
+    /** =RECHERCHEV(cellule_familiale;besoins_vitaux;2;FAUX)+SI(nb_enfants>0;SI(nb_enfants<3;nb_enfants*C6;SI(nb_enfants<5;2*C6+(nb_enfants-2)*C7;2*C6+2*C7+(nb_enfants-4)*C8))) */
+    let besoinsVitaux = this.couvertureBesoinsVitaux[this.couple];
+    if (this.nombreEnfants > 0) {
+      if (this.nombreEnfants < 3) {
+        besoinsVitaux += this.nombreEnfants * this.couvertureBesoinsVitaux.enfants1;
+      } else if (this.nombreEnfants < 5) {
+        besoinsVitaux += 2 * this.couvertureBesoinsVitaux.enfants1 + (this.nombreEnfants - 2) * this.couvertureBesoinsVitaux.enfants2;
+      } else {
+        besoinsVitaux += 2 * this.couvertureBesoinsVitaux.enfants1 + 2 * this.couvertureBesoinsVitaux.enfants2 + (this.nombreEnfants - 4) * this.couvertureBesoinsVitaux.enfants3;
+      }
+    }
 
-    return besoinsVitaux + loyerBrut + primesAssuranceMaladie + cotisationsAVS + contributionsEntretien;
+    /** =SI(C37="locataire";
+               SI(nb_enfants>0;SI(C52<RECHERCHEV("enfants";loyer_maximum;2;FAUX);C52;RECHERCHEV("enfants";loyer_maximum;2;FAUX));
+                                    SI(C52<RECHERCHEV(cellule_familiale;loyer_maximum;2;FAUX);C52;RECHERCHEV(cellule_familiale;loyer_maximum;2;FAUX)));
+          SI(C37="propriétaire";
+              SI(nb_enfants>0;SI(C53<RECHERCHEV("enfants";loyer_maximum;2;FAUX);C53;RECHERCHEV("enfants";loyer_maximum;2;FAUX));
+                                    SI(C53<RECHERCHEV(cellule_familiale;loyer_maximum;2;FAUX);C53;RECHERCHEV(cellule_familiale;loyer_maximum;2;FAUX)))
+              +frais_accessoires_immeuble)
+        )
+        +SI(logement_accessible;C14;0) */
+    let loyerBrut = 0;
+    if (this.nombreEnfants > 0) {
+      loyerBrut = this.loyerAnnuelMaximum.enfants;
+    } else {
+      loyerBrut = this.loyerAnnuelMaximum[this.couple];
+    }
+    if (this.sim.estLogementAccessible) {
+      loyerBrut += this.loyerAnnuelMaximum.chaiseRoulante;
+    }
+
+    let depensesLoyer = Math.min(loyerBrut, this.sim.logementLoyerBrut);
+    if (this.sim.logement === 'estProprietaire') {
+      depensesLoyer += Math.min(this.fraisAccessoiresImmeuble, this.sim.fraisAccessoiresLogement);
+    }
+
+    const primesAssuranceMaladie = 0;
+    const cotisationsAVS = sum([this.sim.depensesCotisationsAVS]);
+    const contributionsEntretien = sum([this.sim.depensesContributionsEntretien]);
+
+    const depenses = sum([besoinsVitaux + depensesLoyer + primesAssuranceMaladie + cotisationsAVS + contributionsEntretien]);
+    return {besoinsVitaux, depensesLoyer, primesAssuranceMaladie, cotisationsAVS, contributionsEntretien, depenses};
   }
 
   subsidePC(sim) {
@@ -103,15 +138,16 @@ class CalculePC {
         this.sim.personnes[0].etatCivil === 'D' ||
         this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
     }
-    const estimationSubsidePC = () => {
-      // WRONG calculeRevenue is object!
-      // cache result to not compute twice!!
-      if (this.calculDepenses() - this.calculRevenu() <= 0) {
-        return 0;
-      }
-      return this.calculDepenses() - this.calculRevenu();
-    };
-    return {revenus: this.calculRevenu(), depenses: this.calculDepenses(), estimationPC: estimationSubsidePC()};
+
+    const revenus = this.calculRevenu();
+    const depenses = this.calculDepenses();
+
+    let estimationSubsidePC = 0;
+    if (depenses.depenses - revenus.revenus > 0) {
+      estimationSubsidePC = depenses.depenses - revenus.revenus;
+    }
+
+    return {revenus, depenses, estimationSubsidePC};
   }
 
 }
