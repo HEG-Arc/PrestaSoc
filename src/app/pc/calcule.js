@@ -46,11 +46,11 @@ class CalculePC {
 
     /** We don't want a negative fortune */
     const totalFortune = Math.max(0, sum([this.sim.fortuneMobiliere,
-      this.sim.dettesPrivees,
       this.sim.fortuneImmobiliereLogement,
-      this.sim.dettesImmobiliereLogement,
-      this.sim.fortuneImmobiliereAutre,
-      this.sim.dettesImmobiliere]));
+      this.sim.fortuneImmobiliereAutre]) -
+      sum([this.sim.dettesPrivees,
+        this.sim.dettesImmobiliereLogement,
+        this.sim.dettesImmobiliere]));
 
     // TODO: please name me
     const facteur = 0.04;
