@@ -142,8 +142,8 @@ class CalculeLamal {
     return rdu;
   }
 
-  calculeLamalTestCas1() {
-    const sim = {
+  calculeLamalTestCas1(sim) {
+    angular.copy({
       personnes: [
         {
           prenom: "Alice",
@@ -181,8 +181,7 @@ class CalculeLamal {
       revenuNetImposable: 16000,
       revenuFortune: 200,
       fortuneMobiliere: 2000
-    };
-    return this.subsideLamal(sim);
+    }, sim);
   }
 
 }
