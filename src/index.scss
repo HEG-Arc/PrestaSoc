@@ -19,7 +19,8 @@ th {
   text-align: left;
 }
 
-td:nth-child(2) {
+
+table.col-2 td:nth-child(2) {
   text-align: right;
 }
 
