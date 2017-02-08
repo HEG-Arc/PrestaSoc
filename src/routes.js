@@ -53,11 +53,11 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       component: 'bourseFormation'
     })
     .state('bourse.revenusAuxiliaires', {
-      url: '/:index/revenusAuxiliaires',
+      url: '/revenusAuxiliaires',
       component: 'bourseRevenusAuxiliaires'
     })
     .state('bourse.parents', {
-      url: '/:index/parents',
+      url: '/parents',
       component: 'bourseParents'
     })
     .state('bourseEstimation', {

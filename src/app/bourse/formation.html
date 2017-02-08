@@ -1,13 +1,8 @@
 <md-content layout-padding>
   <div class="box-background" md-whiteframe="1">
-    <h2>Etudiants du foyer</h2>
+    <h2>{{$ctrl.personne.prenom}}</h2>
 
     <div layout="column">
-
-        <span>{{$ctrl.personne.prenom}}</span>
-        {{$ctrl.personne.dateNaissance | date}}
-
-      // reask?
       <md-input-container>
         <label>Type de formation</label>
         <md-select ng-model="$ctrl.personne.niveauEtude">
@@ -39,7 +34,6 @@
           <md-checkbox class="md-primary" ng-model="$ctrl.personne.formationRedoublementOuTempsPartiel" aria-label="Redoublement ou temps partiel">Redoublement ou temps partiel</md-checkbox>
           <md-checkbox class="md-primary" ng-model="$ctrl.personne.estIndependanceFinanciere" aria-label="estIndependanceFinanciere">estIndependanceFinanciere</md-checkbox>
           <md-checkbox class="md-primary" ng-model="$ctrl.personne.aLogementSepare" aria-label="Logement séparé">Logement séparé</md-checkbox>
-          TODO: change flow based on this answer?
           <md-checkbox class="md-primary" ng-model="$ctrl.personne.aParentLogementAutreFoyer" aria-label="Un parent vit-il dans un autre foyer">Un parent vit-il dans un autre foyer?</md-checkbox>
       </md-input-container>
       </div>

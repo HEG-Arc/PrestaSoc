@@ -47,7 +47,7 @@
         <tr ng-if="$ctrl.sim.estProprietaire">
           <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement }} CHF/an</td>
         <tr>
-        <tr>
+        <tr class="total">
           <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
         <tr>
         <tr>
@@ -68,7 +68,7 @@
         <tr>
           <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien }} CHF/an</td>
         <tr>
-        <tr>
+        <tr class="total">
           <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
         <tr>
         <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+$primary-color: #009640;
 
 button, html, input, select, textarea {
   font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
@@ -8,9 +11,55 @@ base-nav div{
   background-color: #fff;
 }
 
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+td:nth-child(2) {
+  text-align: right;
+}
+
+.nav-part {
+  border-bottom: 2px solid $primary-color;
+}
+
 .active {
-  background-color: #006228;
+  background-color: $primary-color;
   color: #fff;
+}
+
+
+.total{
+  td, th {
+    border-top: 2px solid $primary-color;
+    padding-bottom:  1em;
+  }
+}
+
+strong {
+  color: $primary-color;
+}
+
+app-header .md-toolbar-tools h2 {
+  font-weight: 900;
+  font-size: 1.8em;
+  color: #fbbf09;
+  font-family: 'Work Sans'
+}
+
+.main-list md-list-item {
+  padding: 8px;
+}
+
+.main-list h2 {
+  margin-right: 1em;
+  min-width: 130px;
+  color: #fbbf09;
+  font-family: 'Work Sans'
 }
 
 #beta-ribbon {
