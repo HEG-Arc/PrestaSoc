@@ -21,7 +21,7 @@ class CalculeLamal {
   }
 
   subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
-                , estBeneficiareRI = false, age, rdu, region) {
+    , estBeneficiareRI = false, age, rdu, region) {
     if (estEtudiant && (age < 19 || age > 25)) {
       estEtudiant = false;
     }
@@ -61,8 +61,8 @@ class CalculeLamal {
     for (let i = 0; i < this.sim.personnes.length; i++) {
       const person = this.sim.personnes[i];
       person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-                                              , person.estBeneficiareRI, person.age, rdu
-                                              , this.sim.lieuLogement.region);
+        , person.estBeneficiareRI, person.age, rdu
+        , this.sim.lieuLogement.region);
       subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
       subsideTotal.subsideMin += person.subsideLamal.subsideMin;
       subsideTotal.subsideMax += person.subsideLamal.subsideMax;
@@ -140,6 +140,49 @@ class CalculeLamal {
     rdu -= reductionEnfants(nbEnfants);
     rdu += imputationFortune(this.sim);
     return rdu;
+  }
+
+  calculeLamalTestCas1() {
+    const sim = {
+      personnes: [
+        {
+          prenom: "Alice",
+          age: 27,
+          estAdulte: true,
+          dateNaissance: "1989- 12 - 31T23: 00:00.000Z",
+          etatCivil: "C",
+          estEtudiant: true,
+          niveauEtude: "l3"
+        }
+      ],
+      etudiants: [
+        {
+          prenom: "Alice",
+          age: 27,
+          estAdulte: true,
+          dateNaissance: "1989- 12 - 31T23: 00:00.000Z",
+          etatCivil: "C",
+          estEtudiant: true,
+          niveauEtude: "l3"
+        }
+      ],
+      lieuLogement: {
+        cas: "",
+        npa: 1000,
+        localite: "Lausanne 25",
+        canton: "VD",
+        region: 1,
+        no: 5586,
+        commune: "Lausanne",
+        district: "DISTRICT DE LAUSANNE",
+        label: "1000 Lausanne"
+      },
+      logement: "estLocataire",
+      revenuNetImposable: 16000,
+      revenuFortune: 200,
+      fortuneMobiliere: 2000
+    };
+    return this.subsideLamal(sim);
   }
 
 }
