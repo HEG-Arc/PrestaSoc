@@ -8,13 +8,13 @@
 
       <table class="col-2">
         <tr>
-          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
+          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus.revenus|number }} CHF/an</td>
         </tr>
         <tr>
-          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
+          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
         </tr>
         <tr>
-          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</b></td>
+          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</b></td>
         </tr>
       </table>
 
@@ -30,53 +30,53 @@
           <th colspan="2">Revenus</th>
         </tr>
         <tr>
-          <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase }} CHF/an</td>
+          <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes }} CHF/an</td>
+          <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance }} CHF/an</td>
+          <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune }} CHF/an</td>
+          <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune }} CHF/an</td>
+          <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune|number }} CHF/an</td>
         <tr>
         <tr ng-if="$ctrl.sim.estProprietaire">
-          <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement }} CHF/an</td>
+          <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement|number }} CHF/an</td>
         <tr>
         <tr class="total">
-          <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
+          <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus|number }} CHF/an</td>
         <tr>
         <tr>
           <th colspan="2">Dépenses</th>
         </tr>
         <tr>
-          <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux }} CHF/an</td>
+          <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie }} CHF/an</td>
+          <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer }} CHF/an</td>
+          <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS }} CHF/an</td>
+          <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS|number }} CHF/an</td>
         <tr>
         <tr>
-          <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien }} CHF/an</td>
+          <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien|number }} CHF/an</td>
         <tr>
         <tr class="total">
-          <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
+          <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
         <tr>
         <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>
         <tr>
-          <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</td>
+          <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</td>
         <tr>
         <tr>
-          <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel }} CHF/mois</td>
+          <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel|number }} CHF/mois</td>
         <tr>
       </table>
       </div>
