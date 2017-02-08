@@ -1,4 +1,4 @@
-<div layout="row"  layout-align="start center">
+<div layout="row" layout-align="start center">
   <md-button ng-disabled="$ctrl.isBase()" ui-sref="vous">base</md-button>
   <div ng-if="$ctrl.isBase()" class="nav-part">
         <md-button ui-sref-active="active" ui-sref="vous">vous</md-button>
@@ -9,7 +9,7 @@
   <md-button class="md-icon-button" ui-sref-active="active" ui-sref="statut"><md-icon>book</md-icon></md-button>
 
   <md-button ng-disabled="$ctrl.isFinance()" ui-sref="revenu">finance</md-button>
-  <div ng-if="$ctrl.isFinance()" class="nav-part">
+  <div ng-if="$ctrl.isFinance()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
       <md-button ui-sref-active="active" ui-sref="revenu">revenu</md-button>
       <md-button ui-sref-active="active" ui-sref="fortune">fortune</md-button>
   </div>
@@ -17,18 +17,18 @@
   <md-button class="md-icon-button" ui-sref-active="active" ui-sref="result"><md-icon>attach_money</md-icon></md-button>
 
   <md-button ng-disabled="$ctrl.isLamal()" ui-sref="lamalEstimation">lamal</md-button>
-  <div ng-if="$ctrl.isLamal()" class="nav-part">
+  <div ng-if="$ctrl.isLamal()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
       <md-button ui-sref-active="active" ui-sref="lamalEstimation">Estimation</md-button>
   </div>
 
   <md-button ng-disabled="$ctrl.isPC()"  ui-sref="pcEstimation">pc</md-button>
-  <div ng-if="$ctrl.isPC()" class="nav-part">
+  <div ng-if="$ctrl.isPC()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
       <md-button ui-sref-active="active" ui-sref="pcDepenses">Dépenses</md-button>
       <md-button ui-sref-active="active" ui-sref="pcEstimation">Estimation</md-button>
   </div>
 
   <md-button ng-disabled="$ctrl.isBourse()" ui-sref="bourseEstimation">bourse</md-button>
-  <div ng-if="$ctrl.isBourse()" class="nav-part">
+  <div ng-if="$ctrl.isBourse()" class="nav-part"  layout="row" layout-align="start center" layout-wrap>
       <md-button ui-sref-active="active" ui-sref="bourse.formation">Formation</md-button>
       <md-button ui-sref-active="active" ui-sref="bourse.revenusAuxiliaires">Revenu</md-button>
       <md-button ui-sref-active="active" ui-sref="bourse.parents">Parents</md-button>
