@@ -48,6 +48,7 @@
   <label>Vous recevez</label>
   <md-input-container layout="column">
     <md-checkbox class="md-primary" ng-model="$ctrl.personne.estBeneficiaireAVS" aria-label="AVS">Bénéficiaire de prestations AVS</md-checkbox>
+    <md-checkbox class="md-primary" ng-model="$ctrl.personne.estBeneficiaireAI" aria-label="AI">Bénéficiaire de prestations AI</md-checkbox>
     <md-checkbox class="md-primary" ng-model="$ctrl.personne.estBeneficiairePC" aria-label="PC">Bénéficiaire de prestations complémentaires</md-checkbox>
     <md-checkbox class="md-primary" ng-if="$ctrl.personne.estAdulte" ng-model="$ctrl.personne.estBeneficiaireRI" aria-label="RI">Bénéficiaire d'un revenu d'insertion (RI)</md-checkbox>
   </md-input-container>

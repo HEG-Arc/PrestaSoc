@@ -25,6 +25,33 @@ class CalculePC {
     this.remboursementFraisMaladie = {couple: 50000, seul: 25000, ems: 6000};
   }
 
+  testPC() {
+    this.sim.revenuActiviteLucrative = 10000;
+    this.sim.rentePrevoyanceProfessionelle = 5000;
+    this.sim.rentePrevoyancePrivee = 5000;
+    this.sim.renteAVS = 22000;
+    this.sim.renteAI = 0;
+    this.sim.renteSurvivant = 0;
+    this.sim.renteAccident = 0;
+    this.sim.revenuInsertion = 0;
+    this.sim.fortuneMobiliere = 50000;
+    this.sim.fortuneImmobiliereLogement = 120000;
+    this.sim.fortuneImmobiliereAutre = 0;
+    this.sim.dettesPrivees = 0;
+    this.sim.dettesImmobiliereLogement = 20000;
+    this.sim.dettesImmobiliere = 0;
+    this.sim.estProprietaire = true;
+    this.sim.aConjointEMS = false;
+    this.sim.aConjointProprietaire = false;
+    this.sim.logementValeurLocative = 9999;
+    this.sim.logementLoyerBrut = 8888;
+    this.sim.estLogementAccessible = false;
+    this.sim.fraisAccessoiresLogement = 0;
+    this.sim.lieuLogement = {canton: "AG", region: 0, prime: 5425};
+    this.sim.depensesCotisationsAVS = 0;
+    this.sim.contributionsEntretien = 0;
+  }
+
   calculeNombreEnfants() {
     return this.sim.personnes.reduce((count, person) => {
       if (!person.estAdulte) {
@@ -89,7 +116,7 @@ class CalculePC {
     const revenus = Math.round(sum([revenuBase, revenuPrevoyance, revenuRentes, revenuFortune, imputationFortune, this.sim.logementValeurLocative]));
     return {
       revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
-      imputationFortune, valeurLocativeLogement: this.sim.valeurLocativeLogement, revenus
+      imputationFortune, valeurLocativeLogement: this.sim.logementValeurLocative, revenus
     };
   }
 
@@ -125,7 +152,12 @@ class CalculePC {
       loyerBrut += this.loyerAnnuelMaximum.chaiseRoulante;
     }
 
-    let depensesLoyer = Math.min(loyerBrut, this.sim.logementLoyerBrut);
+    let logementLoyerBrut = 0;
+    if (this.sim.logementLoyerBrut) {
+      logementLoyerBrut = this.sim.logementLoyerBrut;
+    }
+
+    let depensesLoyer = Math.min(loyerBrut, logementLoyerBrut);
     if (this.sim.logement === 'estProprietaire') {
       depensesLoyer += Math.min(this.fraisAccessoiresImmeuble, this.sim.fraisAccessoiresLogement);
     }
@@ -154,20 +186,22 @@ class CalculePC {
           this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
       }
 
-      const revenus = this.calculRevenu();
-      const depenses = this.calculDepenses();
-      let estimationSubsidePC = 0;
-      if (depenses.depenses - revenus.revenus > 0) {
-        estimationSubsidePC = depenses.depenses - revenus.revenus;
-      }
-      const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 12);
+      if (this.sim.personnes[0].estBeneficiaireAVS || this.sim.personnes[0].estBeneficiaireAI) {
+        const revenus = this.calculRevenu();
+        const depenses = this.calculDepenses();
+        let estimationSubsidePC = 0;
+        if (depenses.depenses - revenus.revenus > 0) {
+          estimationSubsidePC = depenses.depenses - revenus.revenus;
+        }
+        const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 12);
 
-      let subsideFraisMaladie = 0;
-      if (estimationSubsidePC > 0) {
-        subsideFraisMaladie = this.remboursementFraisMaladie[this.couple];
+        let subsideFraisMaladie = 0;
+        if (estimationSubsidePC > 0) {
+          subsideFraisMaladie = this.remboursementFraisMaladie[this.couple];
+        }
+        return {conditions: true, revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel, subsideFraisMaladie};
       }
-
-      return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel, subsideFraisMaladie};
+      return {conditions: false};
     });
   }
 

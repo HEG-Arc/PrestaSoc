@@ -5,82 +5,99 @@
     <h2>Estimation des prestations complémentaires (PC)</h2>
 
     <div layout="column">
+      <div ng-if="$ctrl.sim.pc.conditions">
+        <table>
+          <tr>
+            <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
+          </tr>
+          <tr>
+            <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
+          </tr>
+          <tr>
+            <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</b></td>
+          </tr>
+        </table>
 
-      <table>
-        <tr>
-          <th>Revenus du foyer</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
-        </tr>
-        <tr>
-          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
-        </tr>
-        <tr>
-          <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</b></td>
-        </tr>
-      </table>
+        <div layout="row" ng-if="$ctrl.sim.pc.estimationSubsidePC > 0">
+          <p>En tant que bénéficiaire de prestations complémentaires, vous bénéficiez également d'un remboursement partiel des frais de santé jusqu'à la hauteur de {{ $ctrl.sim.pc.subsideFraisMaladie }} CHF/an ainsi que de l'exonération de la redevance radio/TV.</p>
+        </div>
 
-      <div layout="row" ng-if="$ctrl.sim.pc.estimationSubsidePC > 0">
-        <p>En tant que bénéficiaire de prestations complémentaires, vous bénéficiez également d'un remboursement partiel des frais de santé jusqu'à la hauteur de {{ $ctrl.sim.pc.subsideFraisMaladie }} CHF/an ainsi que de l'exonération de la redevance radio/TV.</p>
+        <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Détails de l'estimation</md-checkbox>
+        <div ng-if="details">
+        <h3>Détails du calcul</h3>
+        <table>
+          <tr>
+            <th colspan="2">Revenus</th>
+          </tr>
+          <tr>
+            <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune }} CHF/an</td>
+          <tr>
+          <tr ng-if="$ctrl.sim.estProprietaire">
+            <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement }} CHF/an</td>
+          <tr>
+          <tr class="total">
+            <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
+          <tr>
+          <tr>
+            <th colspan="2">Dépenses</th>
+          </tr>
+          <tr>
+            <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS }} CHF/an</td>
+          <tr>
+          <tr>
+            <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien }} CHF/an</td>
+          <tr>
+          <tr class="total">
+            <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
+          <tr>
+          <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>
+          <tr>
+            <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</td>
+          <tr>
+          <tr>
+            <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel }} CHF/mois</td>
+          <tr>
+        </table>
+        </div>
       </div>
-
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Détails de l'estimation</md-checkbox>
-      <div ng-if="details">
-      <h3>Détails du calcul</h3>
-      <table>
-        <tr>
-          <th colspan="2">Revenus</th>
-        </tr>
-        <tr>
-          <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune }} CHF/an</td>
-        <tr>
-        <tr ng-if="$ctrl.sim.estProprietaire">
-          <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement }} CHF/an</td>
-        <tr>
-        <tr class="total">
-          <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus }} CHF/an</td>
-        <tr>
-        <tr>
-          <th colspan="2">Dépenses</th>
-        </tr>
-        <tr>
-          <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS }} CHF/an</td>
-        <tr>
-        <tr>
-          <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien }} CHF/an</td>
-        <tr>
-        <tr class="total">
-          <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses }} CHF/an</td>
-        <tr>
-        <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>
-        <tr>
-          <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</td>
-        <tr>
-        <tr>
-          <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel }} CHF/mois</td>
-        <tr>
-      </table>
+      <div ng-if="!$ctrl.sim.pc.conditions">
+        <p>Vous ne pouvez pas bénéficier de prestations complémentaires car vous ne répondez pas aux exigences suivantes:
+          <ul>
+            <li>vous avez droit à une rente de l’AVS (même en cas d’anticipation), à
+              une rente de l’AI (rente entière, trois quarts de rente, demi-rente ou
+              quart de rente), à une allocation pour impotent de l’AI (après 18 ans),
+              ou que vous touchez une indemnité journalière de l’AI pendant six
+              mois au moins, et que</li>
+            <li>vous avez votre domicile et votre résidence habituelle en Suisse ;</li>
+            <li>vous êtes de nationalité suisse ou ressortissant d’un Etat membre de
+              l’UE/AELE, ou que</li>
+            <li>vous êtes de nationalité étrangère et avez habité en Suisse de manière
+              ininterrompue durant dix ans. Pour les réfugiés et les apatrides, ce
+              délai est de cinq ans.</li>
+          </ul>
+          </p>
       </div>
-
       <div layout="row">
         <span flex></span>
         <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>

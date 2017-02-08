@@ -7,7 +7,8 @@
 <div layout="column">
   <md-button ui-sref="lamalEstimation" class="md-warn md-raised">LAMAL : {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}} CHF/mois</md-button>
 
-  <md-button ui-sref="pcDepenses" class="md-accent md-raised">PC</md-button>
+  <md-button ui-sref="pcDepenses" class="md-accent md-raised" ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI">PC</md-button>
+  <md-button ui-sref="pcEstimation" class="md-accent md-raised" ng-if="!($ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI)">PC</md-button>
 
   <md-button ui-sref="bourse.formation({index:0})" class="md-primary md-raised" ng-disabled="$ctrl.sim.etudiants.length == 0">Bourse</md-button>
 </div>
