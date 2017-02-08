@@ -6,14 +6,12 @@ class CalculePC {
 
   /** @ngInject */
   constructor($http, $q) {
-    this.subsidesLAMAL = {};
+    this.subsidesLAMAL = [];
     this.$q = $q;
     const deferred = $q.defer();
-    $q.all([
-      $http.get('app/pc/fraisAssuranceMaladie.json').then(resp => {
-        this.subsidesLAMAL = resp.data;
-      })
-    ]).then(() => {
+    $http.get('app/pc/fraisAssuranceMaladie.json').then(resp => {
+      this.subsidesLAMAL = resp.data;
+    }).then(() => {
       deferred.resolve(true);
     });
     this.ready = deferred.promise;
@@ -147,20 +145,23 @@ class CalculePC {
 
   subsidePC(sim) {
     this.sim = sim;
-    this.nombreEnfants = this.calculeNombreEnfants();
-    if (this.sim.personnes.length > 0) {
-      this.couple = this.sim.personnes[0].etatCivil === 'C' ||
-        this.sim.personnes[0].etatCivil === 'D' ||
-        this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
-    }
+    return this.ready.then(() => {
+      this.nombreEnfants = this.calculeNombreEnfants();
+      if (this.sim.personnes.length > 0) {
+        this.couple = this.sim.personnes[0].etatCivil === 'C' ||
+          this.sim.personnes[0].etatCivil === 'D' ||
+          this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
+      }
 
-
-    let estimationSubsidePC = 0;
-    if (depenses.depenses - revenus.revenus > 0) {
-      estimationSubsidePC = depenses.depenses - revenus.revenus;
-    }
-    const estimationSubsidePCMensuel = estimationSubsidePC / 12;
-    return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel};
+      const revenus = this.calculRevenu();
+      const depenses = this.calculDepenses();
+      let estimationSubsidePC = 0;
+      if (depenses.depenses - revenus.revenus > 0) {
+        estimationSubsidePC = depenses.depenses - revenus.revenus;
+      }
+      const estimationSubsidePCMensuel = estimationSubsidePC / 12;
+      return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel};
+    });
   }
 
 }

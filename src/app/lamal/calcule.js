@@ -1,7 +1,6 @@
 class CalculeLamal {
 
   /** @ngInject */
-
   constructor($http, $q) {
     this.subsidesRDU = {};
     this.subsidesRIPC = {};
