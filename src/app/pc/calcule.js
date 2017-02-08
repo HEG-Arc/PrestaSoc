@@ -154,6 +154,8 @@ class CalculePC {
         this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
     }
 
+    const revenus = Math.round(this.calculRevenu());
+    const depenses = Math.round(this.calculDepenses());
 
     let estimationSubsidePC = 0;
     if (depenses.depenses - revenus.revenus > 0) {

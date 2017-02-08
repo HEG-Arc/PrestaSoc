@@ -17,15 +17,68 @@
           <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF</b></td>
         </tr>
       </table>
+
+      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Détails</md-checkbox>
+      <div ng-if="details">
       <h3>Détails du calcul</h3>
       <table>
         <tr>
-          <th>Revenus</th><td>{{ $ctrl.sim.pc.revenus }}</td>
+          <th colspan="2">Revenus</th>
         </tr>
         <tr>
-          <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses }}</td>
+          <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase }}</td>
+        <tr>
+        <tr>
+          <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes }}</td>
+        <tr>
+        <tr>
+          <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance }}</td>
+        <tr>
+        <tr>
+          <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune }}</td>
+        <tr>
+        <tr>
+          <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune }}</td>
+        <tr>
+        <tr ng-if="$ctrl.sim.estProprietaire">
+          <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement }}</td>
+        <tr>
+        <tr>
+          <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus }}</td>
+        <tr>
+        <tr>
+          <th colspan="2">Dépenses</th>
         </tr>
+        <tr>
+          <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux }}</td>
+        <tr>
+        <tr>
+          <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie }}</td>
+        <tr>
+        <tr>
+          <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer }}</td>
+        <tr>
+        <tr>
+          <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS }}</td>
+        <tr>
+        <tr>
+          <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien }}</td>
+        <tr>
+        <tr>
+          <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses }}</td>
+        <tr>
+        <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>
+        <tr>
+          <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC }} CHF/an</td>
+        <tr>
+        <tr>
+          <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel }} CHF/mois</td>
+        <tr>
       </table>
+      </div>
+      <div layout="row" ng-if="$ctrl.sim.pc.estimationSubsidePC > 0">
+        <p>En tant que bénéficiaire de prestations complémentaires, vous bénéficiez également d'un remboursement partiel des frais de santé ainsi que de l'exonération de la redevance radio/TV.</p>
+      </div>
 
       <div layout="row">
         <span flex></span>
