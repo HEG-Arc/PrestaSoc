@@ -75,3 +75,37 @@ body {
   font-weight: bold;
 }
 
+table, th, td {
+  border: none;
+}
+
+table {
+  width: 100%;
+  display: table;
+}
+
+table.bordered > thead > tr,
+table.bordered > tbody > tr {
+  border-bottom: 1px solid #006228;
+}
+
+table.bordered > thead {
+  background-color: #006228;
+  color: white;
+}
+
+thead {
+  border-bottom: 1px solid #006228;
+}
+
+td, th {
+  padding: 15px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+
+.align-right {
+  text-align: right;
+}
