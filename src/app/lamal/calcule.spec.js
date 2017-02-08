@@ -32,6 +32,18 @@ describe('CalculeLamal service', () => {
       1
     )).toEqual({subsideMin: 300, subsideMax: 336, subsideEstime: 330});
   });
+  it('should provide a subsideLookup for students older or younger', () => {
+    // TODO: add test case values
+    expect(calculeLamal.subsideLookup(
+      'seul',
+      true,
+      false,
+      false,
+      18,
+      4000,
+      1
+    )).toEqual({subsideMin: 331, subsideMax: 331, subsideEstime: 331});
+  });
 
   // TODO: other intermediate result test?
 

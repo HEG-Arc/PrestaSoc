@@ -22,6 +22,9 @@ class CalculeLamal {
 
   subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
                 , estBeneficiareRI = false, age, rdu, region) {
+    if (estEtudiant && (age < 19 || age > 25)) {
+      estEtudiant = false;
+    }
     let subside = {};
     if (estBeneficiarePC || estBeneficiareRI) {
       subside = this.subsidesRIPC.find(x => {
