@@ -6,14 +6,12 @@ class CalculePC {
 
   /** @ngInject */
   constructor($http, $q) {
-    this.subsidesLAMAL = {};
+    this.subsidesLAMAL = [];
     this.$q = $q;
     const deferred = $q.defer();
-    $q.all([
-      $http.get('app/pc/fraisAssuranceMaladie.json').then(resp => {
-        this.subsidesLAMAL = resp.data;
-      })
-    ]).then(() => {
+    $http.get('app/pc/fraisAssuranceMaladie.json').then(resp => {
+      this.subsidesLAMAL = resp.data;
+    }).then(() => {
       deferred.resolve(true);
     });
     this.ready = deferred.promise;
@@ -24,6 +22,7 @@ class CalculePC {
     this.franchiseFortune = {couple: 60000, seul: 37500, proprietaire: 112500, proprietaireAVSAI: 300000};
     this.tauxPartFortune = {survivant: 0.067, avs: 0.1, ai: 0.067};
     this.deductionActiviteLucrative = {couple: 1500, seul: 1000, taux: 0.667};
+    this.remboursementFraisMaladie = {couple: 50000, seul: 25000, ems: 6000};
   }
 
   calculeNombreEnfants() {
@@ -87,7 +86,7 @@ class CalculePC {
       imputationFortune = (totalFortune - deductionsFortune) * taux;
     }
 
-    const revenus = sum([revenuBase, revenuPrevoyance, revenuRentes, revenuFortune, imputationFortune, this.sim.logementValeurLocative]);
+    const revenus = Math.round(sum([revenuBase, revenuPrevoyance, revenuRentes, revenuFortune, imputationFortune, this.sim.logementValeurLocative]));
     return {
       revenuBase, revenuPrevoyance, revenuRentes, revenuFortune,
       imputationFortune, valeurLocativeLogement: this.sim.valeurLocativeLogement, revenus
@@ -141,28 +140,35 @@ class CalculePC {
     const cotisationsAVS = sum([this.sim.depensesCotisationsAVS]);
     const contributionsEntretien = sum([this.sim.depensesContributionsEntretien]);
 
-    const depenses = sum([besoinsVitaux, depensesLoyer, primesAssuranceMaladie, cotisationsAVS, contributionsEntretien]);
+    const depenses = Math.round(sum([besoinsVitaux, depensesLoyer, primesAssuranceMaladie, cotisationsAVS, contributionsEntretien]));
     return {besoinsVitaux, depensesLoyer, primesAssuranceMaladie, primeMaladie, cotisationsAVS, contributionsEntretien, depenses};
   }
 
   subsidePC(sim) {
     this.sim = sim;
-    this.nombreEnfants = this.calculeNombreEnfants();
-    if (this.sim.personnes.length > 0) {
-      this.couple = this.sim.personnes[0].etatCivil === 'C' ||
-        this.sim.personnes[0].etatCivil === 'D' ||
-        this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
-    }
+    return this.ready.then(() => {
+      this.nombreEnfants = this.calculeNombreEnfants();
+      if (this.sim.personnes.length > 0) {
+        this.couple = this.sim.personnes[0].etatCivil === 'C' ||
+          this.sim.personnes[0].etatCivil === 'D' ||
+          this.sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
+      }
 
-    const revenus = Math.round(this.calculRevenu());
-    const depenses = Math.round(this.calculDepenses());
+      const revenus = this.calculRevenu();
+      const depenses = this.calculDepenses();
+      let estimationSubsidePC = 0;
+      if (depenses.depenses - revenus.revenus > 0) {
+        estimationSubsidePC = depenses.depenses - revenus.revenus;
+      }
+      const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 12);
 
-    let estimationSubsidePC = 0;
-    if (depenses.depenses - revenus.revenus > 0) {
-      estimationSubsidePC = depenses.depenses - revenus.revenus;
-    }
-    const estimationSubsidePCMensuel = estimationSubsidePC / 12;
-    return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel};
+      let subsideFraisMaladie = 0;
+      if (estimationSubsidePC > 0) {
+        subsideFraisMaladie = this.remboursementFraisMaladie[this.couple];
+      }
+
+      return {revenus, depenses, estimationSubsidePC, estimationSubsidePCMensuel, subsideFraisMaladie};
+    });
   }
 
 }

@@ -2,7 +2,9 @@ class EstimationController {
   constructor(simulation, pcCalcule) {
     this.text = 'PC estimation';
     this.sim = simulation;
-    this.sim.pc = pcCalcule.subsidePC(simulation);
+    pcCalcule.subsidePC(simulation).then(result => {
+      this.sim.pc = result;
+    });
   }
 }
 
