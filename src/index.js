@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-i18n/fr-ch';
 
 // Animation
 import angularAnimate from 'angular-animate';
