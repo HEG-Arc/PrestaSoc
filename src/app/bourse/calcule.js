@@ -37,19 +37,6 @@ class CalculeBourse {
   }
 
   calculRDU() { // TODO calcul du rdu pour le foyer du 2e parent
-    const reductionEnfants = function (nbEnfants) {
-      switch (nbEnfants) {
-        case 0:
-          return 0;
-        case 1:
-          return 6000;
-        case 2:
-          return 13000;
-        default:
-          return 7000 * nbEnfants;
-      }
-    };
-
     const imputationFortune = function (sim) {
       const franchiseFortune = {
         seul: 56000,
@@ -86,8 +73,7 @@ class CalculeBourse {
     if (angular.isDefined(this.sim.fraisAccessoiresLogement)) {
       rdu -= parseInt(this.sim.fraisAccessoiresLogement, 10);
     }
-    const nbEnfants = this.nombreEnfants(this.sim);
-    rdu -= reductionEnfants(nbEnfants);
+
     rdu += imputationFortune(this.sim);
     return rdu;
   }
