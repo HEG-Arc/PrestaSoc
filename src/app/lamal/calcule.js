@@ -53,31 +53,6 @@ class CalculeLamal {
   }
 
   subsideLamalCalcule(rdu) {
-    if (!this.sim.lieuLogement) {
-      return 0;
-    }
-    const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
-    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
-    for (let i = 0; i < this.sim.personnes.length; i++) {
-      const person = this.sim.personnes[i];
-      person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-        , person.estBeneficiareRI, person.age, rdu
-        , this.sim.lieuLogement.region);
-      subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
-      subsideTotal.subsideMin += person.subsideLamal.subsideMin;
-      subsideTotal.subsideMax += person.subsideLamal.subsideMax;
-    }
-    return subsideTotal;
-  }
-
-  subsideLamal(sim) {
-    this.sim = sim;
-    return this.ready.then(() => {
-      return this.subsideLamalCalcule(this.calculRDU());
-    });
-  }
-
-  calculRDU() {
     const nombreEnfants = function (sim) {
       return sim.personnes.reduce((count, person) => {
         if (!person.estAdulte) {
@@ -100,6 +75,35 @@ class CalculeLamal {
       }
     };
 
+    const nbEnfants = nombreEnfants(this.sim);
+    let rduLAMAL = rdu;
+    rduLAMAL -= reductionEnfants(nbEnfants);
+
+    if (!this.sim.lieuLogement) {
+      return 0;
+    }
+    const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
+    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+    for (let i = 0; i < this.sim.personnes.length; i++) {
+      const person = this.sim.personnes[i];
+      person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
+        , person.estBeneficiareRI, person.age, rduLAMAL
+        , this.sim.lieuLogement.region);
+      subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
+      subsideTotal.subsideMin += person.subsideLamal.subsideMin;
+      subsideTotal.subsideMax += person.subsideLamal.subsideMax;
+    }
+    return subsideTotal;
+  }
+
+  subsideLamal(sim) {
+    this.sim = sim;
+    return this.ready.then(() => {
+      return this.subsideLamalCalcule(this.calculRDU());
+    });
+  }
+
+  calculRDU() {
     const imputationFortune = function (sim) {
       const franchiseFortune = {
         seul: 56000,
@@ -136,9 +140,8 @@ class CalculeLamal {
     if (angular.isDefined(this.sim.fraisAccessoiresLogement)) {
       rdu -= parseInt(this.sim.fraisAccessoiresLogement, 10);
     }
-    const nbEnfants = nombreEnfants(this.sim);
-    rdu -= reductionEnfants(nbEnfants);
     rdu += imputationFortune(this.sim);
+
     return rdu;
   }
 
