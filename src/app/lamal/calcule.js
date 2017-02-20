@@ -1,3 +1,5 @@
+import {calculRDU} from '../calculateur/calculRDU';
+
 class CalculeLamal {
 
   /** @ngInject */
@@ -99,7 +101,7 @@ class CalculeLamal {
   subsideLamal(sim) {
     this.sim = sim;
     return this.ready.then(() => {
-      return this.subsideLamalCalcule(this.calculRDU());
+      return this.subsideLamalCalcule(calculRDU(this.sim));
     });
   }
 
