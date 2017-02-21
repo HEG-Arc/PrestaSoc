@@ -1,3 +1,5 @@
+import {calculRDU} from '../calculateur/calculRDU';
+
 class CalculeBourse {
 
   /** @ngInject */
@@ -34,48 +36,6 @@ class CalculeBourse {
 
   nombreEnfants() {
     return this.sim.personnes.filter(personne => (!personne.estAdulte)).length;
-  }
-
-  calculRDU() { // TODO calcul du rdu pour le foyer du 2e parent
-    const imputationFortune = function (sim) {
-      const franchiseFortune = {
-        seul: 56000,
-        couple: 112000
-      };
-      const tauxMajoration = 1 / 15;
-      const menageRDU = sim.personnes[0].etatCivil === 'C' ||
-        sim.personnes[0].etatCivil === 'D' ||
-        sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
-
-      let fortune = 0;
-      if (angular.isDefined(sim.fortuneImmobiliereLogement)) {
-        fortune += parseInt(sim.fortuneImmobiliereLogement, 10);
-        fortune -= Math.min(300000, parseInt(sim.fortuneImmobiliereLogement, 10));
-      }
-      if (angular.isDefined(sim.fortuneImmobiliereAutre)) {
-        fortune += parseInt(sim.fortuneImmobiliereAutre, 10);
-      }
-      if (angular.isDefined(sim.fortuneMobiliere)) {
-        fortune += parseInt(sim.fortuneMobiliere, 10);
-      }
-      fortune -= franchiseFortune[menageRDU];
-      fortune = Math.max(fortune, 0);
-      return fortune * tauxMajoration;
-    };
-
-    let rdu = 0;
-    if (angular.isDefined(this.sim.revenuNetImposable)) {
-      rdu += parseInt(this.sim.revenuNetImposable, 10);
-    }
-    if (angular.isDefined(this.sim.rentePrevoyancePrivee)) {
-      rdu += parseInt(this.sim.rentePrevoyancePrivee, 10);
-    }
-    if (angular.isDefined(this.sim.fraisAccessoiresLogement)) {
-      rdu -= parseInt(this.sim.fraisAccessoiresLogement, 10);
-    }
-
-    rdu += imputationFortune(this.sim);
-    return rdu;
   }
 
   chargesNormalesBaseLookup(nbAdultes = 1, nbEnfants = 0, zone = 2) {
@@ -166,7 +126,7 @@ class CalculeBourse {
     return this.ready.then(() => {
       const bourses = [];
       for (let i = 0; i < this.sim.etudiants.length; i++) {
-        bourses.push(this.bourseEtudeCalcule(this.calculRDU(), this.sim.etudiants[i]));
+        bourses.push(this.bourseEtudeCalcule(calculRDU(this.sim), this.sim.etudiants[i]));
       }
       return bourses;
     });

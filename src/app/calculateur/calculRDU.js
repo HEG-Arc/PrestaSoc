@@ -1,9 +1,9 @@
 const FRANCHISE_FORTUNE = {
   seul: 56000,
-  couple: 112000
+  couple: 112000 // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
 };
-const TAUX_MAJORATION = 1 / 15;
-const FRANCHISE_FORTUNE_IMMOBILIERE_LOGEMENT = 300000;
+const TAUX_MAJORATION = 1 / 15; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
+const FRANCHISE_FORTUNE_IMMOBILIERE_LOGEMENT = 300000; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
 
 function imputationFortune(sim) {
   const menageRDU = sim.personnes[0].etatCivil === 'C' ||
