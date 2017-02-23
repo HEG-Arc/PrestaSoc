@@ -32,18 +32,18 @@ import './index.scss';
 
 /** @ngInject */
 const themeConfig = $mdThemingProvider => {
-  $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('green', {
+  $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('blue', {
     100: 'd6ead8',
     200: 'a8d3af',
     300: '6fbd84',
     400: '1ca75e',
-    500: '009640',
+    500: '3893BF',
     600: '008538',
     700: '007933',
     800: '006228',
-    900: '00461A',
-    contrastDefaultColor: 'light',
-    contrastDarkColors: ['50', '100', '200', '300', '400']
+    900: '00461A'
+    // contrastDefaultColor: 'light',
+    // contrastDarkColors: ['50', '100', '200', '300', '400']
   }));
   $mdThemingProvider.theme('default').primaryPalette('primaryPalette', {
     default: '500'
