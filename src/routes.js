@@ -18,10 +18,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/foyer',
       component: 'baseFoyer'
     })
-    .state('logement', {
-      url: '/logement',
-      component: 'baseLogement'
-    })
     .state('statut', {
       url: '/statut',
       component: 'baseStatut'

@@ -1,21 +1,11 @@
-<base-nav></base-nav>
-<md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
-    <h2>Votre logement principal</h2>
+<div>
+  <h2>Votre logement principal</h2>
 
     <md-radio-group ng-model="$ctrl.sim.logement" class="md-primary" layout="row">
         <md-radio-button value="estLocataire">Locataire</md-radio-button>
         <md-radio-button value="estProprietaire">Propriétaire</md-radio-button>
         <md-radio-button value="estEMS">Maison de retraite</md-radio-button>
     </md-radio-group>
-
-
-    <div ng-if="$ctrl.sim.personnes[0].etatCivil == 'M' || $ctrl.sim.personnes[0].etatCivil == 'P'">
-      <md-input-container layout="column">
-        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estProprietaire" ng-model="$ctrl.sim.aConjointEMS" aria-label="Conjoint en EMS">Conjoint en EMS</md-checkbox>
-        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estEMS" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Conjoint proprietaire">Conjoint proprietaire</md-checkbox>
-      </md-input-container>
-    </div>
 
     <div layout="column">
       <md-autocomplete
@@ -36,11 +26,4 @@
       </md-autocomplete>
 
     </div>
-
-    <div layout="row">
-      <md-button ui-sref="foyer" class="md-raised">Précédent</md-button>
-      <span flex></span>
-      <md-button ui-sref="statut" class="md-primary md-raised">Suivant</md-button>
-    </div>
-  </div>
-</md-content>
+</div>

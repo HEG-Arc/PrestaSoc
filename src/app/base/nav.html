@@ -3,10 +3,9 @@
   <div ng-if="$ctrl.isBase()" class="nav-part">
         <md-button ui-sref-active="active" ui-sref="vous">vous</md-button>
         <md-button ui-sref-active="active" ui-sref="foyer">foyer</md-button>
-        <md-button ui-sref-active="active" ui-sref="logement">logement</md-button>
   </div>
 
-  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="statut"><md-icon>book</md-icon></md-button>
+  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="statut"><md-icon md-font-icon="fa fa-university"></md-icon></md-button>
 
   <md-button ng-disabled="$ctrl.isFinance()" ui-sref="revenu">finance</md-button>
   <div ng-if="$ctrl.isFinance()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
@@ -14,7 +13,7 @@
       <md-button ui-sref-active="active" ui-sref="fortune">fortune</md-button>
   </div>
 
-  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="result"><md-icon>attach_money</md-icon></md-button>
+  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="result"><md-icon  md-font-icon="fa fa-cogs"></md-icon></md-button>
 
   <md-button ng-disabled="$ctrl.isLamal()" ui-sref="lamalEstimation">lamal</md-button>
   <div ng-if="$ctrl.isLamal()" class="nav-part" layout="row" layout-align="start center" layout-wrap>

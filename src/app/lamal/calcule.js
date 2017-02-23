@@ -99,12 +99,24 @@ class CalculeLamal {
   }
 
   subsideLamal(sim) {
+    // TODO: make state less by passing sim arround?
     this.sim = sim;
+    // TODO: only load right canton? #11
     return this.ready.then(() => {
-      return this.subsideLamalCalcule(calculRDU(this.sim));
+      if (this.sim.lieuLogement.canton === 'VD') {
+        return this.subsideLamalCalcule(calculRDU(this.sim));
+      }
+      if (this.sim.lieuLogement.canton === 'NE') {
+        return {subsideMin: -1, subsideMax: -1, subsideEstime: -1};
+      }
+      if (this.sim.lieuLogement.canton === 'GE') {
+        return {subsideMin: -1, subsideMax: -1, subsideEstime: -1};
+      }
+      throw new Error('Canton not supported');
     });
   }
 
+  // TODO: why is this here?
   calculRDU() {
     const imputationFortune = function (sim) {
       const franchiseFortune = {
