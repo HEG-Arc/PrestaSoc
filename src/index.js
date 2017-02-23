@@ -26,7 +26,7 @@ import {pcModule} from './app/pc/index';
 import 'angular-material/angular-material.min.css';
 
 // Icons
-// import 'font-awesome/css/font-awesome.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 import './index.scss';
 
@@ -60,6 +60,11 @@ const analyticsConfig = AnalyticsProvider => {
 };
 
 /** @ngInject */
+const iconConfig = $mdIconProvider => {
+  $mdIconProvider.fontSet('fa', 'FontAwesome');
+};
+
+/** @ngInject */
 const init = saver => {
   saver.start();
 };
@@ -78,6 +83,7 @@ angular
   .config(routesConfig)
   .config(themeConfig)
   .config(analyticsConfig)
+  .config(iconConfig)
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer)
