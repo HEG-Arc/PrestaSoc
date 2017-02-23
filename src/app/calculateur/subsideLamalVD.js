@@ -1,4 +1,4 @@
-import {calculRDU} from '../calculateur/calculRDU';
+import {calculRDU} from './calculRDU';
 
 const reductionEnfants = function (nbEnfants) {
   switch (nbEnfants) {
@@ -12,31 +12,9 @@ const reductionEnfants = function (nbEnfants) {
       return 7000 * nbEnfants;
   }
 };
-let subsidesRDU = {};
-let subsidesRIPC = {};
-let ready = {};
-
-/** @ngInject */
-function init($http, $q) {
-  const deferred = $q.defer();
-  $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
-    subsidesRDU = resp.data;
-  });
-  $q.all([
-    $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
-      subsidesRDU = resp.data;
-    }),
-    $http.get('app/lamal/lamalVDSubsidesRIPC.json').then(resp => {
-      subsidesRIPC = resp.data;
-    })
-  ]).then(() => {
-    deferred.resolve(true);
-  });
-  ready = deferred.promise;
-}
 
 function subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
-    , estBeneficiareRI = false, age, rdu, region) {
+  , estBeneficiareRI = false, age, rdu, region, subsidesRDU, subsidesRIPC) {
   if (estEtudiant && (age < 19 || age > 25)) {
     estEtudiant = false;
   }
@@ -44,61 +22,58 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
   if (estBeneficiarePC || estBeneficiareRI) {
     subside = subsidesRIPC.find(x => {
       return x.menage === menage &&
-                x.formation === estEtudiant &&
-                x.ageMin <= age &&
-                x.ageMax >= age &&
-                x.region === region;
+        x.formation === estEtudiant &&
+        x.ageMin <= age &&
+        x.ageMax >= age &&
+        x.region === region;
     });
   } else {
     subside = subsidesRDU.find(x => {
       return x.menage === menage &&
-                x.formation === estEtudiant &&
-                x.ageMin <= age &&
-                x.ageMax >= age &&
-                x.rduMin <= rdu &&
-                x.rduMax >= rdu;
+        x.formation === estEtudiant &&
+        x.ageMin <= age &&
+        x.ageMax >= age &&
+        x.rduMin <= rdu &&
+        x.rduMax >= rdu;
     });
   }
   if (angular.isDefined(subside)) {
     const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
-            (subside.subsideMax - subside.subsideMin));
+      (subside.subsideMax - subside.subsideMin));
     return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
   }
   return {subsideMin: 0, subsideMax: 0, subsideEstime: 0}; // TODO cas ou la personne n'a pas droit au subside
 }
 
-export function subsideLamalCalculeVD(sim) {
-  init();
-  return ready.then(() => {
-    const nombreEnfants = function (sim) {
-      return sim.personnes.reduce((count, person) => {
-        if (!person.estAdulte) {
-          count++;
-        }
-        return count;
-      }, 0);
-    };
+export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
+  const nombreEnfants = function (sim) {
+    return sim.personnes.reduce((count, person) => {
+      if (!person.estAdulte) {
+        count++;
+      }
+      return count;
+    }, 0);
+  };
 
-    const nbEnfants = nombreEnfants(sim);
-    let rduLAMAL = calculRDU(sim);
-    rduLAMAL -= reductionEnfants(nbEnfants);
+  const nbEnfants = nombreEnfants(sim);
+  let rduLAMAL = calculRDU(sim);
+  rduLAMAL -= reductionEnfants(nbEnfants);
 
-    if (!sim.lieuLogement) {
-      return 0;
-    }
-    const menage = sim.personnes.length > 1 ? 'famille' : 'seul';
-    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
-    for (let i = 0; i < sim.personnes.length; i++) {
-      const person = sim.personnes[i];
-      person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-                , person.estBeneficiareRI, person.age, rduLAMAL
-                , sim.lieuLogement.region);
-      subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
-      subsideTotal.subsideMin += person.subsideLamal.subsideMin;
-      subsideTotal.subsideMax += person.subsideLamal.subsideMax;
-    }
-    return subsideTotal;
-  });
+  if (!sim.lieuLogement) {
+    return 0;
+  }
+  const menage = sim.personnes.length > 1 ? 'famille' : 'seul';
+  const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+  for (let i = 0; i < sim.personnes.length; i++) {
+    const person = sim.personnes[i];
+    person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
+      , person.estBeneficiareRI, person.age, rduLAMAL
+      , sim.lieuLogement.region, subsidesRDU, subsidesRIPC);
+    subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
+    subsideTotal.subsideMin += person.subsideLamal.subsideMin;
+    subsideTotal.subsideMax += person.subsideLamal.subsideMax;
+  }
+  return subsideTotal;
 }
 
 /*

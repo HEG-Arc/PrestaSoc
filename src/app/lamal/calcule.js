@@ -4,8 +4,8 @@ class CalculeLamal {
 
   /** @ngInject */
   constructor($http, $q) {
-    this.subsidesRDU = {};
-    this.subsidesRIPC = {};
+    this.subsidesRDU = [];
+    this.subsidesRIPC = [];
     this.$q = $q;
     const deferred = $q.defer();
 
@@ -28,7 +28,7 @@ class CalculeLamal {
     // TODO: only load right canton? #11
     return this.ready.then(() => {
       if (this.sim.lieuLogement.canton === 'VD') {
-        return subsideLamalCalculeVD(sim);
+        return subsideLamalCalculeVD(sim, this.subsidesRDU, this.subsidesRIPC);
       }
       if (this.sim.lieuLogement.canton === 'NE') {
         return {subsideMin: -1, subsideMax: -1, subsideEstime: -1};
