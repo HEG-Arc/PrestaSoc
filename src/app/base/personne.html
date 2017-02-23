@@ -21,6 +21,13 @@
     </md-select>
   </md-input-container>
 
+  <div ng-if="$ctrl.personne.etatCivil == 'M' || $ctrl.sim.personne.etatCivil == 'P'">
+      <md-input-container layout="column">
+        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estProprietaire" ng-model="$ctrl.sim.aConjointEMS" aria-label="Conjoint en EMS">Conjoint en EMS</md-checkbox>
+        <md-checkbox class="md-primary" class="md-primary" ng-if="$ctrl.sim.estEMS" ng-model="$ctrl.sim.aConjointProprietaire" aria-label="Conjoint proprietaire">Conjoint proprietaire</md-checkbox>
+      </md-input-container>
+    </div>
+
   <label>Vous êtes</label>
   <md-input-container layout="column">
     <md-checkbox class="md-primary" ng-if="!$ctrl.personne.estAdulte" ng-model="$ctrl.personne.estGardeAlternee" aria-label="Etudiant">En garde alternée</md-checkbox>

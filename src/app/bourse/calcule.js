@@ -110,7 +110,6 @@ class CalculeBourse {
       revenus.push(["revenueAuxiliairesAutresPrestationsFinancieres", etudiant.revenueAuxiliairesAutresPrestationsFinancieres]);
     }
 
-
     if (etudiant.aParentLogementAutreFoyer) {
       const etatCivilFoyer2 = etudiant.nbAdultesFoyer2 > 1 ? 'M' : 'C'; // FIXME etat civil 2e foyer
       const rduData = {revenuNetImposable: etudiant.revenuNetFoyer2,
