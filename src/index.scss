@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
 
-$primary-color: #3893BF;
+@font-face {
+    font-family: 'nowbold';
+    src: url('assets/fonts/now-bold-webfont.woff2') format('woff2'),
+         url('assets/fonts/now-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$primary-color: #3795C2;
+
+h2, h3 {
+  color: $primary-color;
+  font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
+  margin-top: 0;
+}
 
 button, html, input, select, textarea {
   font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
 }
 
-base-nav div{
-  background-color: #fff;
-}
 
 table {
   width: 100%;
@@ -24,43 +34,104 @@ table.col-2 td:nth-child(2) {
   text-align: right;
 }
 
-.nav-part {
-  border-bottom: 2px solid $primary-color;
+.md-icon-right .fa.fa-info-circle{
+  color: $primary-color;
+  cursor: pointer;
 }
 
-.active {
-  background-color: $primary-color;
-  color: #fff;
+base-nav {
+  .md-button {
+    font-weight: bold;
+    border-radius: 0;
+    margin: 0;
+    text-transform: none;
+    padding: 8px;
+  }
+  .nav-main {
+    color: #fff;
+    background-color: $primary-color;
+    .active, .md-button.active {
+      color: $primary-color;
+      background-color: #fff;
+    }
+    .fa.fa-play {
+      color: #fff;
+      padding: 0 6px;
+      font-size: 10px;
+    }
+  }
+  .nav-sub {
+    color: #969696;
+    .active, .md-button.active {
+      color: #333;
+    }
+    .fa.fa-play {
+      font-size: 10px;
+    }
+  }
 }
 
+.nav-bottom .md-button {
+  min-width: 150px;
 
-.total{
+}
+
+.total {
   td, th {
     border-top: 2px solid $primary-color;
     padding-bottom:  1em;
   }
 }
 
-strong {
-  color: $primary-color;
+md-content {
+  background-color:  #fff;
+}
+
+app-header .md-toolbar-tools {
+  margin: 10px;
 }
 
 app-header .md-toolbar-tools h2 {
   font-weight: 900;
   font-size: 1.8em;
   color: #fff;
-  font-family: 'Work Sans'
+  font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.main-list md-list-item {
-  padding: 8px;
+app-header .subtitle {
+  height: 23px;
+  padding-left: 2em;
 }
 
-.main-list h2 {
-  margin-right: 1em;
-  min-width: 130px;
-  color: #fbbf09;
-  font-family: 'Work Sans'
+.main-direct-access, .result-direct-access{
+  margin-top: 40px;
+  p, h3 {
+    margin: 0;
+    padding: 0;
+  }
+  md-icon {
+    font-size: 50px;
+    color: $primary-color;
+    height: 60px;
+    line-height: 60px;
+    width: 60px;
+    text-align: center;
+    margin: 8px auto;
+    display: block;
+  }
+  .fa.circle {
+    border: 5px solid $primary-color;
+    border-radius: 50%;
+  }
+}
+
+.result-direct-access {
+  text-align: center;
+  .big-result {
+    font-size: 60px;
+    color: $primary-color;
+    font-weight: bold;
+  }
 }
 
 #beta-ribbon {
@@ -81,7 +152,12 @@ app-header .md-toolbar-tools h2 {
 }
 
 .box-background {
-  background-color: #fff;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 16px;
+  h3 {
+    color: #fff;
+  }
 }
 
 html, body {
@@ -96,12 +172,13 @@ body {
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -4em;
+  background-color: #fff;
 }
 .footer, .push {
 	height: 140px;
 }
 .footer {
-  background-color: #fff;
+  background-color: #F5F5F5;
   color: #333;
 }
 
