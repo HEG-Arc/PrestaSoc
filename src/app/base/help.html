@@ -1,0 +1,6 @@
+<div class="helpComponent" ng-if="$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]">
+    <md-button class="md-icon-button" ng-click="toggle=!toggle;"><md-icon md-font-icon="fa fa-info-circle"></md-icon></md-button>
+    <div class="helpBox" ng-class="{'helpBoxCol2': $ctrl.$mdMedia('gt-sm')}" ng-if="toggle">
+    {{$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]}}
+    </div>
+</div>
