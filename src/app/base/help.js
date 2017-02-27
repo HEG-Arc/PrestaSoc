@@ -4,6 +4,7 @@ class HelpController {
     this.$mdMedia = $mdMedia;
     this.vars = vars;
     this.sim = simulation;
+    this.showHelp = false;
   }
 }
 

@@ -84,8 +84,15 @@ base-nav {
 }
 
 .helpBox {
-    background-color: red;
-    padding: 8px;
+    background-color: rgba(241, 241, 241, 0.95);;
+    position: relative;
+    color: $primary-color;
+    padding: 24px;
+    font-size: 14px;
+    .md-button {
+      right: -6px;
+      top: -6px;
+    }
 }
 
 .helpBoxCol2 {
