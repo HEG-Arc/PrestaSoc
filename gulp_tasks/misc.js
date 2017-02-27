@@ -3,6 +3,7 @@ const path = require('path');
 const gulp = require('gulp');
 const del = require('del');
 const filter = require('gulp-filter');
+const request = require('request-json');
 
 const conf = require('../conf/gulp.conf');
 
@@ -62,19 +63,22 @@ function extractVars(file, vars, seen) {
 }
 
 function simvars() {
-  const vars = require('../src/app/vars.fr.json');
-  const seen = {};
-  return gulp.src([path.join(conf.paths.src, '/**/*.html')])
-    .pipe(through.obj((file, encoding, callback) => {
-      callback(null, extractVars(file, vars, seen));
-    })).on('end', () => {
-      gutil.log(gutil.colors.cyan('Unused variables:'));
-      for (const v in vars) {
-        if (!seen.hasOwnProperty(v)) {
-          gutil.log(gutil.colors.red(v));
+  const client = request.createClient('https://script.google.com');
+  return client.get('macros/s/AKfycbxxtYoEsXArEobqe3Egs5-kWHawM45IggQYLczhUbcELDYg7Ag/exec',
+  (err, res, vars) => {
+    const seen = {};
+    return gulp.src([path.join(conf.paths.src, '/**/*.html')])
+      .pipe(through.obj((file, encoding, callback) => {
+        callback(null, extractVars(file, vars, seen));
+      })).on('end', () => {
+        gutil.log(gutil.colors.cyan('Unused variables:'));
+        for (const v in vars) {
+          if (!seen.hasOwnProperty(v)) {
+            gutil.log(gutil.colors.red(v));
+          }
         }
-      }
-    });
+      });
+  });
 }
 
 gulp.task('simvars', simvars);
