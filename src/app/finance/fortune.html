@@ -1,54 +1,40 @@
-<base-nav>
-</base-nav>
+<base-nav></base-nav>
 <md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
-    <h2>Votre fortune</h2>
+  <div layout-gt-sm="row">
+    <div flex-gt-sm=50>
+      <h2>Votre fortune</h2>
 
-    <div layout="column">
-      <md-input-container>
-        <label>Fortune mobilière</label>
-        <input type="number" ng-model="$ctrl.sim.fortuneMobiliere" aria-label="Fortune mobilière">
-      </md-input-container>
-      <md-input-container>
-        <label>Dettes privées</label>
-        <input type="number" ng-model="$ctrl.sim.dettesPrivees" aria-label="Dettes privées">
-      </md-input-container>
+      <div layout="column">
+        <base-input-container var="fortuneMobiliere"></base-input-container>
+        <base-input-container var="dettesPrivees"></base-input-container>
 
-      <div ng-if="$ctrl.sim.logement === 'estProprietaire'" layout="column">
-        <h3> Votre logement permanent</h3>
-        <md-input-container>
-          <label>Fortune immobilière de votre logement permanent</label>
-          <input type="number" ng-model="$ctrl.sim.fortuneImmobiliereLogement" aria-label="Fortune immobilière de votre logement permanent">
-        </md-input-container>
-        <md-input-container>
-          <label>Dette hypothécaire de votre logement permanent</label>
-          <input type="number" ng-model="$ctrl.sim.dettesImmobiliereLogement" aria-label="Dette hypothécaire de votre logement permanent">
-        </md-input-container>
-        <md-input-container>
-          <label>Frais accessoires immeuble de votre logement permanent</label>
-          <input type="number" ng-model="$ctrl.sim.fraisAccessoiresLogement" aria-label="Frais accessoires immeuble de votre logement permanent">
-        </md-input-container>
-      </div>
-      <h3>Autres biens immobiliers</h3>
-      <md-checkbox class="md-primary" ng-model="autreImmobilier" aria-label="Autre immobilier">
-        Etes-vous propriétaire d'un immeuble qui ne serait pas votre logement principal?
-      </md-checkbox>
-      <div ng-if="autreImmobilier" layout="column">
-        <md-input-container>
-          <label>Autre fortune immobilière</label>
-          <input type="number" ng-model="$ctrl.sim.fortuneImmobiliereAutre" aria-label="Autre fortune immobilière">
-        </md-input-container>
-        <md-input-container>
-          <label>Autres dettes hypothécaires</label>
-          <input type="number" ng-model="$ctrl.sim.dettesImmobiliere" aria-label="Autres dettes hypothécaires">
-        </md-input-container>
+        <div ng-if="$ctrl.sim.logement === 'estProprietaire'" layout="column">
+          <h3>Votre logement permanent</h3>
+          <base-input-container var="fortuneImmobiliereLogement"></base-input-container>
+          <base-input-container var="dettesImmobiliereLogement"></base-input-container>
+          <base-input-container var="fraisAccessoiresLogement"></base-input-container>
+        </div>
 
-      </div>
-      <!-- TODO depending on mod result or details -->
-      <div layout="row">
-        <md-button ui-sref="revenu" class=" md-raised">Précédent</md-button>
-        <span flex></span>
-        <md-button ui-sref="result" class="md-primary md-raised">Suivant</md-button>
+        <h3>Autres biens immobiliers</h3>
+        <md-checkbox class="md-primary" ng-model="autreImmobilier" aria-label="Autre immobilier">
+          Etes-vous propriétaire d'un immeuble qui ne serait pas votre logement principal?
+        </md-checkbox>
+        <div ng-if="autreImmobilier" layout="column">
+          <base-input-container var="fortuneImmobiliereAutre"></base-input-container>
+          <base-input-container var="dettesImmobiliere"></base-input-container>
+        </div>
       </div>
     </div>
+    <div flex-gt-sm="10">
+    </div>
+    <div flex-gt-sm="40">
+      <img src="../../assets/dedale-horizontal-small.jpg" width="100%">
+    </div>
+  </div>
+  <div layout="row" class="nav-bottom">
+    <md-button ui-sref="revenu" class=" md-raised">Précédent</md-button>
+    <span flex></span>
+    <!-- TODO depending on mod result or details -->
+    <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+  </div>
 </md-content>
