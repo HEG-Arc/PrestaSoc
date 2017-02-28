@@ -30,6 +30,10 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/revenu',
       component: 'financeRevenu'
     })
+    .state('depenses', {
+      url: '/depenses',
+      component: 'financeDepenses'
+    })
     .state('fortune', {
       url: '/fortune',
       component: 'financeFortune'
@@ -63,10 +67,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('lamalEstimation', {
       url: '/lamalEstimation',
       component: 'lamalEstimation'
-    })
-    .state('pcDepenses', {
-      url: '/pcDepenses',
-      component: 'pcDepenses'
     })
     .state('pcEstimation', {
       url: '/pcEstimation',
