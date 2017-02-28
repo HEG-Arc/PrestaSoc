@@ -1,10 +1,8 @@
-<base-nav>
-</base-nav>
+<base-nav></base-nav>
 <md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
-    <h2>Estimation des prestations complémentaires (PC)</h2>
-
-    <div layout="column">
+  <div>
+    <div layout="column" class="estimation-table-box">
+      <h2>Estimation des prestations complémentaires (PC)</h2>
       <div ng-if="$ctrl.sim.pc.conditions">
         <table class="col-2">
           <tr>
@@ -13,7 +11,7 @@
           <tr>
             <th>Dépenses</th><td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
           </tr>
-          <tr>
+          <tr class="primary-color">
             <th><b>Subside estimé</b></th><td><b>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</b></td>
           </tr>
         </table>
@@ -22,62 +20,63 @@
           <p>En tant que bénéficiaire de prestations complémentaires, vous bénéficiez également d'un remboursement partiel des frais de santé jusqu'à la hauteur de {{ $ctrl.sim.pc.subsideFraisMaladie|number }} CHF/an ainsi que de l'exonération de la redevance radio/TV.</p>
         </div>
 
-        <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Détails de l'estimation</md-checkbox>
+        <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Afficher les détails de l'estimation</md-checkbox>
         <div ng-if="details">
-        <h3>Détails du calcul</h3>
+
         <table class="col-2">
           <tr>
-            <th colspan="2">Revenus</th>
+            <th colspan="2">
+              <h3>Revenus</h3></th>
           </tr>
           <tr>
             <td>Revenu net</td><td>{{ $ctrl.sim.pc.revenus.revenuBase|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Rentes AVS/AI/APG</td><td>{{ $ctrl.sim.pc.revenus.revenuRentes|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Prévoyance</td><td>{{ $ctrl.sim.pc.revenus.revenuPrevoyance|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Revenu de la fortune</td><td>{{ $ctrl.sim.pc.revenus.revenuFortune|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Imputation de la fortune</td><td>{{ $ctrl.sim.pc.revenus.imputationFortune|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr ng-if="$ctrl.sim.estProprietaire">
             <td>Valeur locative logement</td><td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr class="total">
             <th>TOTAL REVENUS</th><td>{{ $ctrl.sim.pc.revenus.revenus|number }} CHF/an</td>
+          </tr>
           <tr>
-          <tr>
-            <th colspan="2">Dépenses</th>
+            <th colspan="2"><h3>Dépenses</h3></th>
           </tr>
           <tr>
             <td>Couverture des besoins vitaux</td><td>{{ $ctrl.sim.pc.depenses.besoinsVitaux|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Forfait assurance maladie (canton: {{ $ctrl.sim.pc.depenses.primeMaladie.canton }}, région: {{ $ctrl.sim.pc.depenses.primeMaladie.region }})</td><td>{{ $ctrl.sim.pc.depenses.primesAssuranceMaladie|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Forfait loyer</td><td>{{ $ctrl.sim.pc.depenses.depensesLoyer|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Cotisations AVS/AI/APG</td><td>{{ $ctrl.sim.pc.depenses.cotisationsAVS|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr>
             <td>Contributions d'entretien</td><td>{{ $ctrl.sim.pc.depenses.contributionsEntretien|number }} CHF/an</td>
-          <tr>
+          </tr>
           <tr class="total">
             <th>TOTAL DEPENSES</th><td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
-          <tr>
-          <tr><th colspan="2">Estimation des prestations complémentaires</th></tr>
-          <tr>
+          </tr>
+          <tr><th colspan="2"><h3>Résultats</h3></th></tr>
+          <tr class="primary-color">
             <td><b>Estimation montant annuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</td>
-          <tr>
-          <tr>
+          </tr>
+          <tr class="primary-color">
             <td><b>Estimation montant mensuel</b></td><td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel|number }} CHF/mois</td>
-          <tr>
+          </tr>
         </table>
         </div>
       </div>
@@ -100,7 +99,7 @@
       </div>
       <div layout="row">
         <span flex></span>
-        <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+        <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Resultats</md-button>
       </div>
 
     </div>
