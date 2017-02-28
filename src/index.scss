@@ -22,8 +22,18 @@ button, html, input, select, textarea {
 }
 
 
+.estimation-table-box {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
 table {
   width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 2px 0;
 }
 
 th {
@@ -118,9 +128,15 @@ base-nav, .base-nav {
 
 .total {
   td, th {
-    border-top: 2px solid $primary-color;
+    border-top: 1px solid #333;
     padding-bottom:  1em;
+    color: $primary-color;
+    font-weight: normal;
   }
+}
+
+.primary-color {
+  color: $primary-color;
 }
 
 md-content {
