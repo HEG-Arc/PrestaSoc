@@ -1,47 +1,46 @@
 <md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
-    <h2>{{$ctrl.personne.prenom}}</h2>
+  <div layout-gt-sm="row">
+    <div flex-gt-sm=50>
+      <h2>{{$ctrl.personne.prenom}}</h2>
 
-    <div layout="column">
-      <md-input-container>
-        <label>Type de formation</label>
-        <md-select ng-model="$ctrl.personne.niveauEtude">
-          <md-option value="l0">Niveau primaire</md-option>
-          <md-option value="l1">Niveau secondaire 1</md-option>
-          <md-option value="l2">Niveau secondaire 2</md-option>
-          <md-option value="l3">Niveau tertiaire (Université, EPF, HES)</md-option>
-        </md-select>
-      </md-input-container>
+      <div layout="column">
+        <md-input-container>
+          <label>Type de formation</label>
+          <md-select ng-model="$ctrl.personne.niveauEtude">
+            <md-option value="l0">Niveau primaire</md-option>
+            <md-option value="l1">Niveau secondaire 1</md-option>
+            <md-option value="l2">Niveau secondaire 2</md-option>
+            <md-option value="l3">Niveau tertiaire (Université, EPF, HES)</md-option>
+          </md-select>
+        </md-input-container>
 
-      <md-autocomplete
-          md-selected-item="$ctrl.personne.lieuInstitution"
-          md-search-text="$ctrl.personne.$searchText"
-          md-items="item in $ctrl.filterList($ctrl.personne.$searchText)"
-          md-item-text="item.label"
-          md-min-length="3"
-          md-require-match
-          md-floating-label="NPA / Commune de l'institution"
-          placeholder="NPA / Commune de l'institution">
-        <md-item-template>
-          <span md-highlight-text="$ctrl.personne.$searchText" md-highlight-flags="i">{{item.label}}</span>
-        </md-item-template>
-        <md-not-found>
-          No entry matching "{{$ctrl.personne.$searchText}}" were found.
-        </md-not-found>
-      </md-autocomplete>
+        <md-autocomplete md-selected-item="$ctrl.personne.lieuInstitution" md-search-text="$ctrl.personne.$searchText" md-items="item in $ctrl.filterList($ctrl.personne.$searchText)"
+          md-item-text="item.label" md-min-length="3" md-require-match md-floating-label="NPA / Commune de l'institution" placeholder="NPA / Commune de l'institution">
+          <md-item-template>
+            <span md-highlight-text="$ctrl.personne.$searchText" md-highlight-flags="i">{{item.label}}</span>
+          </md-item-template>
+          <md-not-found>
+            No entry matching "{{$ctrl.personne.$searchText}}" were found.
+          </md-not-found>
+          </md-autocomplete>
 
-      <md-input-container layout="column">
-          <md-checkbox class="md-primary" ng-model="$ctrl.personne.formationRedoublementOuTempsPartiel" aria-label="Redoublement ou temps partiel">Redoublement ou temps partiel</md-checkbox>
-          <md-checkbox class="md-primary" ng-model="$ctrl.personne.estIndependanceFinanciere" aria-label="estIndependanceFinanciere">estIndependanceFinanciere</md-checkbox>
-          <md-checkbox class="md-primary" ng-model="$ctrl.personne.aLogementSepare" aria-label="Logement séparé">Logement séparé</md-checkbox>
-          <md-checkbox class="md-primary" ng-model="$ctrl.personne.aParentLogementAutreFoyer" aria-label="Un parent vit-il dans un autre foyer">Un parent vit-il dans un autre foyer?</md-checkbox>
-      </md-input-container>
+          <md-input-container layout="column">
+            <md-checkbox class="md-primary" ng-model="$ctrl.personne.formationRedoublementOuTempsPartiel" aria-label="Redoublement ou temps partiel">Redoublement ou temps partiel</md-checkbox>
+            <md-checkbox class="md-primary" ng-model="$ctrl.personne.estIndependanceFinanciere" aria-label="estIndependanceFinanciere">estIndependanceFinanciere</md-checkbox>
+            <md-checkbox class="md-primary" ng-model="$ctrl.personne.aLogementSepare" aria-label="Logement séparé">Logement séparé</md-checkbox>
+            <md-checkbox class="md-primary" ng-model="$ctrl.personne.aParentLogementAutreFoyer" aria-label="Un parent vit-il dans un autre foyer">Un parent vit-il dans un autre foyer?</md-checkbox>
+          </md-input-container>
       </div>
     </div>
+    <div flex-gt-sm="10">
 
-    <div layout="row">
-      <span flex></span>
-      <md-button ui-sref="bourse.revenusAuxiliaires({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
     </div>
+    <div flex-gt-sm="40">
+      <img src="../../assets/dedale-horizontal-small.jpg" width="100%">
+    </div>
+  </div>
+  <div layout="row" class="nav-bottom">
+    <span flex></span>
+    <md-button ui-sref="bourse.revenusAuxiliaires({index: $ctrl.index})" class="md-primary md-hue-2 md-raised">Suivant</md-button>
   </div>
 </md-content>

@@ -1,61 +1,39 @@
 <md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
+  <div layout-gt-sm="row">
+    <div flex-gt-sm=50>
 
     <!-- TODO: foyer du 1er parent si personne.estIndependanceFinanciere (?quelles vars?) -->
     <h2>Foyer du 2ème parent</h2>
 
     <div layout="column">
-
-      <md-input-container>
-        <label>Nombre d'adultes vivant dans ce foyer</label>
-        <input type="number" ng-model="$ctrl.personne.nbAdultesFoyer2" aria-label="Fortune mobilière">
-      </md-input-container>
-
-      <md-input-container>
-        <label>Nombre d'enfants vivant dans ce foyer</label>
-        <input type="number" ng-model="$ctrl.personne.nbEnfantsFoyer2" aria-label="Fortune mobilière">
-      </md-input-container>
-
-      <md-input-container>
-        <label>Revenu net imposable du foyer</label>
-        <input type="number" ng-model="$ctrl.personne.revenuNetFoyer2" aria-label="Fortune mobilière">
-      </md-input-container>
-
-      <md-input-container>
-        <label>Versements 3e pilier</label>
-        <input type="number" ng-model="$ctrl.personne.troisiemePilierFoyer2" aria-label="Fortune mobilière">
-      </md-input-container>
-
-      <md-input-container>
-        <label>Fortune mobilière</label>
-        <input type="number" ng-model="$ctrl.personne.fortuneMobiliereFoyer2" aria-label="Fortune mobilière">
-      </md-input-container>
+      <base-input-container src="$ctrl" var="personne.nbAdultesFoyer2"></base-input-container>
+      <base-input-container src="$ctrl" var="personne.nbEnfantsFoyer2"></base-input-container>
+      <base-input-container src="$ctrl" var="personne.revenuNetFoyer2"></base-input-container>
+      <base-input-container src="$ctrl" var="personne.troisiemePilierFoyer2"></base-input-container>
+      <base-input-container src="$ctrl" var="personne.fortuneMobiliereFoyer2"></base-input-container>
 
       <md-checkbox class="md-primary" ng-model="$ctrl.personne.estProprietaireFoyer2" aria-label="Autre immobilier">
         Sont-il propriétaire?
       </md-checkbox>
 
       <div ng-if="$ctrl.personne.estProprietaireFoyer2" layout="column">
-        <md-input-container>
-          <label>Fortune immobilière de leur logement permanent</label>
-          <input type="number" ng-model="$ctrl.personne.fortuneImmobiliereFoyer2" aria-label="Fortune immobilière de votre logement permanent">
-        </md-input-container>
-
-        <md-input-container>
-          <label>Autre fortune immobilière</label>
-          <input type="number" ng-model="$ctrl.personne.autresFortuneImmobiliereFoyer2" aria-label="Dette hypothécaire de votre logement permanent">
-        </md-input-container>
-
-        <md-input-container>
-          <label>Frais d'entretien immeuble</label>
-          <input type="number" ng-model="$ctrl.personne.fraisAccessoiresFoyer2" aria-label="Frais accessoires immeuble de votre logement permanent">
-        </md-input-container>
+        <base-input-container src="$ctrl" var="personne.fortuneImmobiliereFoyer2"></base-input-container>
+        <base-input-container src="$ctrl" var="personne.autresFortuneImmobiliereFoyer2"></base-input-container>
+        <base-input-container src="$ctrl" var="personne.fraisAccessoiresFoyer2"></base-input-container>
       </div>
-
-      <div layout="row">
-        <span flex></span>
-        <md-button ng-if="$ctrl.index < $ctrl.sim.etudiants.length - 1" ui-sref="bourse.formation({index: $index + 1})" class="md-primary md-raised">Suivant</md-button>
-        <md-button ng-if="$ctrl.index == $ctrl.sim.etudiants.length - 1" ui-sref="bourseEstimation" class="md-primary md-raised">Suivant</md-button>
-      </div>
+ </div>
     </div>
+    <div flex-gt-sm="10">
+
+    </div>
+    <div flex-gt-sm="40">
+      <img src="../../assets/dedale-horizontal-small.jpg" width="100%">
+    </div>
+  </div>
+      <div layout="row" class="nav-bottom">
+        <md-button ui-sref="bourse.revenusAuxiliaires({index: $ctrl.index})" class="md-primary">Précédent</md-button>
+        <span flex></span>
+        <md-button ng-if="$ctrl.index < $ctrl.sim.etudiants.length - 1" ui-sref="bourse.formation({index: $index + 1})" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+        <md-button ng-if="$ctrl.index == $ctrl.sim.etudiants.length - 1" ui-sref="bourseEstimation" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+      </div>
 </md-content>

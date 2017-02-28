@@ -1,24 +1,29 @@
 <md-content layout-padding>
-  <div class="box-background" md-whiteframe="1">
-    <h2>Revenus auxiliaires</h2>
+  <div layout-gt-sm="row">
+    <div flex-gt-sm=50>
+      <h2>Revenus auxiliaires</h2>
 
-    <div layout="column">
-      <md-input-container>
-        <label>Contributions d'entretien</label>
-        <input type="number" ng-model="$ctrl.personne.revenueAuxiliaireContributionsEntretien" aria-label="contributionsEntretien">
-      </md-input-container>
-
-      <md-input-container>
-        <label>Autres prestations financières</label>
-        <input type="number" ng-model="$ctrl.personne.revenueAuxiliairesAutresPrestationsFinancieres" aria-label="Dettes privées">
-      </md-input-container>
-
-      <div layout="row">
-        <span flex></span>
-        <md-button ng-if="$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-raised">Suivant</md-button>
-
-        <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer && $ctrl.index < $ctrl.sim.etudiants.length - 1" ui-sref="bourse.formation({index: $index + 1})" class="md-primary md-raised">Suivant</md-button>
-        <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer && $ctrl.index == $ctrl.sim.etudiants.length - 1" ui-sref="bourseEstimation" class="md-primary md-raised">Suivant</md-button>
+      <div layout="column">
+        <base-input-container src="$ctrl" var="personne.revenueAuxiliaireContributionsEntretien"></base-input-container>
+        <base-input-container src="$ctrl" var="personne.revenueAuxiliairesAutresPrestationsFinancieres"></base-input-container>
       </div>
     </div>
+    <div flex-gt-sm="10">
+
+    </div>
+    <div flex-gt-sm="40">
+      <img src="../../assets/dedale-horizontal-small.jpg" width="100%">
+    </div>
+  </div>
+
+  <div layout="row" class="nav-bottom">
+    <md-button ng-if="$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourse.formation({index: $ctrl.index})" class="md-primary">Précédent</md-button>
+    <span flex></span>
+    <md-button ng-if="$ctrl.personne.aParentLogementAutreFoyer" ui-sref="bourse.parents({index: $ctrl.index})" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+
+    <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer && $ctrl.index < $ctrl.sim.etudiants.length - 1" ui-sref="bourse.formation({index: $index + 1})"
+      class="md-primary md-hue-2 md-raised">Suivant</md-button>
+      <md-button ng-if="!$ctrl.personne.aParentLogementAutreFoyer && $ctrl.index == $ctrl.sim.etudiants.length - 1" ui-sref="bourseEstimation"
+        class="md-primary md-hue-2 md-raised">Suivant</md-button>
+  </div>
 </md-content>
