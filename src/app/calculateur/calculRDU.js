@@ -4,6 +4,7 @@ const FRANCHISE_FORTUNE = {
 };
 const TAUX_MAJORATION = 1 / 15; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
 const FRANCHISE_FORTUNE_IMMOBILIERE_LOGEMENT = 300000; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
+const FRANCHISE_FORTUNE_COMMERCIALE = 100000;
 
 function imputationFortune(sim) {
   const menageRDU = sim.personnes[0].etatCivil === 'C' ||
@@ -20,6 +21,11 @@ function imputationFortune(sim) {
   }
   if (angular.isDefined(sim.fortuneMobiliere)) {
     fortune += parseInt(sim.fortuneMobiliere, 10);
+  }
+  if (angular.isDefined(sim.fortuneCommerciale)) {
+    let fortuneCommercialeRDU = parseInt(sim.fortuneCommerciale, 10);
+    fortuneCommercialeRDU -= Math.min(fortuneCommercialeRDU, FRANCHISE_FORTUNE_COMMERCIALE);
+    fortune += fortuneCommercialeRDU;
   }
   fortune -= FRANCHISE_FORTUNE[menageRDU];
   fortune = Math.max(fortune, 0);
