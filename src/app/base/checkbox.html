@@ -1,7 +1,10 @@
 <div>
-    <md-checkbox class="md-primary" ng-model="$ctrl.model[$ctrl.attribute]" aria-label="{{$ctrl.vars[$ctrl.var]['nomFR']}}">
-        {{$ctrl.vars[$ctrl.var]['nomFR']}}
-        <md-button aria-label="aide" ng-if="$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]" class="md-icon-button helpCheckbox" ng-click="$ctrl.showHelp=!$ctrl.showHelp;$event.stopPropagation();"><md-icon md-font-icon="fa fa-info-circle"></md-icon></md-button>
+    <md-checkbox class="md-primary md-align-top-left" ng-model="$ctrl.model[$ctrl.attribute]" aria-label="{{$ctrl.vars[$ctrl.var]['nomFR']}}">
+        {{$ctrl.vars[$ctrl.var]['nomFR'].substr(0, $ctrl.vars[$ctrl.var]['nomFR'].lastIndexOf(' '))}}
+        <span class="nowrap">{{$ctrl.vars[$ctrl.var]['nomFR'].split(' ').pop()}}<md-button aria-label="aide" ng-if="$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]" class="md-icon-button helpCheckbox" ng-click="$ctrl.showHelp=!$ctrl.showHelp;$event.stopPropagation();">
+                <md-icon md-font-icon="fa fa-info-circle"></md-icon>
+            </md-button>
+        </span>
     </md-checkbox>
     <div class="helpComponent" >
         <div class="helpBox" ng-class="{'helpBoxCol2': $ctrl.$mdMedia('gt-sm')}" ng-if="$ctrl.showHelp">
