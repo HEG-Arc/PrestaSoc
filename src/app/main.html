@@ -8,7 +8,9 @@
       <p>Il suffit d’introduire quelques informations, puis de choisir une prestation sociale. Une estimation du droit sera immédiatement proposée, ainsi que l’adresse de contact pour demander la prestation. </p>
 
       <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary md-hue-2" flex="50" ui-sref="vous">Commencer</md-button>
+        <md-button ng-if="!$ctrl.canContinue()"class="md-raised md-primary md-hue-2" flex="50" ui-sref="vous">Commencer</md-button>
+        <md-button ng-if="$ctrl.canContinue()" class="md-raised md-primary md-hue-2" flex="50"ng-click="$ctrl.restart()">Recommencer</md-button>
+        <md-button ng-if="$ctrl.canContinue()" class="md-raised md-primary md-hue-2" flex="50"ng-click="$ctrl.continue()">Continuer</md-button>
       </div>
     </div>
   </div>
