@@ -1,7 +1,7 @@
 <div class="helpComponent" ng-if="$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]">
-    <md-button class="md-icon-button" ng-click="$ctrl.showHelp=!$ctrl.showHelp;"><md-icon md-font-icon="fa fa-info-circle"></md-icon></md-button>
+    <md-button aria-label="aide" class="md-icon-button" ng-click="$ctrl.showHelp=!$ctrl.showHelp;"><md-icon md-font-icon="fa fa-info-circle"></md-icon></md-button>
     <div class="helpBox" ng-class="{'helpBoxCol2': $ctrl.$mdMedia('gt-sm')}" ng-if="$ctrl.showHelp">
         {{$ctrl.vars[$ctrl.var]['help' + $ctrl.sim.lieuLogement.canton]}}
-        <md-button class="md-icon-button" ng-click="$ctrl.showHelp=!$ctrl.showHelp;"><md-icon md-font-icon="fa fa-times-circle"></md-icon></md-button>
+        <md-button  aria-label="fermer" class="md-icon-button" ng-click="$ctrl.showHelp=!$ctrl.showHelp;"><md-icon md-font-icon="fa fa-times-circle"></md-icon></md-button>
     </div>
 </div>

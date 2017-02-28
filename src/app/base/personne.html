@@ -4,10 +4,7 @@
     <input type="text" ng-model="$ctrl.personne.prenom">
   </md-input-container>
 
-  <md-input-container>
-    <label>Date de naissance</label>
-    <input ng-model="$ctrl.personne.dateNaissance" type="date" placeholder="yyyy-MM-dd">
-  </md-input-container>
+  <base-input-container src="$ctrl" var="personne.age"></base-input-container>
 
   <md-input-container ng-if="$ctrl.personne.estAdulte">
     <label>Etat civil</label>

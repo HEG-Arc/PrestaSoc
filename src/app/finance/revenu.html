@@ -11,12 +11,8 @@
 
         <h3> Rentes et pensions </h3>
 
-        <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS">
-          <base-input-container var="renteAVS"></base-input-container>
-        </div>
-
-        <div ng-if="$ctrl.sim.personnes[0].estHandicap || $ctrl.sim.personnes[0].estInapteAuTravail">
-          <base-input-container var="renteAI"></base-input-container>
+        <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estHandicap || $ctrl.sim.personnes[0].estInapteAuTravail">
+          <base-input-container var="renteAVSAI"></base-input-container>
         </div>
 
         <div ng-if="$ctrl.sim.personnes[0].etatCivil === 'V'">
@@ -47,6 +43,6 @@
   <div layout="row" class="nav-bottom">
     <md-button ui-sref="foyer" class="md-raised">Précédent</md-button>
     <span flex></span>
-    <md-button ui-sref="fortune" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+    <md-button ui-sref="depenses" class="md-primary md-hue-2 md-raised">Suivant</md-button>
   </div>
 </md-content>

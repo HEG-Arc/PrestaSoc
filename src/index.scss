@@ -14,6 +14,7 @@ h2, h3 {
   color: $primary-color;
   font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
   margin-top: 0;
+  font-weight: normal;
 }
 
 button, html, input, select, textarea {
@@ -80,6 +81,14 @@ base-nav, .base-nav {
     position: absolute;
     right: 2px;
     top: 2px;
+  }
+}
+
+.md-button.md-icon-button.helpCheckbox {
+  font-size: 16px;
+  margin: 0 0 4px 0;
+  .fa.fa-info-circle {
+    color: $primary-color;
   }
 }
 
@@ -165,6 +174,12 @@ app-header .subtitle {
   }
 }
 
+.restart {
+  md-icon {
+    color: #fff;
+  }
+}
+
 #beta-ribbon {
     text-align: center;
     text-transform: uppercase;
@@ -214,20 +229,81 @@ body {
 }
 
 .avatar-box {
+  position: relative;
+  margin: 8px;
+  text-align: center;
+
+  .fa.circle {
+    font-size: 60px;
+    color: $primary-color;
+    height: 60px;
+    line-height: 70px;
+    width: 60px;
+    text-align: center;
+    margin: 8px auto;
+    display: block;
+    border: 5px solid $primary-color;
+    border-radius: 50%;
+  }
+  .close {
+    position: absolute;
+    font-size: 16px;
+    top: -4px;
+    right: -4px;
+    margin: 0;
+  }
+}
+
+.avatar-box.active {
+  .avatar-box-inner {
+    color: #fff;
+    background-color: $primary-color;
+  }
+  .fa.circle, .close .fa {
+    color: #fff;
+    border-color: #fff;
+  }
+}
+
+.avatar-box:focus {
+    outline: none;
+}
+
+.avatar-box-inner {
   box-sizing: border-box;
   height: 150px;
-  width: 150px;
-  margin: 16px;
+  width: 140px;
   padding: 8px;
+  margin: 0;
+  color: $primary-color;
+  background-color: #F5F5F5;
 
   span {
     font-weight: bold;
   }
 }
 
-.avatar-box.add {
-  border: 2px dotted #333;
-  font-size: 2em;
-  font-weight: bold;
+.avatar-box-inner.add {
+  text-transform: none;
+  white-space: normal;
+  line-height: normal;
+  .fa {
+    font-size: 60px;
+    color: $primary-color;
+    height: 60px;
+    line-height: 70px;
+    width: 60px;
+    text-align: center;
+    margin: 8px auto;
+    display: block;
+  }
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 70px 0 70px;
+  border-color: $primary-color transparent transparent transparent;
 }
 

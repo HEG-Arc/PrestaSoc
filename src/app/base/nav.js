@@ -10,7 +10,7 @@ class NavController {
   }
 
   isFinance() {
-    return this.$state.is('revenu') || this.$state.is('fortune');
+    return this.$state.is('revenu') || this.$state.is('depenses') || this.$state.is('fortune');
   }
 
   isLamal() {
@@ -18,7 +18,7 @@ class NavController {
   }
 
   isPC() {
-    return this.$state.is('pcDepenses') || this.$state.is('pcEstimation');
+    return this.$state.is('pcEstimation');
   }
 
   isBourse() {
