@@ -31,8 +31,8 @@ export function calculRDU(sim) {
   if (angular.isDefined(sim.revenuNetImposable)) {
     rdu += parseInt(sim.revenuNetImposable, 10);
   }
-  if (angular.isDefined(sim.rentePrevoyancePrivee)) {
-    rdu += parseInt(sim.rentePrevoyancePrivee, 10);
+  if (angular.isDefined(sim.versementsPrevoyancePrivee)) {
+    rdu += parseInt(sim.versementsPrevoyancePrivee, 10);
   }
   if (angular.isDefined(sim.fraisAccessoiresLogement)) {
     rdu -= parseInt(sim.fraisAccessoiresLogement, 10);

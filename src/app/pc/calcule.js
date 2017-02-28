@@ -19,7 +19,7 @@ class CalculePC {
     this.couvertureBesoinsVitaux = {couple: 28935, seul: 19290, enfants1: 10080, enfants2: 6720, enfants3: 3360};
     this.loyerAnnuelMaximum = {couple: 15000, seul: 13200, enfants: 15000, chaiseRoulante: 3600};
     this.fraisAccessoiresImmeuble = 1680;
-    this.franchiseFortune = {couple: 60000, seul: 37500, proprietaire: 112500, proprietaireAVSAI: 300000};
+    this.franchiseFortune = {couple: 60000, seul: 37500, enfant: 15000, proprietaire: 112500, proprietaireAVSAI: 300000};
     this.tauxPartFortune = {survivant: 0.067, avs: 0.1, ai: 0.067};
     this.deductionActiviteLucrative = {couple: 1500, seul: 1000, taux: 0.667};
     this.remboursementFraisMaladie = {couple: 50000, seul: 25000, ems: 6000};
@@ -29,7 +29,7 @@ class CalculePC {
     this.sim.revenuActiviteLucrative = 10000;
     this.sim.rentePrevoyanceProfessionelle = 5000;
     this.sim.rentePrevoyancePrivee = 5000;
-    this.sim.renteAVS = 22000;
+    this.sim.renteAVSAI = 22000;
     this.sim.renteAI = 0;
     this.sim.renteSurvivant = 0;
     this.sim.renteAccident = 0;
@@ -73,8 +73,7 @@ class CalculePC {
     const revenuPrevoyance = sum([this.sim.rentePrevoyanceProfessionelle + this.sim.rentePrevoyancePrivee]);
 
     const revenuRentes = sum([
-      this.sim.renteAVS,
-      this.sim.renteAI,
+      this.sim.renteAVSAI,
       this.sim.renteSurvivant,
       this.sim.renteAccident,
       this.sim.revenuInsertion]);
