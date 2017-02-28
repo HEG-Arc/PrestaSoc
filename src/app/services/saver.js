@@ -33,10 +33,7 @@ class Saver {
     this.__cancelWatchSim = this.$rootScope.$watch('sim', () => {
       localStorage.setItem(STORAGE_KEY, angular.toJson(this.$rootScope.sim));
     }, true);
-
-    this.$log.debug('watch $stateChangeSuccess');
     this.__cancelWatchState = this.$rootScope.$on('$stateChangeSuccess', (event, toState, toParams) => {
-      this.$log.debug('statechange');
       localStorage.setItem(STORAGE_KEY_STATE, angular.toJson({state: toState, params: toParams}));
     });
   }
