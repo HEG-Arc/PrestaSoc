@@ -7,7 +7,7 @@
   <div flex-gt-sm="33" layout-padding>
         <md-icon md-font-icon="fa fa-medkit circle"></md-icon>
         <div class="big-result">
-          {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}} CHF/mois
+          {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime |number}} CHF/mois
         </div>
         <h3>Subsides à l'assurance maladie</h3>
         <p>
@@ -22,7 +22,6 @@
         </div>
         <h3>AVS/AI</h3>
         <p>
-          <md-button ui-sref="pcDepenses" class="md-primary md-hue-2  md-raised" ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI">Estimer</md-button>
           <md-button ui-sref="pcEstimation" class="md-primary md-hue-2 md-raised" ng-if="!($ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI)">Détails</md-button>
         </p>
   </div>
