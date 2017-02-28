@@ -9,6 +9,7 @@ import {nav} from './nav';
 import {personne} from './personne';
 import {help} from './help';
 import {inputContainer} from './inputContainer';
+import {checkbox} from './checkbox';
 
 export const baseModule = 'app.base';
 import {servicesModule} from '../services/index';
@@ -23,4 +24,5 @@ angular
   .component('baseResult', result)
   .component('basePersonne', personne)
   .component('baseHelp', help)
-  .component('baseInputContainer', inputContainer);
+  .component('baseInputContainer', inputContainer)
+  .component('baseCheckbox', checkbox);

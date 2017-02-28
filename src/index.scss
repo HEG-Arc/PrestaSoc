@@ -84,6 +84,14 @@ base-nav, .base-nav {
   }
 }
 
+.md-button.md-icon-button.helpCheckbox {
+  font-size: 16px;
+  margin: 0 0 4px 0;
+  .fa.fa-info-circle {
+    color: $primary-color;
+  }
+}
+
 .helpBox {
     background-color: rgba(241, 241, 241, 0.95);;
     position: relative;
