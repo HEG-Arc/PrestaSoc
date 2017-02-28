@@ -69,7 +69,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       component: 'lamalEstimation'
     })
     .state('pcEstimation', {
-      url: '/pcEstimation',
+      url: '/pc/estimation',
       component: 'pcEstimation'
     });
 }
