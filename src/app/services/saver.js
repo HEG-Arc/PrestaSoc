@@ -15,9 +15,6 @@ class Saver {
       const simJson = localStorage.getItem(STORAGE_KEY);
       if (simJson) {
         const loadedSim = angular.fromJson(simJson);
-        loadedSim.personnes.forEach(personne => {
-          personne.dateNaissance = new Date(personne.dateNaissance);
-        });
         angular.copy(loadedSim, this.$rootScope.sim);
       }
       this.$rootScope.sim.stats.loaded.push(new Date().toISOString());
