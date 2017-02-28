@@ -4,7 +4,7 @@ const FRANCHISE_FORTUNE = {
 };
 const TAUX_MAJORATION = 1 / 15; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
 const FRANCHISE_FORTUNE_IMMOBILIERE_LOGEMENT = 300000; // REF http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RDU_juillet_2013.pdf
-const FRANCHISE_FORTUNE_COMMERCIALE = 100000;
+const FRANCHISE_FORTUNE_COMMERCIALE = 100000; // REF http://www.vd.ch/fileadmin/user_upload/themes/sante_social/aides_allocations/fichiers_pdf/OV_Notice_2017_web.pdf 
 
 function imputationFortune(sim) {
   const menageRDU = sim.personnes[0].etatCivil === 'C' ||
