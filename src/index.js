@@ -33,20 +33,22 @@ import './index.scss';
 /** @ngInject */
 const themeConfig = $mdThemingProvider => {
   $mdThemingProvider.definePalette('primaryPalette', $mdThemingProvider.extendPalette('blue', {
-    100: 'd6ead8',
-    200: 'a8d3af',
-    300: '6fbd84',
-    400: '1ca75e',
-    500: '3893BF',
-    600: '008538',
-    700: '007933',
-    800: '006228',
-    900: '00461A'
+    100: '3795C2',
+    200: '3795C2',
+    300: '3795C2',
+    400: '3795C2',
+    500: '3795C2',
+    600: '225C77',
+    700: '3795C2',
+    800: '3795C2',
+    900: '333333'
     // contrastDefaultColor: 'light',
     // contrastDarkColors: ['50', '100', '200', '300', '400']
   }));
   $mdThemingProvider.theme('default').primaryPalette('primaryPalette', {
-    default: '500'
+    'default': '500',
+    'hue-1': '600',
+    'hue-2': '900'
   }).accentPalette('indigo');
 };
 

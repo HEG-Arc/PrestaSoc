@@ -1,11 +1,11 @@
-import {calculRDU} from '../calculateur/calculRDU';
+import {subsideLamalCalculeVD} from '../calculateur/subsideLamalVD';
 
 class CalculeLamal {
 
   /** @ngInject */
   constructor($http, $q) {
-    this.subsidesRDU = {};
-    this.subsidesRIPC = {};
+    this.subsidesRDU = [];
+    this.subsidesRIPC = [];
     this.$q = $q;
     const deferred = $q.defer();
 
@@ -22,89 +22,13 @@ class CalculeLamal {
     this.ready = deferred.promise;
   }
 
-  subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
-    , estBeneficiareRI = false, age, rdu, region) {
-    if (estEtudiant && (age < 19 || age > 25)) {
-      estEtudiant = false;
-    }
-    let subside = {};
-    if (estBeneficiarePC || estBeneficiareRI) {
-      subside = this.subsidesRIPC.find(x => {
-        return x.menage === menage &&
-          x.formation === estEtudiant &&
-          x.ageMin <= age &&
-          x.ageMax >= age &&
-          x.region === region;
-      });
-    } else {
-      subside = this.subsidesRDU.find(x => {
-        return x.menage === menage &&
-          x.formation === estEtudiant &&
-          x.ageMin <= age &&
-          x.ageMax >= age &&
-          x.rduMin <= rdu &&
-          x.rduMax >= rdu;
-      });
-    }
-    if (angular.isDefined(subside)) {
-      const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
-        (subside.subsideMax - subside.subsideMin));
-      return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
-    }
-    return {subsideMin: 0, subsideMax: 0, subsideEstime: 0}; // TODO cas ou la personne n'a pas droit au subside
-  }
-
-  subsideLamalCalcule(rdu) {
-    const nombreEnfants = function (sim) {
-      return sim.personnes.reduce((count, person) => {
-        if (!person.estAdulte) {
-          count++;
-        }
-        return count;
-      }, 0);
-    };
-
-    const reductionEnfants = function (nbEnfants) {
-      switch (nbEnfants) {
-        case 0:
-          return 0;
-        case 1:
-          return 6000;
-        case 2:
-          return 13000;
-        default:
-          return 7000 * nbEnfants;
-      }
-    };
-
-    const nbEnfants = nombreEnfants(this.sim);
-    let rduLAMAL = rdu;
-    rduLAMAL -= reductionEnfants(nbEnfants);
-
-    if (!this.sim.lieuLogement) {
-      return 0;
-    }
-    const menage = this.sim.personnes.length > 1 ? 'famille' : 'seul';
-    const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
-    for (let i = 0; i < this.sim.personnes.length; i++) {
-      const person = this.sim.personnes[i];
-      person.subsideLamal = this.subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-        , person.estBeneficiareRI, person.age, rduLAMAL
-        , this.sim.lieuLogement.region);
-      subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
-      subsideTotal.subsideMin += person.subsideLamal.subsideMin;
-      subsideTotal.subsideMax += person.subsideLamal.subsideMax;
-    }
-    return subsideTotal;
-  }
-
   subsideLamal(sim) {
     // TODO: make state less by passing sim arround?
     this.sim = sim;
     // TODO: only load right canton? #11
     return this.ready.then(() => {
       if (this.sim.lieuLogement.canton === 'VD') {
-        return this.subsideLamalCalcule(calculRDU(this.sim));
+        return subsideLamalCalculeVD(sim, this.subsidesRDU, this.subsidesRIPC);
       }
       if (this.sim.lieuLogement.canton === 'NE') {
         return {subsideMin: -1, subsideMax: -1, subsideEstime: -1};
@@ -114,91 +38,6 @@ class CalculeLamal {
       }
       throw new Error('Canton not supported');
     });
-  }
-
-  // TODO: why is this here?
-  calculRDU() {
-    const imputationFortune = function (sim) {
-      const franchiseFortune = {
-        seul: 56000,
-        couple: 112000
-      };
-      const tauxMajoration = 1 / 15;
-      const menageRDU = sim.personnes[0].etatCivil === 'C' ||
-        sim.personnes[0].etatCivil === 'D' ||
-        sim.personnes[0].etatCivil === 'V' ? "seul" : "couple";
-
-      let fortune = 0;
-      if (angular.isDefined(sim.fortuneImmobiliereLogement)) {
-        fortune += parseInt(sim.fortuneImmobiliereLogement, 10);
-        fortune -= Math.min(300000, parseInt(sim.fortuneImmobiliereLogement, 10));
-      }
-      if (angular.isDefined(sim.fortuneImmobiliereAutre)) {
-        fortune += parseInt(sim.fortuneImmobiliereAutre, 10);
-      }
-      if (angular.isDefined(sim.fortuneMobiliere)) {
-        fortune += parseInt(sim.fortuneMobiliere, 10);
-      }
-      fortune -= franchiseFortune[menageRDU];
-      fortune = Math.max(fortune, 0);
-      return fortune * tauxMajoration;
-    };
-
-    let rdu = 0;
-    if (angular.isDefined(this.sim.revenuNetImposable)) {
-      rdu += parseInt(this.sim.revenuNetImposable, 10);
-    }
-    if (angular.isDefined(this.sim.rentePrevoyancePrivee)) {
-      rdu += parseInt(this.sim.rentePrevoyancePrivee, 10);
-    }
-    if (angular.isDefined(this.sim.fraisAccessoiresLogement)) {
-      rdu -= parseInt(this.sim.fraisAccessoiresLogement, 10);
-    }
-    rdu += imputationFortune(this.sim);
-
-    return rdu;
-  }
-
-  calculeLamalTestCas1(sim) {
-    angular.copy({
-      personnes: [
-        {
-          prenom: "Alice",
-          age: 27,
-          estAdulte: true,
-          dateNaissance: "1989- 12 - 31T23: 00:00.000Z",
-          etatCivil: "C",
-          estEtudiant: true,
-          niveauEtude: "l3"
-        }
-      ],
-      etudiants: [
-        {
-          prenom: "Alice",
-          age: 27,
-          estAdulte: true,
-          dateNaissance: "1989- 12 - 31T23: 00:00.000Z",
-          etatCivil: "C",
-          estEtudiant: true,
-          niveauEtude: "l3"
-        }
-      ],
-      lieuLogement: {
-        cas: "",
-        npa: 1000,
-        localite: "Lausanne 25",
-        canton: "VD",
-        region: 1,
-        no: 5586,
-        commune: "Lausanne",
-        district: "DISTRICT DE LAUSANNE",
-        label: "1000 Lausanne"
-      },
-      logement: "estLocataire",
-      revenuNetImposable: 16000,
-      revenuFortune: 200,
-      fortuneMobiliere: 2000
-    }, sim);
   }
 
 }

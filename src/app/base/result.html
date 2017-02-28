@@ -1,17 +1,47 @@
 <base-nav></base-nav>
 <md-content layout-padding>
-    <div class="box-background" md-whiteframe="1">
-      <h1>Résultats</h1>
+    <div>
 <! -- TODO: estimation or questions depending on state -->
 
-<div layout="column">
-  <md-button ui-sref="lamalEstimation" class="md-warn md-raised">LAMAL : {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}} CHF/mois</md-button>
-
-  <md-button ui-sref="pcDepenses" class="md-accent md-raised" ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI">PC</md-button>
-  <md-button ui-sref="pcEstimation" class="md-accent md-raised" ng-if="!($ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI)">PC</md-button>
-
-  <md-button ui-sref="bourse.formation({index:0})" class="md-primary md-raised" ng-disabled="$ctrl.sim.etudiants.length == 0">Bourse</md-button>
+<div layout-gt-sm="row" class="result-direct-access" layout-padding>
+  <div flex-gt-sm="33" layout-padding>
+        <md-icon md-font-icon="fa fa-medkit circle"></md-icon>
+        <div class="big-result">
+          {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime}} CHF/mois
+        </div>
+        <h3>Subsides à l'assurance maladie</h3>
+        <p>
+          <md-button ui-sref="lamalEstimation" class="md-primary md-hue-2 md-raised">Détails</md-button>
+        </p>
+  </div>
+  <div flex-gt-sm="33" layout-padding>
+        <md-icon md-font-icon="fa fa-umbrella circle"></md-icon>
+        <div class="big-result">
+          <md-icon md-font-icon="fa fa-question-circle"></md-icon>
+          <p ng-if="todo">if result show</p>
+        </div>
+        <h3>AVS/AI</h3>
+        <p>
+          <md-button ui-sref="pcDepenses" class="md-primary md-hue-2  md-raised" ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI">Estimer</md-button>
+          <md-button ui-sref="pcEstimation" class="md-primary md-hue-2 md-raised" ng-if="!($ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI)">Détails</md-button>
+        </p>
+  </div>
+  <div flex-gt-sm="33" layout-padding>
+        <md-icon md-font-icon="fa fa-graduation-cap circle"></md-icon>
+        <div class="big-result">
+          <md-icon ng-if="$ctrl.sim.etudiants.length == 0" md-font-icon="fa fa-times-circle"></md-icon>
+          <md-icon ng-if="$ctrl.sim.etudiants.length > 0" md-font-icon="fa fa-question-circle"></md-icon>
+          <p ng-if="todo">if result show</p>
+        </div>
+        <h3>Bourses d'études</h3>
+        <p>
+          <md-button ui-sref="bourse.formation({index:0})" class="md-primary md-hue-2 md-raised" ng-disabled="$ctrl.sim.etudiants.length == 0">{{$ctrl.sim.etudiants.length == 0 ? 'Non disponible' : 'Estimer'}}</md-button>
+        </p>
+  </div>
 </div>
+  <div style="text-align: center">
+    <img src="../../assets/dedale-horizontal.jpg" width="80%">
+  </div>
 
     </div>
 </md-content>

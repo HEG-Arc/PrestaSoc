@@ -1,39 +1,45 @@
-<div layout="row" layout-align="start center">
-  <md-button ng-disabled="$ctrl.isBase()" ui-sref="vous">base</md-button>
-  <div ng-if="$ctrl.isBase()" class="nav-part">
-        <md-button ui-sref-active="active" ui-sref="vous">vous</md-button>
-        <md-button ui-sref-active="active" ui-sref="foyer">foyer</md-button>
+<div layout="row" layout-align="start center" class="nav-main" layout-wrap>
+  <md-button ng-class="{active: $ctrl.isBase()}" ng-disabled="$ctrl.isBase()" ui-sref="vous"><md-icon ng-if="todo_done_state" md-font-icon="fa fa-check-circle"></md-icon> Votre Foyer</md-button>
+  <md-icon md-font-icon="fa fa-play"></md-icon>
+  <md-button ng-class="{active: $ctrl.isFinance()}" ng-disabled="$ctrl.isFinance()" ui-sref="revenu">Vos finances</md-button>
+  <md-icon md-font-icon="fa fa-play"></md-icon>
+  <md-button ng-class="{active: $ctrl.isLamal()}" ng-disabled="$ctrl.isLamal()" ui-sref="lamalEstimation">LAMAL</md-button>
+  <md-icon md-font-icon="fa fa-play"></md-icon>
+  <md-button ng-class="{active: $ctrl.isPC()}" ng-disabled="$ctrl.isPC()"  ui-sref="pcEstimation">PC</md-button>
+  <md-icon md-font-icon="fa fa-play"></md-icon>
+  <md-button ng-class="{active: $ctrl.isBourse()}" ng-disabled="$ctrl.isBourse()" ui-sref="bourseEstimation">Bourse</md-button>
+  <md-icon md-font-icon="fa fa-play"></md-icon>
+  <md-button ui-sref-active="active" ui-sref="result">Résultats</md-button>
+  <span flex></span>
+  <md-button class="md-warn" ng-click="$ctrl.restart()">Recommencer</md-button>
+</div>
+<div class="nav-sub" layout="row" layout-align="start center" layout-wrap>
+    <div ng-if="$ctrl.isBase()" class="nav-part">
+        <md-button ui-sref-active="active" ui-sref="vous">Vous</md-button>
+        <md-icon md-font-icon="fa fa-play"></md-icon>
+        <md-button ui-sref-active="active" ui-sref="foyer">Foyer</md-button>
   </div>
-
-  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="statut"><md-icon md-font-icon="fa fa-university"></md-icon></md-button>
-
-  <md-button ng-disabled="$ctrl.isFinance()" ui-sref="revenu">finance</md-button>
-  <div ng-if="$ctrl.isFinance()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
-      <md-button ui-sref-active="active" ui-sref="revenu">revenu</md-button>
-      <md-button ui-sref-active="active" ui-sref="fortune">fortune</md-button>
+  <div ng-if="$ctrl.isFinance()">
+      <md-button ui-sref-active="active" ui-sref="revenu">Revenu</md-button>
+      <md-icon md-font-icon="fa fa-play"></md-icon>
+      <md-button ui-sref-active="active" ui-sref="fortune">Fortune</md-button>
   </div>
-
-  <md-button class="md-icon-button" ui-sref-active="active" ui-sref="result"><md-icon  md-font-icon="fa fa-cogs"></md-icon></md-button>
-
-  <md-button ng-disabled="$ctrl.isLamal()" ui-sref="lamalEstimation">lamal</md-button>
-  <div ng-if="$ctrl.isLamal()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
+  <div ng-if="$ctrl.isLamal()" class="nav-part">
       <md-button ui-sref-active="active" ui-sref="lamalEstimation">Estimation</md-button>
   </div>
-
-  <md-button ng-disabled="$ctrl.isPC()"  ui-sref="pcEstimation">pc</md-button>
-  <div ng-if="$ctrl.isPC()" class="nav-part" layout="row" layout-align="start center" layout-wrap>
+  <div ng-if="$ctrl.isPC()" class="nav-part">
       <md-button ui-sref-active="active" ui-sref="pcDepenses">Dépenses</md-button>
+      <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="pcEstimation">Estimation</md-button>
   </div>
-
-  <md-button ng-disabled="$ctrl.isBourse()" ui-sref="bourseEstimation">bourse</md-button>
-  <div ng-if="$ctrl.isBourse()" class="nav-part"  layout="row" layout-align="start center" layout-wrap>
+  <div ng-if="$ctrl.isBourse()" class="nav-part">
       <md-button ui-sref-active="active" ui-sref="bourse.formation">Formation</md-button>
+      <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="bourse.revenusAuxiliaires">Revenu</md-button>
+      <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="bourse.parents">Parents</md-button>
+      <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="bourseEstimation">Estimation</md-button>
   </div>
 
-  <span flex></span>
-  <md-button class="md-warn" ng-click="$ctrl.restart()">Recommencer</md-button>
 </div>
