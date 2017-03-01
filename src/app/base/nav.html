@@ -3,12 +3,11 @@
   <md-icon md-font-icon="fa fa-play"></md-icon>
   <md-button ng-class="{active: $ctrl.isFinance()}" ng-disabled="$ctrl.isFinance()" ui-sref="revenu">Vos finances</md-button>
   <md-icon md-font-icon="fa fa-play"></md-icon>
-  <md-button ng-class="{active: $ctrl.isBourse()}" ng-disabled="$ctrl.isBourse()" ui-sref="bourseEstimation">Bourse</md-button>
-  <md-icon md-font-icon="fa fa-play"></md-icon>
   <md-button ui-sref-active="active" ui-sref="result">Résultats</md-button>
-  <md-icon ng-if="$ctrl.isPC() || $ctrl.isLamal()" md-font-icon="fa fa-play"></md-icon>
+  <md-icon ng-if="$ctrl.isPC() || $ctrl.isLamal() || $ctrl.isBourse()" md-font-icon="fa fa-play"></md-icon>
   <md-button ng-if="$ctrl.isPC()" ng-class="{active: $ctrl.isPC()}" ng-disabled="$ctrl.isPC()"  ui-sref="pcEstimation">PC</md-button>
   <md-button ng-if="$ctrl.isLamal()" ng-class="{active: $ctrl.isLamal()}" ng-disabled="$ctrl.isLamal()" ui-sref="lamalEstimation">LAMAL</md-button>
+  <md-button ng-if="$ctrl.isBourse()" ng-class="{active: $ctrl.isBourse()}" ng-disabled="$ctrl.isBourse()" ui-sref="bourseEstimation">Bourse</md-button>
 
   <span flex></span>
   <md-button class="restart" ng-click="$ctrl.restart()"><md-icon md-font-icon="fa fa-repeat"></md-icon> Recommencer</md-button>
@@ -25,12 +24,6 @@
       <md-button ui-sref-active="active" ui-sref="depenses">Dépenses</md-button>
       <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="fortune">Fortune</md-button>
-  </div>
-  <div ng-if="$ctrl.isLamal()" class="nav-part">
-      <md-button ui-sref-active="active" ui-sref="lamalEstimation">Estimation</md-button>
-  </div>
-  <div ng-if="$ctrl.isPC()" class="nav-part">
-      <md-button ui-sref-active="active" ui-sref="pcEstimation">Estimation</md-button>
   </div>
   <div ng-if="$ctrl.isBourse()" class="nav-part">
       <md-button ui-sref-active="active" ui-sref="bourse.formation">Formation</md-button>

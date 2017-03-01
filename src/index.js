@@ -7,6 +7,8 @@ import angularAnimate from 'angular-animate';
 import angularMaterial from 'angular-material';
 // Router
 import angularUIRouter from 'angular-ui-router';
+// polyfill for $stateChangeSuccess
+require('angular-ui-router/release/stateEvents');
 
 import angularGoogleAnalytics from 'angular-google-analytics';
 
@@ -81,6 +83,7 @@ angular
     angularMaterial,
     angularAnimate,
     angularUIRouter,
+    'ui.router.state.events',
     angularGoogleAnalytics])
   .config(routesConfig)
   .config(themeConfig)
