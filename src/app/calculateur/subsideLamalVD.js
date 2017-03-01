@@ -58,6 +58,13 @@ export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
   const nbEnfants = nombreEnfants(sim);
   let rduLAMAL = calculRDU(sim);
   rduLAMAL -= reductionEnfants(nbEnfants);
+  // les PC famille et la rente pont ne sont pas pris en compte dans le RDU pour les subsides LAMAL.
+  if (angular.isDefined(sim.pcFamille)) {
+    rduLAMAL += parseInt(sim.pcFamille, 10);
+  }
+  if (angular.isDefined(sim.rentePont)) {
+    rduLAMAL += parseInt(sim.rentePont, 10);
+  }
 
   if (!sim.lieuLogement) {
     return 0;

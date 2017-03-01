@@ -40,6 +40,12 @@ export function calculRDU(sim) {
   if (angular.isDefined(sim.versementsPrevoyancePrivee)) {
     rdu += parseInt(sim.versementsPrevoyancePrivee, 10);
   }
+  if (angular.isDefined(sim.pcFamille)) { // REF RLHPS http://www.vd.ch/fileadmin/user_upload/organisation/dsas/cd/fichiers_pdf/RLHPS.pdf
+    rdu -= parseInt(sim.pcFamille, 10);
+  }
+  if (angular.isDefined(sim.rentePont)) {
+    rdu -= parseInt(sim.rentePont, 10);
+  }
   if (angular.isDefined(sim.fraisAccessoiresLogement)) {
     rdu -= parseInt(sim.fraisAccessoiresLogement, 10);
   }

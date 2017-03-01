@@ -28,6 +28,12 @@
 
         <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireRI">
           <base-input-container var="revenuInsertion"></base-input-container>
+        </div>        
+        <div ng-if="$ctrl.sim.personnes[0].age >= 60">
+          <base-input-container var="rentePont"></base-input-container>
+        </div>        
+        <div ng-if="$ctrl.sim.personnes[0].estBeneficiairePC">
+          <base-input-container var="pcFamille"></base-input-container>
         </div>
 
 
