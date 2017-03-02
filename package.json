@@ -72,7 +72,8 @@
     "webpack-fail-plugin": "^1.0.5"
   },
   "scripts": {
-    "build": "gulp",
+    "build": "gulp build",
+    "clean": "gulp clean",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test",
