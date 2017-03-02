@@ -1,4 +1,5 @@
 FROM node:6
+COPY .babelrc /usr/src/app/
 COPY package.json /usr/src/app/
 COPY gulpfile.js /usr/src/app/
 COPY gulp_tasks/ /usr/src/app/gulp_tasks/
