@@ -6,13 +6,14 @@
 
       <div layout="column">
         <md-input-container>
-          <md-checkbox class="md-primary" ng-model="$ctrl.sim.estLogementAccessible" aria-label="Logement accessible en fauteuil roulant">Logement accessible en fauteuil roulant</md-checkbox>
+          <base-checkbox var="estLogementAccessible"></base-checkbox>
         </md-input-container>
 
         <base-input-container var="logementLoyerBrut"></base-input-container>
         <base-input-container var="logementValeurLocative" ng-if="$ctrl.sim.estProprietaire"></base-input-container>
         <base-input-container var="depensesCotisationsAVS" ng-if="!$ctrl.sim.personnes[0].estBeneficiaireAVS"></base-input-container>
         <base-input-container var="depensesContributionsEntretien"></base-input-container>
+        <base-input-container var="versementsPrevoyancePrivee"></base-input-container>
       </div>
     </div>
     <div flex-gt-sm="10">
@@ -22,7 +23,8 @@
     </div>
   </div>
   <div layout="row" class="nav-bottom">
+    <md-button ui-sref="revenu" class="md-raised">Précédent</md-button>
     <span flex></span>
-    <md-button ui-sref="pcEstimation" class="md-primary md-hue-2 md-raised">Suivant</md-button>
+    <md-button ui-sref="fortune" class="md-primary md-hue-2 md-raised">Suivant</md-button>
   </div>
 </md-content>

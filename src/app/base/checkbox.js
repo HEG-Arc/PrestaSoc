@@ -1,9 +1,10 @@
-class InputContainerController {
+class CheckboxController {
   /** @ngInject */
   constructor($mdMedia, simulation, vars) {
     this.$mdMedia = $mdMedia;
     this.vars = vars;
     this.sim = simulation;
+    this.showHelp = false;
   }
 
   $onChanges() {
@@ -21,9 +22,9 @@ class InputContainerController {
   }
 }
 
-export const inputContainer = {
-  template: require('./inputContainer.html'),
-  controller: InputContainerController,
+export const checkbox = {
+  template: require('./checkbox.html'),
+  controller: CheckboxController,
   bindings: {
     var: '@',
     src: '<'

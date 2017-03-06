@@ -47,6 +47,9 @@ function extractVars(file, vars, seen) {
     if (m[2]) {
       foundVars.push(m[2]);
     }
+    if (m[3]) {
+      foundVars.push(m[3]);
+    }
   }
   let previous = '';
   foundVars.sort().forEach(v => {
@@ -63,22 +66,28 @@ function extractVars(file, vars, seen) {
 }
 
 function simvars() {
-  const client = request.createClient('https://script.google.com');
-  return client.get('macros/s/AKfycbxxtYoEsXArEobqe3Egs5-kWHawM45IggQYLczhUbcELDYg7Ag/exec',
-  (err, res, vars) => {
-    const seen = {};
-    return gulp.src([path.join(conf.paths.src, '/**/*.html')])
-      .pipe(through.obj((file, encoding, callback) => {
+  const seen = {};
+  let vars;
+  return gulp.src([path.join(conf.paths.src, '/**/*.html')])
+    .pipe(through.obj((file, encoding, callback) => {
+      if (vars) {
         callback(null, extractVars(file, vars, seen));
-      })).on('end', () => {
-        gutil.log(gutil.colors.cyan('Unused variables:'));
-        for (const v in vars) {
-          if (!seen.hasOwnProperty(v)) {
-            gutil.log(gutil.colors.red(v));
-          }
+      } else {
+        const client = request.createClient('https://script.google.com');
+        return client.get('macros/s/AKfycbxxtYoEsXArEobqe3Egs5-kWHawM45IggQYLczhUbcELDYg7Ag/exec',
+        (err, res, v) => {
+          vars = v;
+          callback(null, extractVars(file, vars, seen));
+        });
+      }
+    })).on('end', () => {
+      gutil.log(gutil.colors.cyan('Unused variables:'));
+      for (const v in vars) {
+        if (!seen.hasOwnProperty(v)) {
+          gutil.log(gutil.colors.yellow(v));
         }
-      });
-  });
+      }
+    });
 }
 
 gulp.task('simvars', simvars);

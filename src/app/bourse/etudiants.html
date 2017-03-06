@@ -1,5 +1,8 @@
 <base-nav></base-nav>
-<md-content md-whiteframe="1">
-  <md-button ng-repeat="personne in $ctrl.sim.personnes | filter: {estEtudiant: true}" ng-class="{active: $ctrl.index == $index}" ui-sref="{index: $index}">{{personne.prenom}}</md-button>
+<md-content md-whiteframe="1" layout="row" class="base-nav">
+  <div ng-repeat="personne in $ctrl.sim.personnes | filter: {estEtudiant: true}" class="nav-sub">
+    <md-button ui-sref="{index: $index}" ng-class="{active: $ctrl.index == $index}">{{personne.prenom}}</md-button>
+    <md-icon md-font-icon="fa fa-play" ng-if="!$last"></md-icon>
+  </div>
 </md-content>
 <ui-view></ui-view>

@@ -37,12 +37,17 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
         x.rduMax >= rdu;
     });
   }
+  let obj = {};
   if (angular.isDefined(subside)) {
     const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
       (subside.subsideMax - subside.subsideMin));
-    return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime};
+  //  return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime, rduLAMAL: rdu};
+    obj = angular.copy(subside);
+    obj.subsideEstime = subsideEstime;
+    obj.rduLAMAL = rdu;
+    return obj;
   }
-  return {subsideMin: 0, subsideMax: 0, subsideEstime: 0}; // TODO cas ou la personne n'a pas droit au subside
+  return {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: rdu}; // TODO cas ou la personne n'a pas droit au subside
 }
 
 export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
@@ -58,12 +63,19 @@ export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
   const nbEnfants = nombreEnfants(sim);
   let rduLAMAL = calculRDU(sim);
   rduLAMAL -= reductionEnfants(nbEnfants);
+  // les PC famille et la rente pont ne sont pas pris en compte dans le RDU pour les subsides LAMAL.
+  if (angular.isDefined(sim.pcFamille)) {
+    rduLAMAL += parseInt(sim.pcFamille, 10);
+  }
+  if (angular.isDefined(sim.rentePont)) {
+    rduLAMAL += parseInt(sim.rentePont, 10);
+  }
 
   if (!sim.lieuLogement) {
     return 0;
   }
   const menage = sim.personnes.length > 1 ? 'famille' : 'seul';
-  const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+  const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: 0};
   for (let i = 0; i < sim.personnes.length; i++) {
     const person = sim.personnes[i];
     person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
@@ -72,6 +84,7 @@ export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
     subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
     subsideTotal.subsideMin += person.subsideLamal.subsideMin;
     subsideTotal.subsideMax += person.subsideLamal.subsideMax;
+    subsideTotal.rduLAMAL = rduLAMAL;
   }
   return subsideTotal;
 }
