@@ -12,6 +12,12 @@ require('angular-ui-router/release/stateEvents');
 
 import angularGoogleAnalytics from 'angular-google-analytics';
 
+import Raven from 'raven-js';
+Raven
+  .config('https://d903cc3f813240a080d8dbe8f59583ff@sentry.ga-fl.net/10')
+  .addPlugin(require('raven-js/plugins/angular'), angular)
+  .install();
+
 import routesConfig from './routes';
 
 import {main} from './app/main';
@@ -86,6 +92,7 @@ angular
     angularAnimate,
     angularUIRouter,
     'ui.router.state.events',
+    'ngRaven',
     angularGoogleAnalytics])
   .config(routesConfig)
   .config(themeConfig)
