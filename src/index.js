@@ -68,10 +68,12 @@ const iconConfig = $mdIconProvider => {
   $mdIconProvider.fontSet('fa', 'FontAwesome');
 };
 
+/* eslint-disable */
 /** @ngInject */
-const init = saver => {
+const init = (saver, vars, Analytics) => {
   saver.start();
 };
+/*eslint-enable */
 
 angular
   .module('app', [
