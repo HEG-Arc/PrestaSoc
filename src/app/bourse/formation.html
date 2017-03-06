@@ -14,13 +14,13 @@
           </md-select>
         </md-input-container>
 
-        <md-autocomplete md-selected-item="$ctrl.personne.lieuInstitution" md-search-text="$ctrl.personne.$searchText" md-items="item in $ctrl.filterList($ctrl.personne.$searchText)"
+        <md-autocomplete md-selected-item="$ctrl.personne.lieuInstitution" md-search-text="$ctrl.personne.$$searchText" md-items="item in $ctrl.filterList($ctrl.personne.$$searchText)"
           md-item-text="item.label" md-min-length="3" md-require-match md-floating-label="NPA / Commune de l'institution" placeholder="NPA / Commune de l'institution">
           <md-item-template>
-            <span md-highlight-text="$ctrl.personne.$searchText" md-highlight-flags="i">{{item.label}}</span>
+            <span md-highlight-text="$ctrl.personne.$$searchText" md-highlight-flags="i">{{item.label}}</span>
           </md-item-template>
           <md-not-found>
-            No entry matching "{{$ctrl.personne.$searchText}}" were found.
+            No entry matching "{{$ctrl.personne.$$searchText}}" were found.
           </md-not-found>
           </md-autocomplete>
 

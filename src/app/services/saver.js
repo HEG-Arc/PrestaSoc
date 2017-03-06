@@ -5,10 +5,17 @@ const STORAGE_KEY_STATE = `${STORAGE_KEY}_state`;
 
 class Saver {
   /** @ngInject */
-  constructor($rootScope, simulation, $log) {
+  constructor($rootScope, simulation, $log, $http) {
     $rootScope.sim = simulation;
     this.$rootScope = $rootScope;
     this.$log = $log;
+    this.$http = $http;
+  }
+
+  log() {
+    this.$http.post('https://dev.jestime.ch/log', angular.toJson(this.$rootScope.sim))
+    .catch(() => {
+    });
   }
 
   start() {
@@ -34,6 +41,7 @@ class Saver {
       localStorage.setItem(STORAGE_KEY, angular.toJson(this.$rootScope.sim));
     }, true);
     this.__cancelWatchState = this.$rootScope.$on('$stateChangeSuccess', (event, toState, toParams) => {
+      this.log();
       localStorage.setItem(STORAGE_KEY_STATE, angular.toJson({state: toState, params: toParams}));
     });
   }
