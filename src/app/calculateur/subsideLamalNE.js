@@ -37,6 +37,9 @@ function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiarePC 
         x.ageMax >= age;
     });
   }
+  const obj = angular.copy(subside);
+  obj.subsideEstime = obj.subsideMax;
+  obj.rduLAMAL = rdu;
   return subside; // TODO cas ou la personne n'a pas droit au subside
 }
 
@@ -58,8 +61,7 @@ export function subsideLamalCalculeNE(sim, subsidesNEClasses, subsidesNERDU, sub
     person.subsideLamal = subsideLookup(menage, nbEnfants, person.estEtudiant, person.estBeneficiarePC
       , person.estBeneficiareRI, person.age, rduLAMAL
       , subsidesNEClasses, subsidesNERDU, subsidesNEASPC);
-    subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
-    subsideTotal.subsideMin += person.subsideLamal.subsideMin;
+    subsideTotal.subsideEstime += person.subsideLamal.subsideMax;
     subsideTotal.subsideMax += person.subsideLamal.subsideMax;
     subsideTotal.rduLAMAL = rduLAMAL;
   }
