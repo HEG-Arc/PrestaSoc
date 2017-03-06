@@ -1,8 +1,13 @@
 class NavController {
   /** @ngInject */
-  constructor(saver, $state) {
+  constructor(saver, $state, $stateParams) {
     this.saver = saver;
     this.$state = $state;
+    this.$stateParams = $stateParams;
+  }
+
+  getIndex() {
+    return this.$stateParams.index || 0;
   }
 
   isBase() {
