@@ -7,7 +7,7 @@
       <table class="col-2">
         <tr>
           <th>Composition du ménage</th>
-          <td>{{personne.subsideLamal.menage === "seul" ? "Personne seule" : "Famille" }}</td>
+          <td>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Famille" }}</td>
         </tr>
         <tr>
           <th>Subside total minimum</th>
