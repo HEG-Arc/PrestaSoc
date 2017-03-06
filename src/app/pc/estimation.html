@@ -12,9 +12,9 @@
           <th>Dépenses</th>
           <td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
         </tr>
-        <tr class="primary-color">
-          <th><b>Subside estimé</b></th>
-          <td><b>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</b></td>
+        <tr class="primary-color total">
+          <th>Subside estimé</th>
+          <td>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</td>
         </tr>
       </table>
 
@@ -57,7 +57,7 @@
             <td>Valeur locative logement</td>
             <td>{{ $ctrl.sim.pc.revenus.valeurLocativeLogement|number }} CHF/an</td>
           </tr>
-          <tr class="total">
+          <tr class="total total-border">
             <th>TOTAL REVENUS</th>
             <td>{{ $ctrl.sim.pc.revenus.revenus|number }} CHF/an</td>
           </tr>
@@ -87,7 +87,7 @@
             <td>Contributions d'entretien</td>
             <td>{{ $ctrl.sim.pc.depenses.contributionsEntretien|number }} CHF/an</td>
           </tr>
-          <tr class="total">
+          <tr class="total total-border">
             <th>TOTAL DEPENSES</th>
             <td>{{ $ctrl.sim.pc.depenses.depenses|number }} CHF/an</td>
           </tr>
@@ -96,12 +96,12 @@
               <h3>Résultats</h3>
             </th>
           </tr>
-          <tr class="primary-color">
-            <td><b>Estimation montant annuel</b></td>
+          <tr class="primary-color total">
+            <td>Estimation montant annuel</td>
             <td>{{ $ctrl.sim.pc.estimationSubsidePC|number }} CHF/an</td>
           </tr>
-          <tr class="primary-color">
-            <td><b>Estimation montant mensuel</b></td>
+          <tr class="primary-color total">
+            <td>Estimation montant mensuel</td>
             <td>{{ $ctrl.sim.pc.estimationSubsidePCMensuel|number }} CHF/mois</td>
           </tr>
         </table>
@@ -120,9 +120,9 @@
         </ul>
       </p>
     </div>
-      <div layout="row" class="nav-bottom">
+    <div layout="row" class="nav-bottom">
       <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
       <span flex></span>
-  </div>
+    </div>
   </div>
 </md-content>

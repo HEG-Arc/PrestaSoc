@@ -38,6 +38,10 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/fortune',
       component: 'financeFortune'
     })
+    .state('bourseEstimation', {
+      url: '/bourse/estimation',
+      component: 'bourseEstimation'
+    })
     .state('bourse', {
       url: '/bourse/:index',
       component: 'bourseEtudiants',
@@ -60,12 +64,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/parents',
       component: 'bourseParents'
     })
-    .state('bourseEstimation', {
-      url: '/bourseEstimation',
-      component: 'bourseEstimation'
-    })
     .state('lamalEstimation', {
-      url: '/lamalEstimation',
+      url: '/lamal/estimation',
       component: 'lamalEstimation'
     })
     .state('pcEstimation', {

@@ -1,29 +1,30 @@
 <base-nav></base-nav>
 <md-content layout-padding>
 
-  <div class="box-background" md-whiteframe="1">
-
+  <div layout="column" class="estimation-table-box">
     <h2>Estimation des bourses d'études</h2>
     <div layout="column">
-      <table>
+      <table class="col-2" ng-repeat="etudiant in $ctrl.sim.etudiants">
+        <caption>
+          <h3>{{ etudiant.prenom}}</h3>
+        </caption>
         <tr>
-          <th>Prénom</th>
           <th>Revenus totaux</th>
-          <th>Charges totales</th>
-          <th>Montant estimé de la bourse</th>
+          <td>{{ etudiant.bourseEtude.revenusTotaux|number:0}}</td>
         </tr>
-        <tr ng-repeat="etudiant in $ctrl.sim.etudiants">
-          <td>{{ etudiant.prenom}}</td>
-          <td>{{ etudiant.bourseEtude.revenusTotaux}}</td>
-          <td>{{ etudiant.bourseEtude.chargesTotales}}</td>
-          <td>{{ etudiant.bourseEtude.montantBourse}}</td>
+        <tr>
+          <th>Charges totales</th>
+          <td>{{ etudiant.bourseEtude.chargesTotales|number:0}}</td>
+        </tr>
+        <tr class="total total-border">
+          <th>Montant estimé de la bourse</th>
+          <td>{{ etudiant.bourseEtude.montantBourse|number:0}}</td>
         </tr>
       </table>
     </div>
-  </div>
-
-  <div layout="row">
-    <span flex></span>
-    <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
+    <div layout="row" class="nav-bottom">
+      <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
+      <span flex></span>
+    </div>
   </div>
 </md-content>

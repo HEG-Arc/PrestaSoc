@@ -12,6 +12,9 @@ class MainController {
 
   continue() {
     if (this.canContinue()) {
+      if (this.saver.loadedState.state.name === 'main') {
+        this.saver.loadedState.state.name = 'vous';
+      }
       this.$state.go(this.saver.loadedState.state.name, this.saver.loadedState.params);
     }
   }
