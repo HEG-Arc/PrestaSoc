@@ -8,7 +8,7 @@
         <md-icon md-font-icon="fa fa-medkit circle"></md-icon>
         <md-icon ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime == 0" md-font-icon="fa fa-times-circle"></md-icon>
         <div class="big-result" ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0">
-          {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime |number}} CHF/mois
+          {{ $ctrl.sim.subsidesLAMALTotal.subsideEstime |number}}.-<span>CHF/mois</span>
         </div>
         <h3>Subsides à l'assurance maladie</h3>
         <p>
@@ -18,8 +18,10 @@
       <div flex-gt-sm="33" layout-padding>
         <md-icon md-font-icon="fa fa-umbrella circle"></md-icon>
         <div class="big-result">
-          <md-icon md-font-icon="fa fa-question-circle"></md-icon>
-          <p ng-if="todo">if result show</p>
+          <md-icon md-font-icon="fa fa-question-circle" ng-if="!$ctrl.sim.pc.estimationSubsidePC"></md-icon>
+          <p ng-if=" $ctrl.sim.pc.estimationSubsidePC > 0">
+            {{ $ctrl.sim.pc.estimationSubsidePC|number}}.-<span>CHF/ans</span>
+          </p>
         </div>
         <h3>Prestations comlémentaires AVS/AI</h3>
         <p>

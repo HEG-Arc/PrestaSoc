@@ -200,10 +200,16 @@ app-header .subtitle {
 
 .result-direct-access {
   text-align: center;
+  h3 {
+    margin: 1em;
+  }
   .big-result {
     font-size: 60px;
     color: $primary-color;
     font-weight: normal;
+    span {
+      font-size: 18px;
+    }
   }
 }
 
