@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 @font-face {
     font-family: 'nowbold';
@@ -200,12 +200,30 @@ app-header .subtitle {
 
 .result-direct-access {
   text-align: center;
+  h3 {
+    margin: 1em;
+  }
+  .md-button {
+    width: 200px;
+  }
   .big-result {
     font-size: 60px;
     color: $primary-color;
     font-weight: normal;
+    height: 85px;
+    span {
+      font-size: 18px;
+    }
   }
 }
+
+ .bottom-big-deco {
+    text-align: center;
+    margin: 3em 0 1em 0;
+    img {
+      width: 70%;
+    }
+ }
 
 .restart {
   md-icon {

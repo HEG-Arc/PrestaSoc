@@ -26,11 +26,11 @@
       <md-button ui-sref-active="active" ui-sref="fortune">Fortune</md-button>
   </div>
   <div ng-if="$ctrl.isBourse()" class="nav-part">
-      <md-button ui-sref-active="active" ui-sref="bourse.formation">Formation</md-button>
+      <md-button ui-sref-active="active" ui-sref="bourse.formation({index: $ctrl.getIndex()})">Formation</md-button>
       <md-icon md-font-icon="fa fa-play"></md-icon>
-      <md-button ui-sref-active="active" ui-sref="bourse.revenusAuxiliaires">Revenu</md-button>
+      <md-button ui-sref-active="active" ui-sref="bourse.revenusAuxiliaires({index: $ctrl.getIndex()})">Revenu</md-button>
       <md-icon md-font-icon="fa fa-play"></md-icon>
-      <md-button ui-sref-active="active" ui-sref="bourse.parents">Parents</md-button>
+      <md-button ui-sref-active="active" ui-sref="bourse.parents({index: $ctrl.getIndex()})">Parents</md-button>
       <md-icon md-font-icon="fa fa-play"></md-icon>
       <md-button ui-sref-active="active" ui-sref="bourseEstimation">Estimation</md-button>
   </div>
