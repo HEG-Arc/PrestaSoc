@@ -327,34 +327,27 @@ body {
   border-color: $primary-color transparent transparent transparent;
 }
 
-.fade {
+.content {
   position: relative;
-  display: block;
-}
-
-.fade > * {
-  position: absolute;
-   top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  opacity: 1;
 }
 
 .fade.ng-enter,
-.fade.ng-leave {
+.fade.ng-leave{
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-.fade.ng-enter {
+.fade.ng-enter{
     opacity: 0;
 }
-.fade.ng-enter-active {
+.fade.ng-enter-active{
     opacity: 1;
 }
-.fade.ng-leave {
+.fade.ng-leave{
     opacity: 1;
 }
-.fade.ng-leave-active {
+.fade.ng-leave-active{
     opacity: 0;
 }
