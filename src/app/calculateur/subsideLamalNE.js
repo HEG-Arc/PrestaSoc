@@ -1,37 +1,39 @@
 import {calculRDU} from './calculRDULamalNE';
 
-function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiarePC = false
-  , estBeneficiareRI = false, age, rdu, subsidesNEClasses, subsidesNERDU, subsidesNEASPC) {
-  if (estEtudiant && (age < 19 || age > 25)) {
+function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiairePC = false
+  , estBeneficiaireRI = false, age, rdu, subsidesNEcategories, subsidesNERDU, subsidesNEASPC) {
+  if (estEtudiant && age < 19) {
     estEtudiant = false;
   }
   let subside = {};
-
-  if (estBeneficiarePC) {
+  let categorie = {};
+  if (estBeneficiairePC) {
+    categorie = "PC";
     subside = subsidesNEASPC.find(x => {
-      return x.classe === "PC" &&
+      return x.classe === categorie &&
         x.formation === estEtudiant &&
         x.ageMin <= age &&
         x.ageMax >= age;
     });
   }
-  if (estBeneficiareRI) {
+  if (estBeneficiaireRI) {
+    categorie = "AS";
     subside = subsidesNEASPC.find(x => {
-      return x.classe === "AS" &&
+      return x.classe === categorie &&
         x.formation === estEtudiant &&
         x.ageMin <= age &&
         x.ageMax >= age;
     });
   } else {
-    const classe = subsidesNEClasses.find(x => {
+    categorie = subsidesNEcategories.find(x => {
       return x.menage === menage &&
         x.nbEnfants === nbEnfants &&
         x.formation === estEtudiant &&
         x.rduMin <= rdu &&
         x.rduMax >= rdu;
-    }).classe;
+    });
     subside = subsidesNERDU.find(x => {
-      return x.classe === classe &&
+      return x.classe === categorie.classe &&
         x.formation === estEtudiant &&
         x.ageMin <= age &&
         x.ageMax >= age;
@@ -40,10 +42,16 @@ function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiarePC 
   const obj = angular.copy(subside);
   obj.subsideEstime = obj.subsideMax;
   obj.rduLAMAL = rdu;
-  return subside; // TODO cas ou la personne n'a pas droit au subside
+  obj.menage = menage;
+  for (const prop in categorie) {
+    if (Object.prototype.hasOwnProperty.call(categorie, prop)) {
+      obj[prop] = categorie[prop];
+    }
+  }
+  return obj; // TODO cas ou la personne n'a pas droit au subside
 }
 
-export function subsideLamalCalculeNE(sim, subsidesNEClasses, subsidesNERDU, subsidesNEASPC) {
+export function subsideLamalCalculeNE(sim, subsidesNEcategories, subsidesNERDU, subsidesNEASPC) {
   const rduLAMAL = calculRDU(sim);
 
   if (!sim.lieuLogement) {
@@ -58,9 +66,9 @@ export function subsideLamalCalculeNE(sim, subsidesNEClasses, subsidesNERDU, sub
   const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: 0};
   for (let i = 0; i < sim.personnes.length; i++) {
     const person = sim.personnes[i];
-    person.subsideLamal = subsideLookup(menage, nbEnfants, person.estEtudiant, person.estBeneficiarePC
-      , person.estBeneficiareRI, person.age, rduLAMAL
-      , subsidesNEClasses, subsidesNERDU, subsidesNEASPC);
+    person.subsideLamal = subsideLookup(menage, nbEnfants, person.estEtudiant, person.estBeneficiairePC
+      , person.estBeneficiaireRI, person.age, rduLAMAL
+      , subsidesNEcategories, subsidesNERDU, subsidesNEASPC);
     subsideTotal.subsideEstime += person.subsideLamal.subsideMax;
     subsideTotal.subsideMax += person.subsideLamal.subsideMax;
     subsideTotal.rduLAMAL = rduLAMAL;
