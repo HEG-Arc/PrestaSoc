@@ -1,0 +1,10 @@
+[  {    "classe": "AS",    "formation": false,    "ageMin": 0,    "ageMax": 18,    "subsideMax": 100  },
+  {    "classe": "AS",    "formation": true,    "ageMin": 19,    "ageMax": 25,    "subsideMax": 440  },
+  {    "classe": "AS",    "formation": false,    "ageMin": 19,    "ageMax": 25,    "subsideMax": 440  },
+  {    "classe": "AS",    "formation": true,    "ageMin": 26,    "ageMax": 130,    "subsideMax": 440  },
+  {    "classe": "AS",    "formation": false,    "ageMin": 26,    "ageMax": 130,    "subsideMax": 440  },
+  {    "classe": "PC",    "formation": false,    "ageMin": 0,    "ageMax": 18,    "subsideMax": 110  },
+  {    "classe": "PC",    "formation": true,    "ageMin": 19,    "ageMax": 25,    "subsideMax": 461  },
+  {    "classe": "PC",    "formation": false,    "ageMin": 19,    "ageMax": 25,    "subsideMax": 461  },
+  {    "classe": "PC",    "formation": true,    "ageMin": 26,    "ageMax": 130,    "subsideMax": 484  },
+  {    "classe": "PC",    "formation": false,    "ageMin": 26,    "ageMax": 130,    "subsideMax": 484  } ]

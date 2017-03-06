@@ -47,7 +47,7 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
     obj.rduLAMAL = rdu;
     return obj;
   }
-  return {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: rdu}; // TODO cas ou la personne n'a pas droit au subside
+  return {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: rdu};
 }
 
 export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
