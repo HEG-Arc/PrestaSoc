@@ -13,13 +13,13 @@ const reductionEnfants = function (nbEnfants) {
   }
 };
 
-function subsideLookup(menage, estEtudiant = false, estBeneficiarePC = false
-  , estBeneficiareRI = false, age, rdu, region, subsidesRDU, subsidesRIPC) {
+function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
+  , estBeneficiaireRI = false, age, rdu, region, subsidesRDU, subsidesRIPC) {
   if (estEtudiant && (age < 19 || age > 25)) {
     estEtudiant = false;
   }
   let subside = {};
-  if (estBeneficiarePC || estBeneficiareRI) {
+  if (estBeneficiairePC || estBeneficiaireRI) {
     subside = subsidesRIPC.find(x => {
       return x.menage === menage &&
         x.formation === estEtudiant &&
@@ -78,8 +78,8 @@ export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
   const subsideTotal = {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: 0};
   for (let i = 0; i < sim.personnes.length; i++) {
     const person = sim.personnes[i];
-    person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiarePC
-      , person.estBeneficiareRI, person.age, rduLAMAL
+    person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiairePC
+      , person.estBeneficiaireRI, person.age, rduLAMAL
       , sim.lieuLogement.region, subsidesRDU, subsidesRIPC);
     subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
     subsideTotal.subsideMin += person.subsideLamal.subsideMin;
