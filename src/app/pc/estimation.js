@@ -1,4 +1,5 @@
 class EstimationController {
+  /** @ngInject */
   constructor(simulation, pcCalcule) {
     this.text = 'PC estimation';
     this.sim = simulation;
