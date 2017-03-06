@@ -22,9 +22,9 @@
           <td>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</td>
         </tr>
 
-        <tr class="total">
-          <th><b>Subside total estimé</b></th>
-          <td><b>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }}  CHF/mois</b></td>
+        <tr class="total total-border">
+          <th>Subside total estimé</th>
+          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }}  CHF/mois</td>
         </tr>
       </table>
 
@@ -56,9 +56,9 @@
           <td>{{ personne.subsideLamal.subsideMax|number }} CHF/mois</td>
         </tr>
 
-        <tr class="total">
-          <th><b>Subside estimé</b></th>
-          <td><b>{{ personne.subsideLamal.subsideEstime|number:0 }}  CHF/mois</b></td>
+        <tr class="total total-border">
+          <th>Subside estimé</th>
+          <td>{{ personne.subsideLamal.subsideEstime|number:0 }}  CHF/mois</td>
         </tr>
       </table>
     </div>
@@ -66,7 +66,9 @@
       <p>Votre situation financière ne vous permet pas de prétendre à des subsides pour l'assurance maladie obligatoire (LAMAL).
       </p>
     </div>
+    <div layout="row" class="nav-bottom">
+      <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
+      <span flex></span>
+    </div>
   </div>
-
-  <md-button ui-sref="result" class="md-primary md-raised">Resultats</md-button>
 </md-content>

@@ -40,8 +40,13 @@ td {
   padding: 2px 0;
 }
 
-th {
+th, caption {
   text-align: left;
+  font-weight: normal;
+}
+
+caption h3 {
+  margin: 2em 0 1em 0;
 }
 
 table.col-2 td:nth-child(2) {
@@ -55,7 +60,7 @@ table.col-2 td:nth-child(2) {
 
 base-nav, .base-nav {
   .md-button {
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 0;
     margin: 0;
     text-transform: none;
@@ -132,12 +137,20 @@ base-nav, .base-nav {
 
 .total {
   td, th {
-    border-top: 1px solid #333;
-    padding-bottom:  1em;
     color: $primary-color;
     font-weight: normal;
+    font-size: 1.1em;
+    font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
   }
 }
+
+.total-border {
+  td, th {
+    border-top: 1px solid #333;
+    padding: 0.5em 0 1em 0;
+  }
+}
+
 
 .primary-color {
   color: $primary-color;
@@ -190,7 +203,7 @@ app-header .subtitle {
   .big-result {
     font-size: 60px;
     color: $primary-color;
-    font-weight: bold;
+    font-weight: normal;
   }
 }
 
