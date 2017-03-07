@@ -3,12 +3,13 @@
     <div class="box-background" md-whiteframe="1">
       <h3>J'estime mes droits sociaux</h3>
       <p>Savez-vous que nombre de personnes <strong>ne perçoivent pas les prestations auxquelles elles auraient droit?</strong></p>
-      <p>Qui connaît en effet vraiment ses droits sociaux ?<p>
-      <p>Cette calculatrice a été développée pour vous permettre de les estimer. Son utilisation est très simple.</p>
-      <p>Il suffit d’introduire quelques informations, puis de choisir une prestation sociale. Une estimation du droit sera immédiatement proposée, ainsi que l’adresse de contact pour demander la prestation. </p>
+      <p>La Suisse offre une gamme étendue de prestations sociales mais beaucoup de personnes n'en font pas usage.</p>
+      <p>Dans le courant de l'année 2018, le site jestime.ch permettra de calculer une estimation des droits aux diverses prestations en fonction de sa situation personelle.</p>
+      <p>En attendant l'ouverture du site, vous pouvez déjà tester vos droits à certaines prestations sociales si vous habitez dans les cantons de <strong>Neuchâtel, Vaud et Genève</strong>.</p>
 
       <div layout="row" layout-align="center center">
-        <md-button ng-if="!$ctrl.canContinue()"class="md-raised md-primary md-hue-2" flex="50" ui-sref="vous">Commencer</md-button>
+        <md-button ng-if="!$ctrl.canContinue()"class="md-raised md-primary md-hue-2" flex="50" download href="../assets/flyer.pdf">Télécharger le flyer</md-button>
+        <md-button ng-if="!$ctrl.canContinue()"class="md-raised md-primary md-hue-2" flex="50" ui-sref="vous">Tester le site</md-button>
         <md-button ng-if="$ctrl.canContinue()" class="md-raised md-primary md-hue-2" flex="50"ng-click="$ctrl.restart()">Recommencer</md-button>
         <md-button ng-if="$ctrl.canContinue()" class="md-raised md-primary md-hue-2" flex="50"ng-click="$ctrl.continue()">Continuer</md-button>
       </div>
