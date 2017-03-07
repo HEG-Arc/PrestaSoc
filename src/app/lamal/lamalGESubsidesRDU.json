@@ -430,5 +430,167 @@
    "rduMin": 89001,
    "rduMax": 94000,
    "subside": 65
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 35000,
+   "subside": 90
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 35001,
+   "rduMax": 53000,
+   "subside": 70
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 53001,
+   "rduMax": 67000,
+   "subside": 30
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 41000,
+   "subside": 90
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 41001,
+   "rduMax": 59000,
+   "subside": 70
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 59001,
+   "rduMax": 73000,
+   "subside": 30
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 47000,
+   "subside": 90
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 47001,
+   "rduMax": 65000,
+   "subside": 70
+ },
+ {
+   "menage": "seul",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 65001,
+   "rduMax": 79000,
+   "subside": 30
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 35000,
+   "subside": 90
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 35001,
+   "rduMax": 53000,
+   "subside": 70
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 1,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 53001,
+   "rduMax": 67000,
+   "subside": 30
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 41000,
+   "subside": 90
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 41001,
+   "rduMax": 59000,
+   "subside": 70
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 2,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 59001,
+   "rduMax": 73000,
+   "subside": 30
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 0,
+   "rduMax": 47000,
+   "subside": 90
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 47001,
+   "rduMax": 65000,
+   "subside": 70
+ },
+ {
+   "menage": "couple",
+   "nbEnfants": 3,
+   "ageMin": 26,
+   "ageMax": 130,
+   "rduMin": 65001,
+   "rduMax": 79000,
+   "subside": 30
  }
 ]

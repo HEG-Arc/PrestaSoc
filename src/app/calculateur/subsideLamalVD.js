@@ -1,4 +1,4 @@
-import {calculRDU} from './calculRDU';
+import {calculRDU} from './calculRDUVD';
 
 const reductionEnfants = function (nbEnfants) {
   switch (nbEnfants) {

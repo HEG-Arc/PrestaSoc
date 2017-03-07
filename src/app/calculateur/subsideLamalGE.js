@@ -1,22 +1,22 @@
 import {calculRDU} from './calculRDULamalGE';
 
-function subsideLookup(menage, nbEnfants, age, rdu, subsidesGERDU) {
+function subsideLookup(menage, nbEnfants, age, rduLAMAL, subsidesGERDU) {
   let subside = {};
   subside = subsidesGERDU.find(x => {
     return x.menage === menage &&
       x.nbEnfants === nbEnfants &&
       x.ageMin <= age &&
       x.ageMax >= age &&
-      x.rduMin <= rdu &&
-      x.rduMax >= rdu;
+      x.rduMin <= rduLAMAL &&
+      x.rduMax >= rduLAMAL;
   });
   if (angular.isDefined(subside)) {
     const obj = angular.copy(subside);
     obj.subsideEstime = obj.subside;
-    obj.rduLAMAL = rdu;
+    obj.rduLAMAL = rduLAMAL;
     return obj;
   }
-  return {subsideMin: 0, subsideMax: 0, subsideEstime: 0};
+  return {menage, nbEnfants, age, rduLAMAL, subsideMin: 0, subsideMax: 0, subsideEstime: 0};
 }
 
 export function subsideLamalCalculeGE(sim, subsidesGERDU) {
