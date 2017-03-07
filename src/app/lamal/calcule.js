@@ -1,5 +1,6 @@
 import {subsideLamalCalculeVD} from '../calculateur/subsideLamalVD';
 import {subsideLamalCalculeNE} from '../calculateur/subsideLamalNE';
+import {subsideLamalCalculeGE} from '../calculateur/subsideLamalGE';
 
 class CalculeLamal {
 
@@ -10,6 +11,7 @@ class CalculeLamal {
     this.subsidesNEClasses = [];
     this.subsidesNERDU = [];
     this.subsidesNEASPC = [];
+    this.subsidesGERDU = [];
     this.$q = $q;
     const deferred = $q.defer();
 
@@ -28,6 +30,9 @@ class CalculeLamal {
       }),
       $http.get('app/lamal/lamalNESubsidesASPC.json').then(resp => {
         this.subsidesNEASPC = resp.data;
+      }),
+      $http.get('app/lamal/lamalGESubsidesRDU.json').then(resp => {
+        this.subsidesGERDU = resp.data;
       })
     ]).then(() => {
       deferred.resolve(true);
@@ -47,7 +52,7 @@ class CalculeLamal {
         return subsideLamalCalculeNE(sim, this.subsidesNEClasses, this.subsidesNERDU, this.subsidesNEASPC);
       }
       if (this.sim.lieuLogement.canton === 'GE') {
-        return {subsideMin: -1, subsideMax: -1, subsideEstime: -1};
+        return subsideLamalCalculeGE(sim, this.subsidesGERDU);
       }
       throw new Error('Canton not supported');
     });
