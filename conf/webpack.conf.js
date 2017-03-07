@@ -6,6 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FailPlugin = require('webpack-fail-plugin');
 const autoprefixer = require('autoprefixer');
 
+const commitHash = require('child_process')
+  .execSync('git rev-parse HEAD')
+  .toString().trim();
+
 module.exports = {
   module: {
     loaders: [
@@ -67,6 +71,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      COMMIT_HASH: JSON.stringify(commitHash)
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     FailPlugin,

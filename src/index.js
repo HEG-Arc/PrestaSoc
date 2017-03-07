@@ -29,6 +29,7 @@ import {financeModule} from './app/finance/index';
 import {bourseModule} from './app/bourse/index';
 import {lamalModule} from './app/lamal/index';
 import {pcModule} from './app/pc/index';
+import {ScrollController} from './app/controllers/scroll';
 
 // Material design css
 import 'angular-material/angular-material.min.css';
@@ -98,7 +99,11 @@ angular
   .config(themeConfig)
   .config(analyticsConfig)
   .config(iconConfig)
+  /* eslint-disable */
+  .constant('COMMIT_HASH', COMMIT_HASH)
+  /*eslint-enable */
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer)
+  .controller('ScrollController', ScrollController)
   .run(init);

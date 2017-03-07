@@ -1,4 +1,8 @@
 const webpack = require('webpack');
+const commitHash = require('child_process')
+  .execSync('git rev-parse HEAD')
+  .toString().trim();
+
 module.exports = {
   module: {
     loaders: [
@@ -49,6 +53,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      COMMIT_HASH: JSON.stringify(commitHash)
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {},
       debug: true
