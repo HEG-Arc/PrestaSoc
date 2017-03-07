@@ -99,6 +99,9 @@ angular
   .config(themeConfig)
   .config(analyticsConfig)
   .config(iconConfig)
+  /* eslint-disable */
+  .constant('COMMIT_HASH', COMMIT_HASH)
+  /*eslint-enable */
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer)
