@@ -22,7 +22,7 @@ module.exports = {
           'babel-loader'
         ]
       },
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
+      {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'},
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: "url-loader?limit=10000&mimetype=application/font-woff"

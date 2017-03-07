@@ -4,126 +4,124 @@
   <div layout="column" class="estimation-table-box">
     <h2>Estimation des subsides d'assurance maladie</h2>
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0 && $ctrl.sim.lieuLogement.canton === 'VD' ">
-      <table class="col-2">
-        <tr>
-          <th>Composition du ménage</th>
-          <td>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Famille" }}</td>
-        </tr>
-        <tr>
-          <th>Subside total minimum</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideMin|number }} CHF/mois</td>
-        </tr>
-        <tr>
-          <th>Subside total maximum</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideMax|number }} CHF/mois</td>
-        </tr>
-        <tr>
-          <th>Revenu déterminant pour les subsides</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</td>
-        </tr>
+      <div class="table">
+        <div class="table-row">
+          <div>Composition du ménage</div><div flex></div>
+          <div>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Famille" }}</div>
+        </div>
+        <div class="table-row">
+          <div>Subside total minimum</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.subsideMin|number }} CHF/mois</div>
+        </div>
+        <div class="table-row">
+          <div>Subside total maximum</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.subsideMax|number }} CHF/mois</div>
+        </div>
+        <div class="table-row">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside total estimé</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
 
-        <tr class="total total-border">
-          <th>Subside total estimé</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }} CHF/mois</td>
-        </tr>
-      </table>
+      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
 
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation
-      </md-checkbox>
-      <table class="col-2" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
-        <caption>
-          <h3>{{ personne.prenom}}</h3>
-        </caption>
-        <tr>
-          <th>Tranche d'âge</th>
-          <td>{{personne.subsideLamal.ageMin}} à {{personne.subsideLamal.ageMax}} ans{{personne.subsideLamal.formation ? ", en
-            formation" : ""}}</td>
-        </tr>
-        <tr>
-          <th>Revenu déterminant pour les subsides</th>
-          <td>{{personne.subsideLamal.rduLAMAL|number:0 }} CHF/année</td>
-        </tr>
-        <tr>
-          <th>Catégorie de revenu</th>
-          <td>{{personne.subsideLamal.rduMin|number}} à {{personne.subsideLamal.rduMax|number}} CHF/an</td>
-        </tr>
+      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+        <h3>{{ personne.prenom}}</h3>
+        <div class="table-row">
+          <div>Tranche d'âge</div><div flex></div>
+          <div>{{personne.subsideLamal.ageMin}} à {{personne.subsideLamal.ageMax}} ans{{personne.subsideLamal.formation ? ", en
+            formation" : ""}}</div>
+        </div>
+        <div class="table-row">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{personne.subsideLamal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="table-row">
+          <div>Catégorie de revenu</div><div flex></div>
+          <div>{{personne.subsideLamal.rduMin|number}} à {{personne.subsideLamal.rduMax|number}} CHF/an</div>
+        </div>
 
-        <tr>
-          <th>Subside minimum</th>
-          <td>{{ personne.subsideLamal.subsideMin|number }} CHF/mois</td>
-        </tr>
-        <tr>
-          <th>Subside maximum</th>
-          <td>{{ personne.subsideLamal.subsideMax|number }} CHF/mois</td>
-        </tr>
-
-        <tr class="total total-border">
-          <th>Subside estimé</th>
-          <td>{{ personne.subsideLamal.subsideEstime|number:0 }} CHF/mois</td>
-        </tr>
-      </table>
+        <div class="table-row">
+          <div>Subside minimum</div><div flex></div>
+          <div>{{ personne.subsideLamal.subsideMin|number }} CHF/mois</div>
+        </div>
+        <div class="table-row">
+          <div>Subside maximum</div><div flex></div>
+          <div>{{ personne.subsideLamal.subsideMax|number }} CHF/mois</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside estimé</div><div flex></div>
+          <div>{{ personne.subsideLamal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
     </div>
 
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0 && $ctrl.sim.lieuLogement.canton === 'NE' ">
-      <table class="col-2">
-        <tr>
-          <th>Composition du ménage</th>
-          <td>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Couple" }}</td>
-        </tr>
-        <tr ng-if="$ctrl.sim.personnes[0].subsideLamal.nbEnfants > 0">
-          <th>Nombre d'enfants</th>
-          <td>{{$ctrl.sim.personnes[0].subsideLamal.nbEnfants}}</td>
-        </tr>
-        <tr ng-if="$ctrl.sim.personnes[0].subsideLamal.classe !== 'PC' && $ctrl.sim.personnes[0].subsideLamal.classe !== 'AS'">
-          <th>Revenu déterminant pour les subsides</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</td>
-        </tr>
-        <tr ng-if="$ctrl.sim.personnes[0].subsideLamal.classe !== 'PC' && $ctrl.sim.personnes[0].subsideLamal.classe !== 'AS'">
-          <th>Classe de revenu</th>
-          <td>{{ $ctrl.sim.personnes[0].subsideLamal.classe}}</td>
-        </tr>
-        <tr ng-if="$ctrl.sim.personnes[0].subsideLamal.classe === 'PC'">
-          <th>Situation déterminante</th>
-          <td>bénéficiaire de prestations AVS/AI</td>
-        </tr>
-        <tr ng-if="$ctrl.sim.personnes[0].subsideLamal.classe === 'AS'">
-          <th>Situation déterminante</th>
-          <td>bénéficiaire de l'aide sociale</td>
-        </tr>
-        <tr class="total total-border">
-          <th>Subside total estimé</th>
-          <td>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }} CHF/mois</td>
-        </tr>
-      </table>
+      <div class="table">
+        <div class="table-row">
+          <div>Composition du ménage</div><div flex></div>
+          <div>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Couple" }}</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLamal.nbEnfants > 0">
+          <div>Nombre d'enfants</div><div flex></div>
+          <div>{{$ctrl.sim.personnes[0].subsideLamal.nbEnfants}}</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLamal.classe !== 'PC' && $ctrl.sim.personnes[0].subsideLamal.classe !== 'AS'">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLamal.classe !== 'PC' && $ctrl.sim.personnes[0].subsideLamal.classe !== 'AS'">
+          <div>Classe de revenu</div><div flex></div>
+          <div>{{ $ctrl.sim.personnes[0].subsideLamal.classe}}</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLamal.classe === 'PC'">
+          <div>Situation déterminante</div><div flex></div>
+          <div>bénéficiaire de prestations AVS/AI</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLamal.classe === 'AS'">
+          <div>Situation déterminante</div><div flex></div>
+          <div>bénéficiaire de l'aide sociale</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside total estimé</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
       <p>Remarque: le niveau du subside définitif dépendra aussi de votre franchise et de votre compagnie d'assurance.</p>
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation
-      </md-checkbox>
-      <table class="col-2" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
-        <caption>
-          <h3>{{ personne.prenom}}</h3>
-        </caption>
-        <tr>
-          <th>Tranche d'âge</th>
-          <td>{{personne.subsideLamal.ageMin}} à {{personne.subsideLamal.ageMax}} ans{{personne.subsideLamal.formation ? ", en
-            formation" : ""}}</td>
-        </tr>
-        <tr>
-          <th>Revenu déterminant pour les subsides</th>
-          <td>{{personne.subsideLamal.rduLAMAL|number:0 }} CHF/année</td>
-        </tr>
-        <tr>
-          <th>Catégorie de revenu</th>
-          <td>{{personne.subsideLamal.rduMin|number}} à {{personne.subsideLamal.rduMax|number}} CHF/an</td>
-        </tr>
-        <th>Subside maximum</th>
-        <td>{{ personne.subsideLamal.subsideMax|number }} CHF/mois</td>
-        </tr>
+      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
 
-        <tr class="total total-border">
-          <th>Subside estimé</th>
-          <td>{{ personne.subsideLamal.subsideEstime|number:0 }} CHF/mois</td>
-        </tr>
-      </table>
+      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+        <h3>{{personne.prenom}}</h3>
+        <div class="table-row">
+          <div>Tranche d'âge</div><div flex></div>
+          <div>{{personne.subsideLamal.ageMin}} à {{personne.subsideLamal.ageMax}} ans{{personne.subsideLamal.formation ? ", en
+            formation" : ""}}</div>
+        </div>
+        <div class="table-row">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{personne.subsideLamal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="table-row">
+          <div>Catégorie de revenu</div><div flex></div>
+          <div>{{personne.subsideLamal.rduMin|number}} à {{personne.subsideLamal.rduMax|number}} CHF/an</div>
+        </div>
+        <div class="table-row">
+          <div>Subside maximum</div><div flex></div>
+          <div>{{personne.subsideLamal.subsideMax|number}} CHF/mois</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside estimé</div><div flex></div>
+          <div>{{ personne.subsideLamal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
     </div>
 
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime == 0">

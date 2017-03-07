@@ -25,32 +25,44 @@ button, html, input, select, textarea {
   white-space: nowrap
 }
 
+.table {
+  margin-bottom: 1em;
+  .table-row {
+      box-sizing: border-box;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-direction: normal;
+      padding: 4px 0;
+  }
+
+  .table-row > .flex {
+    background-image: url(./assets/dot.gif);
+    background-repeat: repeat-x;
+    background-position: 0 15px;
+    margin: 0 4px;
+  }
+
+  h3 {
+    margin: 1em 0 0.5em;
+  }
+
+  .total {
+    color: $primary-color;
+    font-weight: bold;
+  }
+  .divider {
+    border-bottom: 1px solid #979797;
+    margin: 8px 0;
+  }
+}
 
 .estimation-table-box {
   max-width: 760px;
   margin: 0 auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td {
-  padding: 2px 0;
-}
-
-th, caption {
-  text-align: left;
-  font-weight: normal;
-}
-
-caption h3 {
-  margin: 2em 0 1em 0;
-}
-
-table.col-2 td:nth-child(2) {
-  text-align: right;
 }
 
 .md-icon-right .fa.fa-info-circle{
@@ -60,7 +72,7 @@ table.col-2 td:nth-child(2) {
 
 base-nav, .base-nav {
   .md-button {
-    font-weight: normal;
+    font-weight: bold;
     border-radius: 0;
     margin: 0;
     text-transform: none;
@@ -134,23 +146,6 @@ base-nav, .base-nav {
   margin-top: 50px;
 
 }
-
-.total {
-  td, th {
-    color: $primary-color;
-    font-weight: normal;
-    font-size: 1.1em;
-    font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
-  }
-}
-
-.total-border {
-  td, th {
-    border-top: 1px solid #333;
-    padding: 0.5em 0 1em 0;
-  }
-}
-
 
 .primary-color {
   color: $primary-color;
