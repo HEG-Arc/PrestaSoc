@@ -1,4 +1,4 @@
-import {calculRDU} from '../calculateur/calculRDU';
+import {calculRDU} from '../calculateur/calculRDUVD';
 
 // REF http://www.guidesocial.ch/fr/fiche/960/
 class CalculeBourse {

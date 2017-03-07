@@ -3,6 +3,51 @@
 
   <div layout="column" class="estimation-table-box">
     <h2>Estimation des subsides d'assurance maladie</h2>
+    <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0 && $ctrl.sim.lieuLogement.canton === 'GE' ">
+      <div class="table">
+        <div class="table-row">
+          <div>Composition du ménage</div><div flex></div>
+          <div>{{$ctrl.sim.personnes[0].subsideLamal.menage === "seul" ? "Personne seule" : "Couple" }}</div>
+        </div>
+        <div class="table-row" ng-if="$ctrl.sim.personnes[0].subsideLAMAL.nbEnfants > 0">
+          <div>Nombre d'enfants à charge</div><div flex></div>
+          <div>{{$ctrl.sim.personnes[0].subsideLAMAL.nbEnfants}}</div>
+        </div>
+        <div class="table-row">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside total estimé</div><div flex></div>
+          <div>{{ $ctrl.sim.subsidesLAMALTotal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
+
+      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
+
+      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+        <h3>{{ personne.prenom}}</h3>
+        <div class="table-row">
+          <div>Tranche d'âge</div><div flex></div>
+          <div>{{personne.subsideLamal.ageMin}} à {{personne.subsideLamal.ageMax}} ans</div>
+        </div>
+        <div class="table-row">
+          <div>Revenu déterminant pour les subsides</div><div flex></div>
+          <div>{{personne.subsideLamal.rduLAMAL|number:0 }} CHF/année</div>
+        </div>
+        <div class="table-row">
+          <div>Catégorie de revenu</div><div flex></div>
+          <div>{{personne.subsideLamal.rduMin|number}} à {{personne.subsideLamal.rduMax|number}} CHF/an</div>
+        </div>
+        <div class="divider"></div>
+        <div class="table-row total">
+          <div>Subside estimé</div><div flex></div>
+          <div>{{ personne.subsideLamal.subsideEstime|number:0 }} CHF/mois</div>
+        </div>
+      </div>
+    </div>    
+    
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0 && $ctrl.sim.lieuLogement.canton === 'VD' ">
       <div class="table">
         <div class="table-row">
