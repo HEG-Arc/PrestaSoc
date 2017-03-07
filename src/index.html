@@ -13,7 +13,7 @@
     <div class="wrapper">
       <app-header></app-header>
       <div class="content">
-          <ui-view flex class="fade" column="row" autoscroll="true"></ui-view>
+          <ui-view flex class="fade" column="row" autoscroll="$ctrl.doAutoScroll()" ng-controller="ScrollController as $ctrl"></ui-view>
         </div>
       <div class="push"></div>
     </div>
