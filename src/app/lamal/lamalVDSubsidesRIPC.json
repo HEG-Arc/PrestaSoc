@@ -2,127 +2,127 @@
  {
    "menage": "famille",
    "formation": false,
-   "age min": 0,
-   "age max": 18,
-   "zone": 1,
-   "subside min": 110,
-   "subside max": 110
+   "ageMin": 0,
+   "ageMax": 18,
+   "region": 1,
+   "subsideMin": 110,
+   "subsideMax": 110
  },
  {
    "menage": "famille",
    "formation": false,
-   "age min": 0,
-   "age max": 18,
-   "zone": 2,
-   "subside min": 100,
-   "subside max": 100
+   "ageMin": 0,
+   "ageMax": 18,
+   "region": 2,
+   "subsideMin": 100,
+   "subsideMax": 100
  },
  {
    "menage": "famille",
    "formation": false,
-   "age min": 19,
-   "age max": 25,
-   "zone": 1,
-   "subside min": 350,
-   "subside max": 350
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 350,
+   "subsideMax": 350
  },
  {
    "menage": "famille",
    "formation": false,
-   "age min": 19,
-   "age max": 25,
-   "zone": 2,
-   "subside min": 320,
-   "subside max": 320
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 320,
+   "subsideMax": 320
  },
  {
    "menage": "famille",
    "formation": false,
-   "age min": 26,
-   "age max": 130,
-   "zone": 1,
-   "subside min": 380,
-   "subside max": 380
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 1,
+   "subsideMin": 380,
+   "subsideMax": 380
  },
  {
    "menage": "famille",
    "formation": false,
-   "age min": 26,
-   "age max": 130,
-   "zone": 2,
-   "subside min": 350,
-   "subside max": 350
- },
- {
-   "menage": "famille",
-   "formation": true,
-   "age min": 19,
-   "age max": 25,
-   "zone": 1,
-   "subside min": 350,
-   "subside max": 350
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 2,
+   "subsideMin": 350,
+   "subsideMax": 350
  },
  {
    "menage": "famille",
    "formation": true,
-   "age min": 19,
-   "age max": 25,
-   "zone": 2,
-   "subside min": 320,
-   "subside max": 320
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 350,
+   "subsideMax": 350
+ },
+ {
+   "menage": "famille",
+   "formation": true,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 320,
+   "subsideMax": 320
  },
  {
    "menage": "seul",
    "formation": false,
-   "age min": 19,
-   "age max": 25,
-   "zone": 1,
-   "subside min": 350,
-   "subside max": 350
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 350,
+   "subsideMax": 350
  },
  {
    "menage": "seul",
    "formation": false,
-   "age min": 19,
-   "age max": 25,
-   "zone": 2,
-   "subside min": 320,
-   "subside max": 320
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 320,
+   "subsideMax": 320
  },
  {
    "menage": "seul",
    "formation": false,
-   "age min": 26,
-   "age max": 130,
-   "zone": 1,
-   "subside min": 380,
-   "subside max": 380
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 1,
+   "subsideMin": 380,
+   "subsideMax": 380
  },
  {
    "menage": "seul",
    "formation": false,
-   "age min": 26,
-   "age max": 130,
-   "zone": 2,
-   "subside min": 350,
-   "subside max": 350
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 2,
+   "subsideMin": 350,
+   "subsideMax": 350
  },
  {
    "menage": "seul",
    "formation": true,
-   "age min": 19,
-   "age max": 25,
-   "zone": 1,
-   "subside min": 350,
-   "subside max": 350
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 350,
+   "subsideMax": 350
  },
  {
    "menage": "seul",
    "formation": true,
-   "age min": 19,
-   "age max": 25,
-   "zone": 2,
-   "subside min": 320,
-   "subside max": 320
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 320,
+   "subsideMax": 320
  }
 ]

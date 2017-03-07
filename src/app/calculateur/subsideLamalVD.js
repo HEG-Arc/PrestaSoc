@@ -1,5 +1,7 @@
 import {calculRDU} from './calculRDUVD';
 
+// const COMMUNES_REGION1 = ["Aclens","Allaman","Apples","Arnex-sur-Nyon","Arzier-Le Muids","Aubonne","Ballens","Bassins","Begnins","Berolle","Bière","Bogis-Bossey","Borex","Bougy-Villars","Bourg-en-Lavaux","Bremblens","Buchillon","Bussigny","Bussy-Chardonney","Chardonne","Chavannes-de-Bogis","Chavannes-des-Bois","Chavannes-le-Veyron","Chavannes-près-Renens","Cheseaux-sur-Lausanne","Chéserex","Chevilly","Chexbres","Chigny","Clarmont","Coinsins","Commugny","Coppet","Corseaux","Corsier-sur-Vevey","Cossonay","Cottens","Crans-près-Céligny","Crassier","Crissier","Cuarnens","Denens","Denges","Dizy","Duillier","Échandens","Échichens","Éclépens","Ecublens","Épalinges","Étoy","Eysins","Féchy","Ferreyres","Founex","Genolier","Gimel","Gingins","Givrins","Gland","Gollion","Grancy","Grens","Jongny","Jouxtens-Mézery","La Chaux (Cossonay)","La Rippe","La Sarraz","Lausanne","Lavigny","Le Mont-sur-Lausanne","Le Vaud","L'Isle","Lonay","Lully","Lussy-sur-Morges","Lutry","Mauraz","Mies","Moiry","Mollens","Montherod","Mont-la-Ville","Montricher","Morges","Nyon","Orny","Pampigny","Pompaples","Prangins","Préverenges","Prilly","Puidoux","Renens","Reverolle","Rivaz","Romanel-sur-Lausanne","Romanel-sur-Morges","Saint-Cergue","Saint-Livres","Saint-Oyens","Saint-Prex","Saint-Saphorin","Saint-Sulpice","Saubraz","Senarclens","Sévery","Signy-Avenex","Tannay","Tolochenaz","Trélex","Vaux-sur-Morges","Vevey","Vich","Villars-sous-Yens","Villars-Ste-Croix","Vufflens-le-Château","Vullierens","Yens"];
+
 const reductionEnfants = function (nbEnfants) {
   switch (nbEnfants) {
     case 0:
@@ -19,6 +21,7 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
     estEtudiant = false;
   }
   let subside = {};
+  let obj = {};
   if (estBeneficiairePC || estBeneficiaireRI) {
     subside = subsidesRIPC.find(x => {
       return x.menage === menage &&
@@ -27,6 +30,7 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
         x.ageMax >= age &&
         x.region === region;
     });
+    subside.subsideEstime = subside.subsideMax;
   } else {
     subside = subsidesRDU.find(x => {
       return x.menage === menage &&
@@ -37,13 +41,14 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
         x.rduMax >= rdu;
     });
   }
-  let obj = {};
   if (angular.isDefined(subside)) {
     const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
       (subside.subsideMax - subside.subsideMin));
   //  return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime, rduLAMAL: rdu};
     obj = angular.copy(subside);
-    obj.subsideEstime = subsideEstime;
+    if (!Object.prototype.hasOwnProperty.call(obj, "subsideEstime")) {
+      obj.subsideEstime = subsideEstime;
+    }
     obj.rduLAMAL = rdu;
     return obj;
   }
