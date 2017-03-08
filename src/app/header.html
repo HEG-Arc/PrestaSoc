@@ -2,10 +2,13 @@
   <div id="beta-ribbon">Alpha</div>
   <md-toolbar class="md-hue-1">
     <div class="md-toolbar-tools" layout="row">
+    <md-button class="md-icon-button" ng-click="$ctrl.openMenu()" hide-gt-sm aria-label="Toggle Menu">
+      <md-icon>menu</md-icon>
+    </md-button>
       <h2><a ui-sref="main">jestime.ch</a></h2>
-      <div flex class="subtitle" hide-xs>Prestations sociales: s'y retrouver!</div>
-      <md-button ui-sref="about"><md-icon md-font-icon="fa fa-info-circle"></md-icon> A propos</md-button>
-      <md-button ui-sref="addresses"><md-icon md-font-icon="fa fa-envelope"></md-icon> Adresses utiles</md-button>
+      <div flex class="subtitle" hide-xs hide-sm>Prestations sociales: s'y retrouver!</div>
+      <md-button ui-sref="about" hide-xs><md-icon md-font-icon="fa fa-info-circle"></md-icon> A propos</md-button>
+      <md-button ui-sref="addresses" hide-xs><md-icon md-font-icon="fa fa-envelope"></md-icon> Adresses utiles</md-button>
     </div>
   </md-toolbar>
 </header>

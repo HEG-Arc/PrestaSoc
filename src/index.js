@@ -23,6 +23,7 @@ import routesConfig from './routes';
 import {main} from './app/main';
 import {header} from './app/header';
 import {footer} from './app/footer';
+import {sidenav} from './app/sidenav';
 import {baseModule} from './app/base/index';
 import {filtersModule} from './app/filters/index';
 import {sharedModule} from './app/shared/index';
@@ -110,5 +111,6 @@ angular
   .component('appMain', main)
   .component('appHeader', header)
   .component('appFooter', footer)
+  .component('appSidenav', sidenav)
   .controller('ScrollController', ScrollController)
   .run(init);
