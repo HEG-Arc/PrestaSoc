@@ -68,7 +68,17 @@ button, html, input, select, textarea {
   p {
     margin: 0;
   }
-  margin-bottom: 1em;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.addresses-block {
+  max-width: 1024px;
+  background-color: #F5F5F5;
+  margin: 20px auto;
+  h2 {
+    padding: 16px 16px 0 16px;
+  }
 }
 
 .version {

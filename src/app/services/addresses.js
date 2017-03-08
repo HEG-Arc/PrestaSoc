@@ -9,6 +9,7 @@ class Addresses {
   }
 
   findByCantonAndCommuneAndService(canton, commune, prestation) {
+    // TODO: eventually memoize results
     return this._data.reduce((result, address) => {
       if (address.canton === canton || address.canton === 'all') {
         if (address.communes.indexOf(commune) > -1) {

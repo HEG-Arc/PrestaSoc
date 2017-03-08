@@ -206,10 +206,14 @@
       </div>
     </div>
 
+
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime == 0">
       <p>Votre situation financière ne vous permet pas de prétendre à des subsides pour l'assurance maladie obligatoire (LAMAL).
       </p>
     </div>
+
+    <app-address-block service="lamal"></app-address-block>
+
     <div layout="row" class="nav-bottom">
       <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
       <span flex></span>
