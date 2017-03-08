@@ -1,7 +1,9 @@
 <footer class="footer" layout-padding layout="row" layout-align="space-between stretch">
-  <div><img src="./../assets/logo-hes-so-couleur-transparent.png" style="height: 100px;"></div>
-  <div>Sponsors 2017</div>
-  <div layout="column" layout-align="end end" class="version">
-    <div>version: <a ng-href="https://github.com/HEG-Arc/PrestaSoc/commit/{{$ctrl.COMMIT_HASH}}">{{$ctrl.COMMIT_HASH|limitTo:7}}</a></div>
-  </div>
+    <div><img src="./../assets/logo-hes-so-couleur-transparent.png"></div>
+    <div layout="column" flex>
+      <div flex class="sponsors"></div>
+      <div class="version">
+        <div>version: <a ng-href="https://github.com/HEG-Arc/PrestaSoc/commit/{{$ctrl.COMMIT_HASH}}">{{$ctrl.COMMIT_HASH|limitTo:7}}</a></div>
+      </div>
+    </div>
 </footer>
