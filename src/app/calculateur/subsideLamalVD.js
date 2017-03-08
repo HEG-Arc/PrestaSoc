@@ -1,7 +1,5 @@
 import {calculRDU} from './calculRDUVD';
 
-// const COMMUNES_REGION1 = ["Aclens","Allaman","Apples","Arnex-sur-Nyon","Arzier-Le Muids","Aubonne","Ballens","Bassins","Begnins","Berolle","Bière","Bogis-Bossey","Borex","Bougy-Villars","Bourg-en-Lavaux","Bremblens","Buchillon","Bussigny","Bussy-Chardonney","Chardonne","Chavannes-de-Bogis","Chavannes-des-Bois","Chavannes-le-Veyron","Chavannes-près-Renens","Cheseaux-sur-Lausanne","Chéserex","Chevilly","Chexbres","Chigny","Clarmont","Coinsins","Commugny","Coppet","Corseaux","Corsier-sur-Vevey","Cossonay","Cottens","Crans-près-Céligny","Crassier","Crissier","Cuarnens","Denens","Denges","Dizy","Duillier","Échandens","Échichens","Éclépens","Ecublens","Épalinges","Étoy","Eysins","Féchy","Ferreyres","Founex","Genolier","Gimel","Gingins","Givrins","Gland","Gollion","Grancy","Grens","Jongny","Jouxtens-Mézery","La Chaux (Cossonay)","La Rippe","La Sarraz","Lausanne","Lavigny","Le Mont-sur-Lausanne","Le Vaud","L'Isle","Lonay","Lully","Lussy-sur-Morges","Lutry","Mauraz","Mies","Moiry","Mollens","Montherod","Mont-la-Ville","Montricher","Morges","Nyon","Orny","Pampigny","Pompaples","Prangins","Préverenges","Prilly","Puidoux","Renens","Reverolle","Rivaz","Romanel-sur-Lausanne","Romanel-sur-Morges","Saint-Cergue","Saint-Livres","Saint-Oyens","Saint-Prex","Saint-Saphorin","Saint-Sulpice","Saubraz","Senarclens","Sévery","Signy-Avenex","Tannay","Tolochenaz","Trélex","Vaux-sur-Morges","Vevey","Vich","Villars-sous-Yens","Villars-Ste-Croix","Vufflens-le-Château","Vullierens","Yens"];
-
 const reductionEnfants = function (nbEnfants) {
   switch (nbEnfants) {
     case 0:
@@ -16,14 +14,23 @@ const reductionEnfants = function (nbEnfants) {
 };
 
 function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
-  , estBeneficiaireRI = false, age, rdu, region, subsidesRDU, subsidesRIPC) {
+  , estBeneficiaireRI = false, age, rdu, region, subsidesRDU, subsidesRI, subsidesPC) {
   if (estEtudiant && (age < 19 || age > 25)) {
     estEtudiant = false;
   }
   let subside = {};
   let obj = {};
-  if (estBeneficiairePC || estBeneficiaireRI) {
-    subside = subsidesRIPC.find(x => {
+  if (estBeneficiaireRI) {
+    subside = subsidesRI.find(x => {
+      return x.menage === menage &&
+        x.formation === estEtudiant &&
+        x.ageMin <= age &&
+        x.ageMax >= age &&
+        x.region === region;
+    });
+    subside.subsideEstime = subside.subsideMax;
+  } else if (estBeneficiairePC) {
+    subside = subsidesPC.find(x => {
       return x.menage === menage &&
         x.formation === estEtudiant &&
         x.ageMin <= age &&
@@ -55,7 +62,7 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
   return {subsideMin: 0, subsideMax: 0, subsideEstime: 0, rduLAMAL: rdu};
 }
 
-export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
+export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRI, subsidesPC) {
   const nombreEnfants = function (sim) {
     return sim.personnes.reduce((count, person) => {
       if (!person.estAdulte) {
@@ -85,7 +92,7 @@ export function subsideLamalCalculeVD(sim, subsidesRDU, subsidesRIPC) {
     const person = sim.personnes[i];
     person.subsideLamal = subsideLookup(menage, person.estEtudiant, person.estBeneficiairePC
       , person.estBeneficiaireRI, person.age, rduLAMAL
-      , sim.lieuLogement.region, subsidesRDU, subsidesRIPC);
+      , sim.lieuLogement.region, subsidesRDU, subsidesRI, subsidesPC);
     subsideTotal.subsideEstime += person.subsideLamal.subsideEstime;
     subsideTotal.subsideMin += person.subsideLamal.subsideMin;
     subsideTotal.subsideMax += person.subsideLamal.subsideMax;

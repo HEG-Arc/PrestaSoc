@@ -5,8 +5,8 @@
    "ageMin": 0,
    "ageMax": 18,
    "region": 1,
-   "subsideMin": 110,
-   "subsideMax": 110
+   "subsideMin": 122,
+   "subsideMax": 122
  },
  {
    "menage": "famille",
@@ -14,8 +14,8 @@
    "ageMin": 0,
    "ageMax": 18,
    "region": 2,
-   "subsideMin": 100,
-   "subsideMax": 100
+   "subsideMin": 114,
+   "subsideMax": 114
  },
  {
    "menage": "famille",
@@ -23,8 +23,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 1,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 343,
+   "subsideMax": 343
  },
  {
    "menage": "famille",
@@ -32,8 +32,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 2,
-   "subsideMin": 320,
-   "subsideMax": 320
+   "subsideMin": 323,
+   "subsideMax": 323
  },
  {
    "menage": "famille",
@@ -41,8 +41,8 @@
    "ageMin": 26,
    "ageMax": 130,
    "region": 1,
-   "subsideMin": 380,
-   "subsideMax": 380
+   "subsideMin": 385,
+   "subsideMax": 385
  },
  {
    "menage": "famille",
@@ -50,8 +50,8 @@
    "ageMin": 26,
    "ageMax": 130,
    "region": 2,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 355,
+   "subsideMax": 355
  },
  {
    "menage": "famille",
@@ -59,8 +59,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 1,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 343,
+   "subsideMax": 343
  },
  {
    "menage": "famille",
@@ -68,8 +68,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 2,
-   "subsideMin": 320,
-   "subsideMax": 320
+   "subsideMin": 323,
+   "subsideMax": 323
  },
  {
    "menage": "seul",
@@ -77,8 +77,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 1,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 343,
+   "subsideMax": 343
  },
  {
    "menage": "seul",
@@ -86,8 +86,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 2,
-   "subsideMin": 320,
-   "subsideMax": 320
+   "subsideMin": 323,
+   "subsideMax": 323
  },
  {
    "menage": "seul",
@@ -95,8 +95,8 @@
    "ageMin": 26,
    "ageMax": 130,
    "region": 1,
-   "subsideMin": 380,
-   "subsideMax": 380
+   "subsideMin": 385,
+   "subsideMax": 385
  },
  {
    "menage": "seul",
@@ -104,8 +104,8 @@
    "ageMin": 26,
    "ageMax": 130,
    "region": 2,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 355,
+   "subsideMax": 355
  },
  {
    "menage": "seul",
@@ -113,8 +113,8 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 1,
-   "subsideMin": 350,
-   "subsideMax": 350
+   "subsideMin": 343,
+   "subsideMax": 343
  },
  {
    "menage": "seul",
@@ -122,7 +122,7 @@
    "ageMin": 19,
    "ageMax": 25,
    "region": 2,
-   "subsideMin": 320,
-   "subsideMax": 320
+   "subsideMin": 323,
+   "subsideMax": 323
  }
 ]

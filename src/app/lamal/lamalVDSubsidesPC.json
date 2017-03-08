@@ -1,0 +1,128 @@
+[
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 0,
+   "ageMax": 18,
+   "region": 1,
+   "subsideMin": 122,
+   "subsideMax": 122
+ },
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 0,
+   "ageMax": 18,
+   "region": 2,
+   "subsideMin": 114,
+   "subsideMax": 114
+ },
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 478,
+   "subsideMax": 478
+ },
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 452,
+   "subsideMax": 452
+ },
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 1,
+   "subsideMin": 503,
+   "subsideMax": 503
+ },
+ {
+   "menage": "famille",
+   "formation": false,
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 2,
+   "subsideMin": 477,
+   "subsideMax": 477
+ },
+ {
+   "menage": "famille",
+   "formation": true,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 478,
+   "subsideMax": 478
+ },
+ {
+   "menage": "famille",
+   "formation": true,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 452,
+   "subsideMax": 452
+ },
+ {
+   "menage": "seul",
+   "formation": false,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 478,
+   "subsideMax": 478
+ },
+ {
+   "menage": "seul",
+   "formation": false,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 452,
+   "subsideMax": 452
+ },
+ {
+   "menage": "seul",
+   "formation": false,
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 1,
+   "subsideMin": 503,
+   "subsideMax": 503
+ },
+ {
+   "menage": "seul",
+   "formation": false,
+   "ageMin": 26,
+   "ageMax": 130,
+   "region": 2,
+   "subsideMin": 477,
+   "subsideMax": 477
+ },
+ {
+   "menage": "seul",
+   "formation": true,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 1,
+   "subsideMin": 478,
+   "subsideMax": 478
+ },
+ {
+   "menage": "seul",
+   "formation": true,
+   "ageMin": 19,
+   "ageMax": 25,
+   "region": 2,
+   "subsideMin": 452,
+   "subsideMax": 452
+ }
+]
