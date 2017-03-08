@@ -7,7 +7,8 @@ class CalculeLamal {
   /** @ngInject */
   constructor($http, $q) {
     this.subsidesVDRDU = [];
-    this.subsidesVDRIPC = [];
+    this.subsidesVDRI = [];
+    this.subsidesVDPC = [];
     this.subsidesNEClasses = [];
     this.subsidesNERDU = [];
     this.subsidesNEASPC = [];
@@ -19,8 +20,11 @@ class CalculeLamal {
       $http.get('app/lamal/lamalVDSubsidesRDU.json').then(resp => {
         this.subsidesVDRDU = resp.data;
       }),
-      $http.get('app/lamal/lamalVDSubsidesRIPC.json').then(resp => {
-        this.subsidesVDRIPC = resp.data;
+      $http.get('app/lamal/lamalVDSubsidesRI.json').then(resp => {
+        this.subsidesVDRI = resp.data;
+      }),
+      $http.get('app/lamal/lamalVDSubsidesPC.json').then(resp => {
+        this.subsidesVDPC = resp.data;
       }),
       $http.get('app/lamal/lamalNEClasses.json').then(resp => {
         this.subsidesNEClasses = resp.data;
@@ -46,7 +50,7 @@ class CalculeLamal {
     // TODO: only load right canton? #11
     return this.ready.then(() => {
       if (this.sim.lieuLogement.canton === 'VD') {
-        return subsideLamalCalculeVD(sim, this.subsidesVDRDU, this.subsidesVDRIPC);
+        return subsideLamalCalculeVD(sim, this.subsidesVDRDU, this.subsidesVDRI, this.subsidesVDPC);
       }
       if (this.sim.lieuLogement.canton === 'NE') {
         return subsideLamalCalculeNE(sim, this.subsidesNEClasses, this.subsidesNERDU, this.subsidesNEASPC);
