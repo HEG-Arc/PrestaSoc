@@ -1,0 +1,7 @@
+<div class="address">
+    <strong>{{$ctrl.address.nom}}</strong>
+    <p ng-repeat="line in $ctrl.address.adresse.split('\n')">{{line}}</p>
+    <p ng-if="$ctrl.address.tel">Tél. {{$ctrl.address.tel}}</p>
+    <p ng-if="$ctrl.address.email">{{$ctrl.address.email}}</p>
+    <p ng-if="$ctrl.address.url"><a ng-href="{{$ctrl.address.url}}">{{$ctrl.address.url|domain}}</a></p>
+</div>

@@ -23,8 +23,10 @@ import routesConfig from './routes';
 import {main} from './app/main';
 import {header} from './app/header';
 import {footer} from './app/footer';
-
 import {baseModule} from './app/base/index';
+import {filtersModule} from './app/filters/index';
+import {sharedModule} from './app/shared/index';
+import {pagesModule} from './app/pages/index';
 import {financeModule} from './app/finance/index';
 import {bourseModule} from './app/bourse/index';
 import {lamalModule} from './app/lamal/index';
@@ -85,6 +87,9 @@ const init = (saver, vars, Analytics) => {
 angular
   .module('app', [
     baseModule,
+    filtersModule,
+    sharedModule,
+    pagesModule,
     financeModule,
     bourseModule,
     lamalModule,

@@ -10,6 +10,14 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/',
       component: 'appMain'
     })
+    .state('about', {
+      url: '/apropos',
+      component: 'pageAbout'
+    })
+    .state('addresses', {
+      url: '/adresses',
+      component: 'pageAddresses'
+    })
     .state('vous', {
       url: '/vous',
       component: 'baseVous'

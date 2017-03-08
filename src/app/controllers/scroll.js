@@ -1,3 +1,5 @@
+const AUTO_SCROLL_OFF_STATES = ['main', 'about', 'addresses'];
+
 export class ScrollController {
   /** @ngInject */
   constructor($state) {
@@ -5,6 +7,6 @@ export class ScrollController {
   }
 
   doAutoScroll() {
-    return ['main'].indexOf(this.$state.current.name) === -1;
+    return AUTO_SCROLL_OFF_STATES.indexOf(this.$state.current.name) === -1;
   }
 }

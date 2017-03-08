@@ -10,6 +10,10 @@
 
 $primary-color: #3795C2;
 
+a {
+  color: $primary-color;
+}
+
 h2, h3 {
   color: $primary-color;
   font-family: 'nowbold', 'Open Sans', Roboto, 'Helvetica Neue', sans-serif;
@@ -60,6 +64,13 @@ button, html, input, select, textarea {
   }
 }
 
+.address {
+  p {
+    margin: 0;
+  }
+  margin-bottom: 1em;
+}
+
 .version {
   font-size: 10px;
   color: #979797;
@@ -67,6 +78,7 @@ button, html, input, select, textarea {
     text-decoration: none;
     color: #979797;
   }
+  text-align: right;
 }
 
 .estimation-table-box {

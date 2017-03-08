@@ -2,6 +2,7 @@ import Simulation from './simulation';
 
 const STORAGE_KEY = 'prestasoc';
 const STORAGE_KEY_STATE = `${STORAGE_KEY}_state`;
+const PAGES_STATES = ['main', 'about', 'addresses'];
 
 class Saver {
   /** @ngInject */
@@ -41,8 +42,10 @@ class Saver {
       localStorage.setItem(STORAGE_KEY, angular.toJson(this.$rootScope.sim));
     }, true);
     this.__cancelWatchState = this.$rootScope.$on('$stateChangeSuccess', (event, toState, toParams) => {
-      this.log();
-      localStorage.setItem(STORAGE_KEY_STATE, angular.toJson({state: toState, params: toParams}));
+      if (!(PAGES_STATES.indexOf(toState.name) > -1)) {
+        this.log();
+        localStorage.setItem(STORAGE_KEY_STATE, angular.toJson({state: toState, params: toParams}));
+      }
     });
   }
 

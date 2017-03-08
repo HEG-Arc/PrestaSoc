@@ -1,0 +1,15 @@
+<md-content layout-padding>
+  <div layout="column" class="estimation-table-box">
+    <h2>Adresses utiles</h2>
+    <h3>Genève</h3>
+    <app-address ng-repeat="address in $ctrl.addresses.findByCanton('GE')" address="address"></app-address>
+
+    <h3>Neuchâtel</h3>
+    <app-address ng-repeat="address in $ctrl.addresses.findByCanton('NE')" address="address"></app-address>
+
+    <h3>Vaud</h3>
+    <app-address ng-repeat="address in $ctrl.addresses.findByCanton('VD')" address="address"></app-address>
+
+  </div>
+
+</md-content>
