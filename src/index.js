@@ -84,7 +84,7 @@ const iconConfig = $mdIconProvider => {
 
 /* eslint-disable */
 /** @ngInject */
-const init = (saver, vars, Analytics) => {
+const init = (saver, vars, addresses, Analytics) => {
   saver.start();
 };
 /*eslint-enable */
