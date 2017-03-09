@@ -2,11 +2,17 @@ import angular from 'angular';
 import 'angular-mocks';
 import {estimation} from './estimation';
 
-describe('estimation component', () => {
+describe('bourse estimation component', () => {
   beforeEach(() => {
     angular
       .module('estimation', ['app/bourse/estimation.html'])
-      .component('estimation', estimation);
+      .component('estimation', estimation)
+      .service('simulation', () => {})
+      .factory('bourseCalcule', () => {
+        return {
+          bourseEtude: () => 123
+        };
+      });
     angular.mock.module('estimation');
   });
 
