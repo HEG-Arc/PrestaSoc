@@ -14,7 +14,11 @@ import angularGoogleAnalytics from 'angular-google-analytics';
 
 import Raven from 'raven-js';
 Raven
-  .config('https://d903cc3f813240a080d8dbe8f59583ff@sentry.ga-fl.net/10')
+  .config('https://d903cc3f813240a080d8dbe8f59583ff@sentry.ga-fl.net/10', {
+    // eslint-disable-next-line
+    release: COMMIT_HASH,
+    ignoreUrls: [/localhost/]
+  })
   .addPlugin(require('raven-js/plugins/angular'), angular)
   .install();
 
