@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
+      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
       <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{ personne.prenom}}</h3>
@@ -86,7 +86,7 @@
         </div>
       </div>
 
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
+      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
       <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{ personne.prenom}}</h3>
@@ -172,7 +172,8 @@
         </div>
       </div>
       <p>Remarque: le niveau du subside définitif dépendra aussi de votre franchise et de votre compagnie d'assurance.</p>
-      <md-checkbox class="md-primary" ng-model="details" aria-label="Détails">Voir les détails de l'estimation</md-checkbox>
+      
+      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
       <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{personne.prenom}}</h3>
