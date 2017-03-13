@@ -3,6 +3,10 @@ class FoyerController {
   constructor(simulation) {
     this.sim = simulation;
 
+    if (this.sim.personnes[0].prenom === '') {
+      this.sim.personnes[0].prenom = 'Vous';
+    }
+
     // TODO: move to service
     this.addPerson = () => {
       const personne = {};
