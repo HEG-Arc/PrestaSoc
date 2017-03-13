@@ -26,7 +26,7 @@
     </div>
 
   <h3>Êtes-vous</h3>
-  <div layout="column">
+  <md-input-container  layout="column">
     <base-checkbox ng-if="!$ctrl.personne.estAdulte" src="$ctrl" var="personne.estGardeAlternee"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estEtudiant"></base-checkbox>
 
@@ -39,10 +39,10 @@
         <md-option value="l3">Niveau tertiaire (Université, EPF, HES)</md-option>
       </md-select>
     </md-input-container>
-  </div>
+  </md-input-container >
 
   <h3>Vous recevez déjà (plusieurs choix possibles):</h3>
-  <div layout="column">
+  <md-input-container  layout="column">
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireRien"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireAVS"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireAI"></base-checkbox>
@@ -53,5 +53,5 @@
       <label>Autre</label>
       <input type="text" ng-model="$ctrl.personne.autresPrestations">
     </md-input-container>
-  </div>
+  </md-input-container >
 </div>
