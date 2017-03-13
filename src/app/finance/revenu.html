@@ -13,7 +13,7 @@
 
         <h3> Rentes et pensions </h3>
 
-        <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estHandicap || $ctrl.sim.personnes[0].estInapteAuTravail">
+        <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estBeneficiaireAI">
           <base-input-container var="renteAVSAI"></base-input-container>
         </div>
 
@@ -23,7 +23,7 @@
 
         <base-input-container var="renteAccident"></base-input-container>
 
-        <div ng-if="$ctrl.sim.personnes[0].estRetraite">
+        <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS">
           <base-input-container var="rentePrevoyanceProfessionelle"></base-input-container>
           <base-input-container var="rentePrevoyancePrivee"></base-input-container>
         </div>

@@ -8,6 +8,25 @@ class PersonneController {
     $scope.$watch('$ctrl.personne.estEtudiant', () => {
       simulation.updateEtudiants();
     });
+    $scope.$watch('$ctrl.personne.estBeneficiaireRien', () => {
+      if (this.personne.estBeneficiaireRien) {
+        this.personne.estBeneficiaireAVS = false;
+        this.personne.estBeneficiaireAI = false;
+        this.personne.estBeneficiairePC = false;
+        this.personne.estBeneficiaireRI = false;
+        this.personne.estBeneficiaireAutre = false;
+      }
+    });
+
+    $scope.$watch('[$ctrl.personne.estBeneficiaireAVS, $ctrl.personne.estBeneficiaireAI, $ctrl.personne.estBeneficiairePC, $ctrl.personne.estBeneficiaireRI, $ctrl.personne.estBeneficiaireAutre]', () => {
+      if (this.personne.estBeneficiaireAVS ||
+        this.personne.estBeneficiaireAI ||
+        this.personne.estBeneficiairePC ||
+        this.personne.estBeneficiaireRI ||
+        this.personne.estBeneficiaireAutre) {
+        this.personne.estBeneficiaireRien = false;
+      }
+    }, true);
   }
 
   calculateAge(birthDate) {
