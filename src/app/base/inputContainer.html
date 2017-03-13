@@ -1,5 +1,5 @@
 <md-input-container class="md-icon-right md-block" ng-if="$ctrl.vars._loaded">
     <label>{{$ctrl.vars[$ctrl.var]['nomFR']}}</label>
-    <input type="number" ng-model="$ctrl.model[$ctrl.attribute]" aria-label="{{$ctrl.vars[$ctrl.var]['nomFR']}}">
+    <input type="number" ng-model="$ctrl.model[$ctrl.attribute]" aria-label="{{$ctrl.vars[$ctrl.var]['nomFR']}}" min="0">
     <base-help var="{{$ctrl.var}}"></base-help>
 </md-input-container>
