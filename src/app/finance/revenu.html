@@ -9,6 +9,8 @@
         <base-input-container var="revenuActiviteLucrative"></base-input-container>
         <base-input-container var="revenuFortune"></base-input-container>
 
+        <base-checkbox src="$ctrl" var="estImposeSource"></base-checkbox>
+
         <h3> Rentes et pensions </h3>
 
         <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireAVS || $ctrl.sim.personnes[0].estHandicap || $ctrl.sim.personnes[0].estInapteAuTravail">
@@ -28,10 +30,10 @@
 
         <div ng-if="$ctrl.sim.personnes[0].estBeneficiaireRI">
           <base-input-container var="revenuInsertion"></base-input-container>
-        </div>        
+        </div>
         <div ng-if="$ctrl.sim.personnes[0].age >= 60">
           <base-input-container var="rentePont"></base-input-container>
-        </div>        
+        </div>
         <div ng-if="$ctrl.sim.personnes[0].estBeneficiairePC">
           <base-input-container var="pcFamille"></base-input-container>
         </div>
