@@ -36,7 +36,7 @@
         <md-icon md-font-icon="fa fa-graduation-cap circle"></md-icon>
         <div class="big-result">
           <md-icon ng-if="$ctrl.sim.etudiants.length === 0" md-font-icon="fa fa-times-circle"></md-icon>
-          <md-icon ng-if="angular.isUndefined($ctrl.sim.boursesTotales) && $ctrl.sim.etudiants.length > 0" md-font-icon="fa fa-question-circle"></md-icon>
+          <md-icon ng-if="$ctrl.sim.boursesTotales === undefined && $ctrl.sim.etudiants.length > 0" md-font-icon="fa fa-question-circle"></md-icon>
           <p ng-if="$ctrl.sim.boursesTotales >= 0">
             {{ $ctrl.sim.boursesTotales|number}}.-<span>CHF/an</span>
           </p>
