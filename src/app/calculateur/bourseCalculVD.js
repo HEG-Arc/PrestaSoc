@@ -112,6 +112,7 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
     const revenusTotaux = revenus.reduce((total, revenu) => total + revenu[1], 0);
     montantBourse = Math.min(revenusTotaux - chargesTotales, 0);
     montantBourse = Math.abs(montantBourse);
+    montantBourse = 10 * Math.round(montantBourse / 10); // arrondi dizaine
     // TODO si le revenu est égal à l'ensemble des charges, l'OCBE octroie une aide pour les frais d'études uniquement;
     etudiant.bourseEtude = {charges, revenus, chargesTotales, revenusTotaux, montantBourse};
     boursesTotales += montantBourse;
