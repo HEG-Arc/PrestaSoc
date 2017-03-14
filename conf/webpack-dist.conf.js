@@ -16,6 +16,11 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /.js$/,
+        exclude: /node_modules/,
+        loader: require.resolve('../loaders/drive-cache-loader')
+      },
+      {
         test: /.json$/,
         loaders: [
           'json-loader'

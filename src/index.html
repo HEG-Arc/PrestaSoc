@@ -6,15 +6,35 @@
     <title>jestime.ch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        #loading{
+          height: 84px;
+          background-color: rgb(34,92,119);
+          font-family: sans-serif;
+          padding: 10px;
+          box-sizing: border-box;
+        }
+        #loading h2 {
+          font-weight: 900;
+          font-size: 1.8em;
+          color: #fff;
+          margin: 10px;
+        }
+    </style>
   </head>
   <body ng-app="app">
     <app-sidenav></app-sidenav>
     <div class="wrapper">
       <app-header></app-header>
       <div class="content">
-          <ui-view flex class="fade" column="row" autoscroll="$ctrl.doAutoScroll()" ng-controller="ScrollController as $ctrl"></ui-view>
+          <ui-view flex class="fade" column="row" autoscroll="$ctrl.doAutoScroll()" ng-controller="ScrollController as $ctrl">
+            <div id="loading"><h2>jestime.ch</h2></div>
+          </ui-view>
         </div>
       <div class="push"></div>
     </div>

@@ -5,7 +5,7 @@ class VousController {
   constructor(simulation) {
     this.sim = simulation;
     if (this.sim.personnes.length === 0) {
-      this.sim.personnes.push({prenom: 'Vous'});
+      this.sim.personnes.push({});
     }
     // TODO: move somewhere centralized? generic test of all required parameters for each step to be valid?
     this.isCantonSupported = () => {

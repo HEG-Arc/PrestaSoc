@@ -12,7 +12,7 @@ class Addresses {
     // TODO: eventually memoize results
     return this._data.reduce((result, address) => {
       if (address.canton === canton || address.canton === 'all') {
-        if (address.communes.indexOf(commune) > -1) {
+        if (address.communes.indexOf(commune) > -1 || address.communes.indexOf(-1) === 0) {
           if (address.prestations.indexOf(prestation) > -1 || address.prestations.indexOf('all') === 0) {
             result.push(address);
           }

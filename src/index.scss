@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @font-face {
     font-family: 'nowbold';
     src: url('assets/fonts/now-bold-webfont.woff2') format('woff2'),
@@ -12,6 +12,10 @@ $primary-color: #3795C2;
 
 a {
   color: $primary-color;
+}
+
+.fa {
+  font-family: 'FontAwesome';
 }
 
 h2, h3 {

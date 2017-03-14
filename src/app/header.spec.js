@@ -6,14 +6,15 @@ describe('header component', () => {
   beforeEach(() => {
     angular
       .module('appHeader', ['app/header.html'])
-      .component('appHeader', header);
+      .component('appHeader', header)
+      .service('$mdSidenav', () => {});
     angular.mock.module('appHeader');
   });
 
-  it('should render \'Presta-Soc\'', angular.mock.inject(($rootScope, $compile) => {
+  it('should render title', angular.mock.inject(($rootScope, $compile) => {
     const element = $compile('<app-header></app-header>')($rootScope);
     $rootScope.$digest();
     const header = element.find('a');
-    expect(header.html().trim()).toEqual('Presta-Soc');
+    expect(header.html().trim()).toEqual('jestime.ch');
   }));
 });

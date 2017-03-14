@@ -3,6 +3,7 @@
 
   <div layout="column" class="estimation-table-box">
     <h2>Estimation des subsides d'assurance maladie</h2>
+
     <div ng-if="$ctrl.sim.subsidesLAMALTotal.subsideEstime > 0 && $ctrl.sim.lieuLogement.canton === 'GE' ">
       <div class="table">
         <div class="table-row">
@@ -28,9 +29,9 @@
         </div>
       </div>
 
-      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
+      <md-button class="md-primary md-hue-2 md-raised" ng-disabled="$ctrl.sim.stats.details.lamal" ng-click="$ctrl.sim.stats.details.lamal = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
-      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+      <div class="table" ng-if="$ctrl.sim.stats.details.lamal" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{ personne.prenom}}</h3>
         <div class="table-row">
           <div>Tranche d'âge</div>
@@ -86,9 +87,9 @@
         </div>
       </div>
 
-      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
+      <md-button class="md-primary md-hue-2 md-raised" ng-disabled="$ctrl.sim.stats.details.lamal" ng-click="$ctrl.sim.stats.details.lamal = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
-      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+      <div class="table" ng-if="$ctrl.sim.stats.details.lamal" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{ personne.prenom}}</h3>
         <div class="table-row">
           <div>Tranche d'âge</div>
@@ -172,10 +173,10 @@
         </div>
       </div>
       <p>Remarque: le niveau du subside définitif dépendra aussi de votre franchise et de votre compagnie d'assurance.</p>
-      
-      <md-button class="md-primary md-hue-2 md-raised" ng-click="details = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
 
-      <div class="table" ng-if="details" ng-repeat="personne in $ctrl.sim.personnes">
+      <md-button class="md-primary md-hue-2 md-raised" ng-disabled="$ctrl.sim.stats.details.lamal" ng-click="$ctrl.sim.stats.details.lamal = true;" aria-label="Détails">Voir les détails de l'estimation</md-button>
+
+      <div class="table" ng-if="$ctrl.sim.stats.details.lamal" ng-repeat="personne in $ctrl.sim.personnes">
         <h3>{{personne.prenom}}</h3>
         <div class="table-row">
           <div>Tranche d'âge</div>

@@ -1,0 +1,42 @@
+[
+ {
+   "district": "DISTRICT DE LAUSANNE",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DE LAVAUX-ORON",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DE L'OUEST LAUSANNOIS",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DE MORGES",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DE NYON",
+   "zone": 1
+ },
+ {
+   "district": "DISTRICT DU GROS-DE-VAUD",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DU JURA-NORD VAUDOIS",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT DE LA BROYE-VULLY",
+   "zone": 3
+ },
+ {
+   "district": "DISTRICT DE LA RIVIERA-PAYS-D'ENHAUT",
+   "zone": 2
+ },
+ {
+   "district": "DISTRICT D'AIGLE",
+   "zone": 3
+ }
+]
