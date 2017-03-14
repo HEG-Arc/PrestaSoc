@@ -29,6 +29,13 @@ function chargesNormalesComplementairesLookup(chargesNormalesComplementairesVD, 
   }).forfait;
 }
 
+function fraisEtudeLookup(fraisEtudeVD, mode, categorie) {
+  return fraisEtudeVD.find(x => {
+    return x.mode === mode &&
+        x.categorie === categorie;
+  }).fraisEtude;
+}
+
 export function bourseEtudeVD(sim, chargesNormalesBaseVD,
   fraisEtudeVD, chargesNormalesIndependantVD,
   fraisTransportVD, chargesNormalesComplementairesVD) {
@@ -64,16 +71,11 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
     const fraisTransportForfait = 1000;
     charges.push(["fraisTransportForfait", fraisTransportForfait]);
 
-    // TODO compute frais etudes
-    let fraisEtudeVDForfait = 0;
-    switch (etudiant.niveauEtude) {
-      case 'l2': fraisEtudeVDForfait = 1500;
-        break;
-      case 'l3': fraisEtudeVDForfait = 2500;
-        break;
-      default: break;
-    }
-    charges.push(["fraisEtudeVDForfait", fraisEtudeVDForfait]);
+    let fraisEtude = 0;
+    const niveau = etudiant.niveauEtude.substring(3);
+    const mode = etudiant.formationRedoublementOuTempsPartiel ? "tpr" : "pt";
+    fraisEtude = fraisEtudeLookup(fraisEtudeVD, mode, niveau);
+    charges.push(["fraisEtudeVDForfait", fraisEtude]);
 
     revenus.push(["rdu", rdu]);
     if (etudiant.revenueAuxiliaireContributionsEntretien) {
