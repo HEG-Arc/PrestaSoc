@@ -11,6 +11,7 @@ class CalculeBourse {
     this.chargesNormalesIndependantVD = [];
     this.fraisTransportVD = [];
     this.chargesNormalesComplementairesVD = [];
+    this.bourseZonesVD = [];
     this.$q = $q;
     const deferred = $q.defer();
 
@@ -29,6 +30,9 @@ class CalculeBourse {
       }),
       $http.get('app/bourse/fraisTransportVD.json').then(resp => {
         this.fraisTransportVD = resp.data;
+      }),
+      $http.get('app/bourse/bourseZonesVD.json').then(resp => {
+        this.bourseZonesVD = resp.data;
       })
     ]).then(() => {
       deferred.resolve(true);
@@ -40,7 +44,8 @@ class CalculeBourse {
     this.sim = sim;
     return this.ready.then(() => {
       if (this.sim.lieuLogement.canton === 'VD') {
-        return bourseEtudeVD(sim, this.chargesNormalesBaseVD, this.fraisEtudeVD, this.chargesNormalesIndependantVD, this.fraisTransportVD, this.chargesNormalesComplementairesVD);
+        sim.boursesTotales = bourseEtudeVD(sim, this.chargesNormalesBaseVD, this.fraisEtudeVD, this.chargesNormalesIndependantVD, this.fraisTransportVD, this.chargesNormalesComplementairesVD, this.bourseZonesVD);
+        return sim.boursesTotales;
       }
       throw new Error('Canton not supported');
     });

@@ -29,58 +29,63 @@ function chargesNormalesComplementairesLookup(chargesNormalesComplementairesVD, 
   }).forfait;
 }
 
+function fraisEtudeLookup(fraisEtudeVD, mode, categorie) {
+  return fraisEtudeVD.find(x => {
+    return x.mode === mode &&
+        x.categorie === categorie;
+  }).fraisEtude;
+}
+
 export function bourseEtudeVD(sim, chargesNormalesBaseVD,
   fraisEtudeVD, chargesNormalesIndependantVD,
-  fraisTransportVD, chargesNormalesComplementairesVD) {
-  const bourses = [];
+  fraisTransportVD, chargesNormalesComplementairesVD, bourseZonesVD) {
+  let boursesTotales = 0;
   const rdu = calculRDU(sim);
   for (let i = 0; i < sim.etudiants.length; i++) {
     const etudiant = sim.etudiants[i];
     const charges = [];
     const revenus = [];
     let montantBourse = 0;
-    // TODO zones bourses etudes
+
+    const zone = bourseZonesVD.find(x => {
+      return x.district === sim.lieuLogement.district;
+    }).zone;
     const nbAdultes = sim.personnes.filter(personne => (personne.estAdulte)).length;
     const nbEnfants = nombreEnfants(sim);
     let chargesNormalesBaseFoyer = 0;
     if (etudiant.estIndependanceFinanciere) {
-      chargesNormalesBaseFoyer = chargesNormalesIndependantLookup(chargesNormalesIndependantVD, nbAdultes);
+      chargesNormalesBaseFoyer = chargesNormalesIndependantLookup(chargesNormalesIndependantVD, nbAdultes, nbEnfants, zone);
     } else {
-      chargesNormalesBaseFoyer = chargesNormalesBaseLookup(chargesNormalesBaseVD, nbAdultes, nbEnfants);
+      chargesNormalesBaseFoyer = chargesNormalesBaseLookup(chargesNormalesBaseVD, nbAdultes, nbEnfants, zone);
     }
-    charges.push(["chargesNormalesBaseFoyer", chargesNormalesBaseFoyer]);
+    charges.push(["Charges normales de base", chargesNormalesBaseFoyer]);
 
     const chargesNormalesComplementaires = chargesNormalesComplementairesLookup(chargesNormalesComplementairesVD, etudiant.age);
-    charges.push(["chargesNormalesComplementaires", chargesNormalesComplementaires]);
+    charges.push(["Charges normales complementaires", chargesNormalesComplementaires]);
 
     const fraisRepasForfait = 1500;
-    charges.push(["fraisRepasForfait", fraisRepasForfait]);
+    charges.push(["Forfait pour frais de repas", fraisRepasForfait]);
 
     if (etudiant.aLogementSepare) {
       const fraisLogementSepareForfait = (500 + 280) * 10;
-      charges.push(["fraisLogementSepareForfait", fraisLogementSepareForfait]);
+      charges.push(["Forfait pour frais de logement séparé", fraisLogementSepareForfait]);
     }
     // TODO compute frais transports
     const fraisTransportForfait = 1000;
-    charges.push(["fraisTransportForfait", fraisTransportForfait]);
+    charges.push(["Forfait pour frais de transport", fraisTransportForfait]);
 
-    // TODO compute frais etudes
-    let fraisEtudeVDForfait = 0;
-    switch (etudiant.niveauEtude) {
-      case 'l2': fraisEtudeVDForfait = 1500;
-        break;
-      case 'l3': fraisEtudeVDForfait = 2500;
-        break;
-      default: break;
-    }
-    charges.push(["fraisEtudeVDForfait", fraisEtudeVDForfait]);
+    let fraisEtude = 0;
+    const niveau = etudiant.niveauEtude.substring(3);
+    const mode = etudiant.formationRedoublementOuTempsPartiel ? "tpr" : "pt";
+    fraisEtude = fraisEtudeLookup(fraisEtudeVD, mode, niveau);
+    charges.push(["Frais d'étude", fraisEtude]);
 
-    revenus.push(["rdu", rdu]);
+    revenus.push(["Revenu déterminant unifié", rdu]);
     if (etudiant.revenueAuxiliaireContributionsEntretien) {
-      revenus.push(["revenueAuxiliaireContributionsEntretien", etudiant.revenueAuxiliaireContributionsEntretien]);
+      revenus.push(["Contributions d'entretien", etudiant.revenueAuxiliaireContributionsEntretien]);
     }
     if (etudiant.revenueAuxiliairesAutresPrestationsFinancieres) {
-      revenus.push(["revenueAuxiliairesAutresPrestationsFinancieres", etudiant.revenueAuxiliairesAutresPrestationsFinancieres]);
+      revenus.push(["Autres prestations financières", etudiant.revenueAuxiliairesAutresPrestationsFinancieres]);
     }
 
     if (etudiant.aParentLogementAutreFoyer) {
@@ -96,10 +101,10 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
       };
 
       const rduFoyer2 = calculRDU(rduData);
-      revenus.push(["revenuFoyer2", rduFoyer2]);
+      revenus.push(["Revenu déterminant du foyer du 2e parent", rduFoyer2]);
       const chargesNormalesBaseFoyer2 = chargesNormalesBaseLookup(etudiant.nbAdultesFoyer2, etudiant.nbEnfantsFoyer2);
       // TODO faudrait-il prendre en compte le nombre d'étudiants dans le 2e foyer pour calculer leurs charges?
-      charges.push(["chargesNormalesBaseFoyer2", chargesNormalesBaseFoyer2]);
+      charges.push(["Charges normales de bases du foyer du 2e parent", chargesNormalesBaseFoyer2]);
     }
 
     // TODO charges fiscales
@@ -108,9 +113,8 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
     montantBourse = Math.min(revenusTotaux - chargesTotales, 0);
     montantBourse = Math.abs(montantBourse);
     // TODO si le revenu est égal à l'ensemble des charges, l'OCBE octroie une aide pour les frais d'études uniquement;
-    const bourseEtude = {charges, revenus, chargesTotales, revenusTotaux, montantBourse};
-    etudiant.bourseEtude = bourseEtude;
-    bourses.push(bourseEtude);
+    etudiant.bourseEtude = {charges, revenus, chargesTotales, revenusTotaux, montantBourse};
+    boursesTotales += montantBourse;
   }
-  return bourses;
+  return boursesTotales;
 }
