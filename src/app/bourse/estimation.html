@@ -6,26 +6,51 @@
     <div layout="column">
       <div class="table" ng-repeat="etudiant in $ctrl.sim.etudiants">
         <h3>{{ etudiant.prenom}}</h3>
-        <div class="table-row">
-          <div>Revenus totaux</div><div flex></div>
+        <div class="table-row total">
+          <div>Revenus</div>
+        </div>
+        <div class="table-row" ng-repeat="line in etudiant.bourseEtude.revenus">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>Revenus totaux</div>
+          <div flex></div>
           <div>{{ etudiant.bourseEtude.revenusTotaux|number:0}}</div>
         </div>
-        <div class="table-row">
-          <div>Charges totales</div><div flex></div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>Charges</div>
+        </div>
+        <div class="table-row" ng-repeat="line in etudiant.bourseEtude.charges">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>Charges totales</div>
+          <div flex></div>
           <div>{{ etudiant.bourseEtude.chargesTotales|number:0}}</div>
         </div>
         <div class="divider"></div>
         <div class="table-row total">
-          <div>Montant estimé de la bourse</div><div flex></div>
+          <div>Montant estimé de la bourse</div>
+          <div flex></div>
           <div>{{ etudiant.bourseEtude.montantBourse|number:0}}</div>
         </div>
-    </div>
+      </div>
 
-    <app-address-block service="bourse"></app-address-block>
+      <app-address-block service="bourse"></app-address-block>
 
-    <div layout="row" class="nav-bottom">
-      <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
-      <span flex></span>
+      <div layout="row" class="nav-bottom">
+        <md-button ui-sref="result" class="md-primary md-hue-2 md-raised">Précédent</md-button>
+        <span flex></span>
+      </div>
     </div>
-  </div>
 </md-content>
