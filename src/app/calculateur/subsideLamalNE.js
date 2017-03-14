@@ -1,4 +1,4 @@
-import {calculRDU} from './calculRDULamalNE';
+import {calculRDU} from './calculRDUNE';
 
 function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiairePC = false
   , estBeneficiaireRI = false, age, rdu, subsidesNEcategories, subsidesNERDU, subsidesNEASPC) {

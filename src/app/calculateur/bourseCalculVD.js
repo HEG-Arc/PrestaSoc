@@ -41,7 +41,8 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
   fraisTransportVD, chargesNormalesComplementairesVD, bourseZonesVD) {
   let boursesTotales = 0;
   const rdu = calculRDU(sim);
-  for (let i = 0; i < sim.etudiants.length; i++) {
+  const nbEtudiants = sim.etudiants.length;
+  for (let i = 0; i < nbEtudiants; i++) {
     const etudiant = sim.etudiants[i];
     const charges = [];
     const revenus = [];
@@ -80,7 +81,8 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
     fraisEtude = fraisEtudeLookup(fraisEtudeVD, mode, niveau);
     charges.push(["Frais d'étude", fraisEtude]);
 
-    revenus.push(["Revenu déterminant unifié", rdu]);
+    // repartition du RDU de l'UER
+    revenus.push(["Répartition du revenu déterminant unifié", Math.round(rdu / nbEtudiants)]);
     if (etudiant.revenueAuxiliaireContributionsEntretien) {
       revenus.push(["Contributions d'entretien", etudiant.revenueAuxiliaireContributionsEntretien]);
     }
