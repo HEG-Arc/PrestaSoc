@@ -53,8 +53,9 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
   if (angular.isDefined(subside)) {
     let subsideEstime = 0;
     // REF  http://www.vd.ch/fileadmin/user_upload/themes/sante_social/aides_allocations/fichiers_pdf/Arr%C3%AAt%C3%A9_pour_les_subsides_2017.pdf
-    subsideEstime = Math.round(subside.subsideMin +
-              (1 - (subside.subsideMax - subside.subsideMin) * ((rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) ^ 2) ^ P);
+    subsideEstime = subside.subsideMin +
+              (subside.subsideMax - subside.subsideMin) * Math.pow(1 - Math.pow((rdu - subside.rduMin) / (subside.rduMax - subside.rduMin), 2), P);
+    subsideEstime = 10 * Math.round(subsideEstime / 10); // arrondi à la dizaine
     obj = angular.copy(subside);
     if (!Object.prototype.hasOwnProperty.call(obj, "subsideEstime")) {
       obj.subsideEstime = subsideEstime;
