@@ -23,6 +23,7 @@ class CalculePC {
     this.tauxPartFortune = {survivant: 0.067, avs: 0.1, ai: 0.067};
     this.deductionActiviteLucrative = {couple: 1500, seul: 1000, taux: 0.667};
     this.remboursementFraisMaladie = {couple: 50000, seul: 25000, ems: 6000};
+    this.pcc.vd = {couple: 200, seul: 100};
   }
 
   testPC() {
@@ -186,13 +187,13 @@ class CalculePC {
       }
 
       if (this.sim.personnes[0].estBeneficiaireAVS || this.sim.personnes[0].estBeneficiaireAI) {
-        const revenus = this.calculRevenu();
-        const depenses = this.calculDepenses();
+        const revenus = Math.round(this.calculRevenu() / 10) * 10;
+        const depenses = Math.round(this.calculDepenses() / 10) * 10;
         let estimationSubsidePC = 0;
         if (depenses.depenses - revenus.revenus > 0) {
-          estimationSubsidePC = depenses.depenses - revenus.revenus;
+          estimationSubsidePC = Math.round((depenses.depenses - revenus.revenus) / 10) * 10;
         }
-        const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 12);
+        const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 120) * 10;
 
         let subsideFraisMaladie = 0;
         if (estimationSubsidePC > 0) {
