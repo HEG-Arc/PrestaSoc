@@ -190,9 +190,16 @@ class CalculePC {
         const revenus = this.calculRevenu();
         const depenses = this.calculDepenses();
         let estimationSubsidePC = 0;
+        let estimationSubsidePCCantonal = 0;
         if (depenses.depenses - revenus.revenus > 0) {
           estimationSubsidePC = Math.round((depenses.depenses - revenus.revenus) / 10) * 10;
         }
+        if (estimationSubsidePC > 0 && this.sim.lieuLogement.canton === 'VD') {
+          estimationSubsidePCCantonal += this.pccvd[this.couple];
+        }
+
+        estimationSubsidePC += estimationSubsidePCCantonal;
+
         const estimationSubsidePCMensuel = Math.round(estimationSubsidePC / 120) * 10;
 
         let subsideFraisMaladie = 0;
