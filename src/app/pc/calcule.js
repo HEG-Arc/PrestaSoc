@@ -187,8 +187,8 @@ class CalculePC {
       }
 
       if (this.sim.personnes[0].estBeneficiaireAVS || this.sim.personnes[0].estBeneficiaireAI) {
-        const revenus = Math.round(this.calculRevenu() / 10) * 10;
-        const depenses = Math.round(this.calculDepenses() / 10) * 10;
+        const revenus = this.calculRevenu();
+        const depenses = this.calculDepenses();
         let estimationSubsidePC = 0;
         if (depenses.depenses - revenus.revenus > 0) {
           estimationSubsidePC = Math.round((depenses.depenses - revenus.revenus) / 10) * 10;
