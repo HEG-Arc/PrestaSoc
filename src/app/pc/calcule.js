@@ -23,7 +23,7 @@ class CalculePC {
     this.tauxPartFortune = {survivant: 0.067, avs: 0.1, ai: 0.067};
     this.deductionActiviteLucrative = {couple: 1500, seul: 1000, taux: 0.667};
     this.remboursementFraisMaladie = {couple: 50000, seul: 25000, ems: 6000};
-    this.pcc.vd = {couple: 200, seul: 100};
+    this.pccvd = {couple: 200, seul: 100};
   }
 
   testPC() {
