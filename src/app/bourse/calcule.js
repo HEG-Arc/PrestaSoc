@@ -1,5 +1,6 @@
 import {bourseEtudeVD} from '../calculateur/bourseCalculVD';
 import {bourseEtudeNE} from '../calculateur/bourseCalculNE';
+import {bourseEtudeGE} from '../calculateur/bourseCalculGE';
 
 // REF http://www.guidesocial.ch/fr/fiche/960/
 class CalculeBourse {
@@ -49,6 +50,10 @@ class CalculeBourse {
       }
       if (this.sim.lieuLogement.canton === 'NE') {
         sim.boursesTotales = bourseEtudeNE(sim);
+        return sim.boursesTotales;
+      }
+      if (this.sim.lieuLogement.canton === 'GE') {
+        sim.boursesTotales = bourseEtudeGE(sim);
         return sim.boursesTotales;
       }
       throw new Error('Canton not supported');

@@ -10,7 +10,7 @@ const FRAIS_FORMATION = {l2: 800, l3: 2200};
 const FRAIS_LOGEMENT_SEPARE_ENTRETIEN = 12310;
 const FRAIS_LOGEMENT_SEPARE = 6000;
 
-function FRAIS_REPAS_FORFAIT(lev) {
+function fraisRepasForfait(lev) {
   const FORFAIT_REPAS_JOUR = 10;
   if (lev === "l2-Apprentissages") {
     return 235 * FORFAIT_REPAS_JOUR; // disons que les apprentis ont 5 semaines de vacances
@@ -71,7 +71,7 @@ export function bourseEtudeNE(sim) {
       charges.push(["Forfait loyer pour logement séparé", FRAIS_LOGEMENT_SEPARE]);
     }
 
-    charges.push(["Forfait pour frais de repas", FRAIS_REPAS_FORFAIT[etudiant.niveauEtude]]);
+    charges.push(["Forfait pour frais de repas", fraisRepasForfait(etudiant.niveauEtude)]);
 
 // revenus
     // répartition du RDU de l'UER entre les étudiants
@@ -89,7 +89,6 @@ export function bourseEtudeNE(sim) {
     }
     montantBourse = Math.min(montantBourse, maxBourse);
     montantBourse = 10 * Math.round(montantBourse / 10); // arrondi dizaine
-    // TODO si le revenu est égal à l'ensemble des charges, l'OCBE octroie une aide pour les frais d'études uniquement;
     etudiant.bourseEtude = {charges, revenus, chargesTotales, revenusTotaux, montantBourse};
     boursesTotales += montantBourse;
   }
