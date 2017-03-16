@@ -6,20 +6,20 @@
     <h2>Foyer du 2ème parent</h2>
 
     <div layout="column">
-      <base-input-container src="$ctrl" var="personne.nbAdultesFoyer2"></base-input-container>
-      <base-input-container src="$ctrl" var="personne.nbEnfantsFoyer2"></base-input-container>
-      <base-input-container src="$ctrl" var="personne.revenuNetFoyer2"></base-input-container>
-      <base-input-container src="$ctrl" var="personne.troisiemePilierFoyer2"></base-input-container>
-      <base-input-container src="$ctrl" var="personne.fortuneMobiliereFoyer2"></base-input-container>
+      <base-input-container src="$ctrl.personne" var="personne.nbAdultesFoyer2"></base-input-container>
+      <base-input-container src="$ctrl.personne" var="personne.nbEnfantsFoyer2"></base-input-container>
+      <base-input-container src="$ctrl.personne" var="personne.revenuNetFoyer2"></base-input-container>
+      <base-input-container src="$ctrl.personne" var="personne.troisiemePilierFoyer2"></base-input-container>
+      <base-input-container src="$ctrl.personne" var="personne.fortuneMobiliereFoyer2"></base-input-container>
 
       <md-checkbox class="md-primary" ng-model="$ctrl.personne.estProprietaireFoyer2" aria-label="Autre immobilier">
         Sont-il propriétaire?
       </md-checkbox>
 
       <div ng-if="$ctrl.personne.estProprietaireFoyer2" layout="column">
-        <base-input-container src="$ctrl" var="personne.fortuneImmobiliereFoyer2"></base-input-container>
-        <base-input-container src="$ctrl" var="personne.autresFortuneImmobiliereFoyer2"></base-input-container>
-        <base-input-container src="$ctrl" var="personne.fraisAccessoiresFoyer2"></base-input-container>
+        <base-input-container src="$ctrl.personne" var="personne.fortuneImmobiliereFoyer2"></base-input-container>
+        <base-input-container src="$ctrl.personne" var="personne.autresFortuneImmobiliereFoyer2"></base-input-container>
+        <base-input-container src="$ctrl.personne" var="personne.fraisAccessoiresFoyer2"></base-input-container>
       </div>
  </div>
     </div>
