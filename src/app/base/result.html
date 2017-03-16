@@ -23,7 +23,7 @@
         <div class="big-result">
           <md-icon md-font-icon="fa fa-question-circle" ng-if="!$ctrl.sim.pc.estimationSubsidePC"></md-icon>
           <p ng-if=" $ctrl.sim.pc.estimationSubsidePC > 0">
-            {{ $ctrl.sim.pc.estimationSubsidePC|number}}.-<span>CHF/an</span>
+            {{ $ctrl.sim.pc.estimationSubsidePCMensuel|number}}.-<span>CHF/mois</span>
           </p>
         </div>
         <h3>Prestations comlémentaires AVS/AI</h3>
@@ -46,6 +46,9 @@
           <md-button ui-sref="bourse.formation({index:0})" class="md-primary md-hue-2 md-raised" ng-disabled="$ctrl.sim.etudiants.length == 0">{{$ctrl.sim.etudiants.length == 0 ? 'Non disponible' : $ctrl.sim.boursesTotales >= 0 ? 'Détails' : 'Estimer'}}</md-button>
         </p>
       </div>
+    </div>
+    <div layout="row" class="helpBox">
+        <p>Le résultat du calcul indicatif des prestations qui pourraient vous être octroyées dépend des données que vous avez saisies. Il s'agit d'un calcul simplifié qui ne saurait prendre en compte la multiplicité des situations personnelles. En cas d'estimation positive, nous vous invitons à prendre contact avec les services compétents dont les adresses se trouvent en annexe des résultats.</p>
     </div>
     <div class="bottom-big-deco">
       <img src="../../assets/dedale-horizontal.jpg">
