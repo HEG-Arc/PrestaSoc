@@ -25,13 +25,22 @@ function subsideLookup(menage, nbEnfants, estEtudiant = false, estBeneficiairePC
         x.ageMax >= age;
     });
   } else {
-    categorie = subsidesNEcategories.find(x => {
-      return x.menage === menage &&
+    if (estEtudiant) {
+      categorie = subsidesNEcategories.find(x => {
+        return x.menage === menage &&
         x.nbEnfants === nbEnfants &&
-        x.formation === estEtudiant &&
         x.rduMin <= rdu &&
         x.rduMax >= rdu;
-    });
+      });
+    } else {
+      categorie = subsidesNEcategories.find(x => {
+        return x.menage === menage &&
+        x.nbEnfants === nbEnfants &&
+        x.formation === false &&
+        x.rduMin <= rdu &&
+        x.rduMax >= rdu;
+      });
+    }
     subside = subsidesNERDU.find(x => {
       return x.classe === categorie.classe &&
         x.formation === estEtudiant &&
