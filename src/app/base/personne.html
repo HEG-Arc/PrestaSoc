@@ -50,6 +50,7 @@
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireRien"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireAVS"></base-checkbox>
     <div layout="row"><base-checkbox src="$ctrl" var="personne.estBeneficiaireAI"></base-checkbox>
+    <md-radio-group ng-model="$ctrl.personne.tauxInvalidite" class="md-primary" layout="row" ng-if="$ctrl.personne.estBeneficiaireAI">
       &nbsp;[Taux d'invalidité&nbsp;
       <md-radio-button value="M70" aria-label="Moins de 70%">
         moins de 70%
