@@ -4,7 +4,7 @@
     <input type="text" ng-model="$ctrl.personne.prenom">
   </md-input-container>
 
-  <base-input-container src="$ctrl" var="personne.age"></base-input-container>
+  <base-input-container src="$ctrl.personne" var="personne.age"></base-input-container>
 
   <md-input-container ng-if="$ctrl.personne.estAdulte">
     <label>Etat civil</label>
@@ -27,8 +27,8 @@
 
   <h3>Êtes-vous</h3>
   <md-input-container  layout="column">
-    <base-checkbox ng-if="!$ctrl.personne.estAdulte" src="$ctrl" var="personne.estGardeAlternee"></base-checkbox>
-    <base-checkbox src="$ctrl" var="personne.estEtudiant"></base-checkbox>
+    <base-checkbox ng-if="!$ctrl.personne.estAdulte" src="$ctrl.personne" var="personne.estGardeAlternee"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" var="personne.estEtudiant"></base-checkbox>
 
     <md-input-container ng-if="$ctrl.personne.estEtudiant">
       <label>Type de formation</label>
@@ -47,9 +47,9 @@
 
   <h3>Vous recevez déjà (plusieurs choix possibles):</h3>
   <md-input-container  layout="column">
-    <base-checkbox src="$ctrl" var="personne.estBeneficiaireRien"></base-checkbox>
-    <base-checkbox src="$ctrl" var="personne.estBeneficiaireAVS"></base-checkbox>
-    <div layout="row"><base-checkbox src="$ctrl" var="personne.estBeneficiaireAI"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" var="personne.estBeneficiaireRien"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" var="personne.estBeneficiaireAVS"></base-checkbox>
+    <div layout="row"><base-checkbox src="$ctrl.personne" var="personne.estBeneficiaireAI"></base-checkbox>
     <md-radio-group ng-model="$ctrl.personne.tauxInvalidite" class="md-primary" layout="row" ng-if="$ctrl.personne.estBeneficiaireAI">
       &nbsp;[Taux d'invalidité&nbsp;
       <md-radio-button value="M70" aria-label="Moins de 70%">
@@ -59,9 +59,9 @@
         70% et plus
       </md-radio-button>]
     </md-radio-group></div>
-    <base-checkbox src="$ctrl" var="personne.estBeneficiairePC"></base-checkbox>
-    <base-checkbox src="$ctrl" ng-if="$ctrl.personne.estAdulte"var="personne.estBeneficiaireRI"></base-checkbox>
-    <base-checkbox src="$ctrl" var="personne.estBeneficiaireAutre"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" var="personne.estBeneficiairePC"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" ng-if="$ctrl.personne.estAdulte"var="personne.estBeneficiaireRI"></base-checkbox>
+    <base-checkbox src="$ctrl.personne" var="personne.estBeneficiaireAutre"></base-checkbox>
     <md-input-container ng-if="$ctrl.personne.estBeneficiaireAutre">
       <label>Autre</label>
       <input type="text" ng-model="$ctrl.personne.autresPrestations">

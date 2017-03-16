@@ -14,7 +14,10 @@ class InputContainerController {
         this.model = this.src;
       }
       while (m.length > 1) {
-        this.model = this.model[m.shift()];
+        const v = m.shift();
+        if (v !== 'personne') {
+          this.model = this.model[v];
+        }
       }
       this.attribute = m.shift();
     }
