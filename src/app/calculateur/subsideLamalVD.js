@@ -12,6 +12,8 @@ const reductionEnfants = function (nbEnfants) {
       return 7000 * nbEnfants;
   }
 };
+const P = 2.3; // REF http://www.vd.ch/fileadmin/user_upload/themes/sante_social/aides_allocations/fichiers_pdf/Arr%C3%AAt%C3%A9_pour_les_subsides_2017.pdf
+// const Q = 0.25; // REF http://www.vd.ch/fileadmin/user_upload/themes/sante_social/aides_allocations/fichiers_pdf/Arr%C3%AAt%C3%A9_pour_les_subsides_2017.pdf
 
 function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
   , estBeneficiaireRI = false, age, rdu, region, subsidesRDU, subsidesRI, subsidesPC) {
@@ -49,9 +51,11 @@ function subsideLookup(menage, estEtudiant = false, estBeneficiairePC = false
     });
   }
   if (angular.isDefined(subside)) {
-    const subsideEstime = Math.round(subside.subsideMin + (1 - (rdu - subside.rduMin) / (subside.rduMax - subside.rduMin)) *
-      (subside.subsideMax - subside.subsideMin));
-  //  return {subsideMin: subside.subsideMin, subsideMax: subside.subsideMax, subsideEstime, rduLAMAL: rdu};
+    let subsideEstime = 0;
+    // REF  http://www.vd.ch/fileadmin/user_upload/themes/sante_social/aides_allocations/fichiers_pdf/Arr%C3%AAt%C3%A9_pour_les_subsides_2017.pdf
+    subsideEstime = subside.subsideMin +
+              (subside.subsideMax - subside.subsideMin) * Math.pow(1 - Math.pow((rdu - subside.rduMin) / (subside.rduMax - subside.rduMin), 2), P);
+    subsideEstime = 10 * Math.round(subsideEstime / 10); // arrondi à la dizaine
     obj = angular.copy(subside);
     if (!Object.prototype.hasOwnProperty.call(obj, "subsideEstime")) {
       obj.subsideEstime = subsideEstime;
