@@ -49,7 +49,15 @@
   <md-input-container  layout="column">
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireRien"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireAVS"></base-checkbox>
-    <base-checkbox src="$ctrl" var="personne.estBeneficiaireAI"></base-checkbox>
+    <div layout="row"><base-checkbox src="$ctrl" var="personne.estBeneficiaireAI"></base-checkbox>
+      &nbsp;[Taux d'invalidité&nbsp;
+      <md-radio-button value="M70" aria-label="Moins de 70%">
+        moins de 70%
+      </md-radio-button>
+      <md-radio-button value="P70" aria-label="70% et plus">
+        70% et plus
+      </md-radio-button>]
+    </md-radio-group></div>
     <base-checkbox src="$ctrl" var="personne.estBeneficiairePC"></base-checkbox>
     <base-checkbox src="$ctrl" ng-if="$ctrl.personne.estAdulte"var="personne.estBeneficiaireRI"></base-checkbox>
     <base-checkbox src="$ctrl" var="personne.estBeneficiaireAutre"></base-checkbox>
