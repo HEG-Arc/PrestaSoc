@@ -3,96 +3,112 @@
    "mode": "pt",
    "niveau": "l2",
    "categorie": "Passerelles et transitions",
-   "fraisEtude": 300
+   "fraisEtude": 300,
+   "key": "l2-passerelle"
  },
  {
    "mode": "pt",
    "niveau": "l2",
    "categorie": "Gymnases",
-   "fraisEtude": 1500
+   "fraisEtude": 1500,
+   "key": "l2-gymnase"
  },
  {
    "mode": "pt",
    "niveau": "l2",
    "categorie": "Apprentissages",
-   "fraisEtude": 600
+   "fraisEtude": 600,
+   "key": "l2-apprentissage"
  },
  {
    "mode": "pt",
    "niveau": "l2",
    "categorie": "Formation en école",
-   "fraisEtude": 1500
+   "fraisEtude": 1500,
+   "key": "l2-ecolepro"
  },
  {
    "mode": "pt",
    "niveau": "l2",
    "categorie": "Maturité post CFC",
-   "fraisEtude": 600
+   "fraisEtude": 600,
+   "key": "l2-matupro"
  },
  {
    "mode": "pt",
    "niveau": "l3",
    "categorie": "Ecole supérieure",
-   "fraisEtude": 2500
+   "fraisEtude": 2500,
+   "key": "l3-es"
  },
  {
    "mode": "pt",
    "niveau": "l3",
    "categorie": "Haute école",
-   "fraisEtude": 2500
+   "fraisEtude": 2500,
+   "key": "l3-hes"
  },
  {
    "mode": "pt",
    "niveau": "l3",
    "categorie": "Université",
-   "fraisEtude": 2500
+   "fraisEtude": 2500,
+   "key": "l3-uni"
  },
  {
    "mode": "tpr",
    "niveau": "l2",
    "categorie": "Passerelles et transitions",
-   "fraisEtude": 0
+   "fraisEtude": 0,
+   "key": "l2-passerelle"
  },
  {
    "mode": "tpr",
    "niveau": "l2",
    "categorie": "Gymnases",
-   "fraisEtude": 1100
+   "fraisEtude": 1100,
+   "key": "l2-gymnase"
  },
  {
    "mode": "tpr",
    "niveau": "l2",
    "categorie": "Apprentissages",
-   "fraisEtude": 300
+   "fraisEtude": 300,
+   "key": "l2-apprentissage"
  },
  {
    "mode": "tpr",
    "niveau": "l2",
    "categorie": "Formation en école",
-   "fraisEtude": 800
+   "fraisEtude": 800,
+   "key": "l2-ecolepro"
  },
  {
    "mode": "tpr",
    "niveau": "l2",
    "categorie": "Maturité post CFC",
-   "fraisEtude": 0
+   "fraisEtude": 0,
+   "key": "l2-matupro"
  },
  {
    "mode": "tpr",
    "niveau": "l3",
    "categorie": "Ecole supérieure",
-   "fraisEtude": 2000
+   "fraisEtude": 2000,
+   "key": "l3-es"
  },
  {
    "mode": "tpr",
    "niveau": "l3",
    "categorie": "Haute école",
-   "fraisEtude": 1800
+   "fraisEtude": 1800,
+   "key": "l3-hes"
  },
  {
    "mode": "tpr",
    "niveau": "l3",
    "categorie": "Université",
-   "fraisEtude": 1800
+   "fraisEtude": 1800,
+   "key": "l3-uni"
  }
 ]

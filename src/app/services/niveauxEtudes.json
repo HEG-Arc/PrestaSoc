@@ -1,18 +1,42 @@
-{
-    "l2-passerelle": { "label": "Passerelles et transitions", "niveau": "l2"
+[
+    {
+        "key": "l2-passerelle",
+        "label": "Passerelles et transitions",
+        "niveau": "l2"
     },
-    "l2-gymnase": { "label": "Gymnases", "niveau": "l2"
+    {
+        "key": "l2-gymnase",
+        "label": "Gymnases",
+        "niveau": "l2"
     },
-    "l2-apprentissage": { "label": "Apprentissages", "niveau": "l2"
+    {
+        "key": "l2-apprentissage",
+        "label": "Apprentissages",
+        "niveau": "l2"
     },
-    "l2-ecolepro": { "label": "Formation en école", "niveau": "l2"
+    {
+        "key": "l2-ecolepro",
+        "label": "Formation en école",
+        "niveau": "l2"
     },
-    "l2-matupro": { "label": "Maturité post CFC", "niveau": "l2"
+    {
+        "key": "l2-matupro",
+        "label": "Maturité post CFC",
+        "niveau": "l2"
     },
-    "l3-es": { "label": "Ecole supérieure", "niveau": "l3"
+    {
+        "key": "l3-es",
+        "label": "Ecole supérieure",
+        "niveau": "l3"
     },
-    "l3-hes": { "label": "Haute école", "niveau": "l3"
+    {
+        "key": "l3-hes",
+        "label": "Haute école",
+        "niveau": "l3"
     },
-    "l3-uni": { "label": "Université ou EPF", "niveau": "l3"
+    {
+        "key": "l3-uni",
+        "label": "Université ou EPF",
+        "niveau": "l3"
     }
-}
+]
