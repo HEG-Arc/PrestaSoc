@@ -32,15 +32,8 @@
 
     <md-input-container ng-if="$ctrl.personne.estEtudiant">
       <label>Type de formation</label>
-      <md-select ng-model="$ctrl.personne.niveauEtude">
-        <md-option value="l2-Passerelles et transitions">Passerelles et transitions</md-option>
-        <md-option value="l2-Gymnases">Gymnases</md-option>
-        <md-option value="l2-Apprentissages">Apprentissages</md-option>
-        <md-option value="l2-Formation en école">Formation en école</md-option>
-        <md-option value="l2-Maturité post CFC">Maturité post CFC</md-option>
-        <md-option value="l3-Ecole supérieure">Ecole supérieure</md-option>
-        <md-option value="l3-Haute école">Haute école</md-option>
-        <md-option value="l3-Université">Université ou EPF</md-option>
+      <md-select ng-model="$ctrl.personne.niveauEtudeSelectList">
+        <md-option ng-repeat ="niveau in $ctrl.niveauxEtudes" value="{{niveau.key}}">{{niveau.label}}</md-option>
       </md-select>
     </md-input-container>
   </md-input-container >

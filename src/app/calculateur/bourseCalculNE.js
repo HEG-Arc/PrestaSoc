@@ -10,11 +10,11 @@ const FRAIS_FORMATION = {l2: 800, l3: 2200};
 const FRAIS_LOGEMENT_SEPARE_ENTRETIEN = 12310;
 const FRAIS_LOGEMENT_SEPARE = 6000;
 
-function fraisRepasForfait(lev) {
+function fraisForfaitRepas(lev) {
   const FORFAIT_REPAS_JOUR = 10;
-  if (lev === "l2-Apprentissages") {
+  if (lev.key === "l2-apprentissage") {
     return 235 * FORFAIT_REPAS_JOUR; // disons que les apprentis ont 5 semaines de vacances
-  } else if (lev.substring(0, 2) === "l2") {
+  } else if (lev.niveau === "l2") {
     return 190 * FORFAIT_REPAS_JOUR; // le secondaire II a 14 semaines de vacances
   }
   return 150 * FORFAIT_REPAS_JOUR; // université: 30 semaines de cours /an
@@ -55,7 +55,6 @@ export function bourseEtudeNE(sim) {
     const charges = [];
     const revenus = [];
     let montantBourse = 0;
-    const niveau = etudiant.niveauEtude.substring(0, 2);
 
 // charges
     charges.push(["Frais d'entretien de la famille", fraisEntretien(sim.personnes.length)]);
@@ -64,14 +63,14 @@ export function bourseEtudeNE(sim) {
     // pas trouvé le plafond dans l'Arrêté fixant les normes pour le calcul de l'aide matérielle, ni dans les autres sources citées
     charges.push(["Frais de loyer de la famille", sim.logementLoyerBrut]);
 
-    charges.push(["Frais de formation", FRAIS_FORMATION[niveau]]);
+    charges.push(["Frais de formation", FRAIS_FORMATION[etudiant.niveauEtude.niveau]]);
 
     if (etudiant.aLogementSepare) {
       charges.push(["Frais d'entretien pour logement séparé", FRAIS_LOGEMENT_SEPARE_ENTRETIEN]);
       charges.push(["Forfait loyer pour logement séparé", FRAIS_LOGEMENT_SEPARE]);
     }
 
-    charges.push(["Forfait pour frais de repas", fraisRepasForfait(etudiant.niveauEtude)]);
+    charges.push(["Forfait pour frais de repas", fraisForfaitRepas(etudiant.niveauEtude)]);
 
 // revenus
     // répartition du RDU de l'UER entre les étudiants

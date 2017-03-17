@@ -1,12 +1,19 @@
 class PersonneController {
   /** @ngInject */
-  constructor($scope, simulation) {
+  constructor($scope, simulation, niveauxEtudes) {
+    this.niveauxEtudes = niveauxEtudes.data;
+
     $scope.$watch('$ctrl.personne.age', () => {
       this.personne.estAdulte = this.personne.age >= 18;
       // TODO: cleanup toggled variables?
     });
     $scope.$watch('$ctrl.personne.estEtudiant', () => {
       simulation.updateEtudiants();
+    });
+    $scope.$watch('$ctrl.personne.niveauEtudeSelectList', () => {
+      this.personne.niveauEtude = this.niveauxEtudes.find(x => {
+        return x.key === this.personne.niveauEtudeSelectList;
+      });
     });
     $scope.$watch('$ctrl.personne.estBeneficiaireRien', () => {
       if (this.personne.estBeneficiaireRien) {

@@ -29,10 +29,10 @@ function chargesNormalesComplementairesLookup(chargesNormalesComplementairesVD, 
   }).forfait;
 }
 
-function fraisEtudeLookup(fraisEtudeVD, mode, categorie) {
+function fraisEtudeLookup(fraisEtudeVD, mode, key) {
   return fraisEtudeVD.find(x => {
     return x.mode === mode &&
-        x.categorie === categorie;
+        x.key === key;
   }).fraisEtude;
 }
 
@@ -76,9 +76,9 @@ export function bourseEtudeVD(sim, chargesNormalesBaseVD,
     charges.push(["Forfait pour frais de transport", fraisTransportForfait]);
 
     let fraisEtude = 0;
-    const niveau = etudiant.niveauEtude.substring(3);
+    const niveau = etudiant.niveauEtude;
     const mode = etudiant.formationRedoublementOuTempsPartiel ? "tpr" : "pt";
-    fraisEtude = fraisEtudeLookup(fraisEtudeVD, mode, niveau);
+    fraisEtude = fraisEtudeLookup(fraisEtudeVD, mode, niveau.key);
     charges.push(["Frais d'étude", fraisEtude]);
 
     // repartition du RDU de l'UER
