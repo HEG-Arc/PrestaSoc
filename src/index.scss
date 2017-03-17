@@ -176,6 +176,15 @@ base-nav, .base-nav {
     top: 8px;
 }
 
+.tauxInvalidite {
+  margin-bottom: 18px;
+  margin-left: 28px;
+  padding: 2px;
+  p {
+    margin-top: 0;
+  }
+}
+
 .nav-bottom .md-button {
   min-width: 150px;
   margin-top: 50px;
@@ -261,6 +270,8 @@ app-header .subtitle {
     color: #fff;
   }
 }
+
+
 
 #beta-ribbon {
     text-align: center;
