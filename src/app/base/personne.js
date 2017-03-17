@@ -1,6 +1,8 @@
 class PersonneController {
   /** @ngInject */
-  constructor($scope, simulation) {
+  constructor($scope, simulation, niveauxEtudes) {
+    this.niveauxEtudes = niveauxEtudes;
+
     $scope.$watch('$ctrl.personne.age', () => {
       this.personne.estAdulte = this.personne.age >= 18;
       // TODO: cleanup toggled variables?
