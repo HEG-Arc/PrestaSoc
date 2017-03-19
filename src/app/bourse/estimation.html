@@ -4,6 +4,7 @@
   <div layout="column" class="estimation-table-box">
     <h2>Estimation des bourses d'études</h2>
     <div layout="column">
+      <div ng-if="$ctrl.sim.lieuLogement.canton === 'VD' || $ctrl.sim.lieuLogement.canton === 'NE' ">
       <div class="table" ng-repeat="etudiant in $ctrl.sim.etudiants">
         <h3>{{ etudiant.prenom}}</h3>
         <div class="table-row total">
@@ -45,7 +46,80 @@
           <div>{{ etudiant.bourseEtude.montantBourse|number:0}}</div>
         </div>
       </div>
+      </div>
+<div ng-if="$ctrl.sim.lieuLogement.canton === 'GE'">
+  <div  class="table">
+    <h3>Budget famille</h3>
+            <div class="table-row total">
+          <div>Revenus</div>
+            </div>
+        <div class="table-row" ng-repeat="line in $ctrl.sim.bourses.UER.revenus">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>  
 
+        <div class="table-row total">
+          <div>Charges</div>
+        </div>
+        <div class="table-row" ng-repeat="line in $ctrl.sim.bourses.UER.charges">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>{{$ctrl.sim.bourses.UER.solde >= 0 ? 'Excédent de revenus' : 'Découvert'}}</div>
+          <div flex></div>
+          <div>{{$ctrl.sim.bourses.UER.solde}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>{{$ctrl.sim.bourses.UER.solde >= 0 ? 'Contribution déterminante par enfant ou jeune' : 'Part de la personne en formation aux frais de ménage non couverts'}}</div>
+          <div flex></div>
+          <div>{{$ctrl.sim.bourses.UER.contributionParEnfant}}</div>
+        </div>
+        <div class="divider"></div>
+
+<div  class="table" ng-repeat="etudiant in $ctrl.sim.bourses.etudiants">
+
+        <h3>Budget pour {{etudiant.prenom}}</h3>
+        <div class="table-row total">
+          <div>Revenus</div>
+        </div>
+        <div class="table-row" ng-repeat="line in etudiant.revenus">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>Charges</div>
+        </div>
+        <div class="table-row" ng-repeat="line in etudiant.charges">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="table-row total">
+          <div>Calcul de l'aide</div>
+        </div>
+        <div class="table-row" ng-repeat="line in etudiant.aide">
+          <div>{{line[0]}}</div>
+          <div flex></div>
+          <div>{{ line[1]|number:0}}</div>
+        </div>
+        <div class="divider"></div>
+
+
+      </div>
+</div>
       <app-address-block service="bourse"></app-address-block>
 
       <div layout="row" class="nav-bottom">

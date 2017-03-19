@@ -1,6 +1,7 @@
 class FormationController {
   /** @ngInject */
-  constructor(simulation, regions, $stateParams) {
+  constructor(simulation, regions, $stateParams, niveauxEtudes) {
+    this.niveauxEtudes = niveauxEtudes.data;
     this.sim = simulation;
     this.index = $stateParams.index;
     this.filterList = txt => {

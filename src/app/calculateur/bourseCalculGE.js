@@ -7,13 +7,25 @@ const NIVEAU_TEXTE = {l2: "secondaire II", l3: "tertiaire"};
 const MAX_BOURSE_INCREMENT_ENFANT_A_CHARGE = 4000;
 
 const FORFAIT_REPAS = 3200;
-const FORFAIT_TRANSPORT = 1000;
 
 const FRANCHISE_ACTIVITE_LUCRATIVE = 7800;
 
 const FRAIS_FORMATION = {l2: 2000, l3: 3000};
 
 const SUPPLEMENT_INTEGRATION = 1200;
+
+function fraisTransport(age, cantonResidence, cantonEtude) {
+  if (cantonResidence === cantonEtude) {
+    if (age <= 25) {
+      return 540;
+    }
+    return 840;
+  }
+  if (age <= 30) {
+    return 2400;
+  }
+  return 3350;
+}
 
 function forfaitLamal(age) {
   if (age <= 18) {
@@ -22,6 +34,10 @@ function forfaitLamal(age) {
     return 5220;
   }
   return 5640;
+}
+
+function nbMineursEtEtudiants(sim) {
+  return sim.personnes.filter(x => x.age <= 18 || (x.age <= 25 && x.estEtudiant)).length;
 }
 
 // REF https://www.ge.ch/legislation/rsg/f/s/rsg_E3_60p04.html
@@ -36,7 +52,7 @@ function montantDeBase(sim) {
     return 1200 * 12;
   }
   // débiteur monoparental
-  if (sim.personnes.length > 1 && nombreEnfants(sim) === sim.personnes.length - 1) {
+  if (sim.personnes.length > 1 && nbMineursEtEtudiants(sim) === sim.personnes.length - 1) {
     return 12 * (1350 + enfantsJusqua10ans * ENTRETIEN_ENFANT_JUSQUA_10ANS + enfantsPlusde10ans * ENTRETIEN_ENFANT_PLUSDE_10ANS);
   }
   // pour un couple marié, deux personnes vivant en partenariat enregistré ou un couple avec des enfants
@@ -51,6 +67,7 @@ function nombreEnfants(sim) {
 }
 
 export function bourseEtudeGE(sim) {
+  let boursesTotales = 0;
   const bourses = {UER: {charges: [], revenus: [], solde: 0}, etudiants: []};
   const rdu = calculRDU(sim);
   const nbEtudiants = sim.etudiants.length;
@@ -66,7 +83,8 @@ export function bourseEtudeGE(sim) {
   bourses.UER.charges.push(["Frais de loyer de la famille", sim.logementLoyerBrut]);
 
   if (sim.personnes[0].estEtudiant) {
-    bourses.UER.charges.push(["Frais de déplacement liés à la formation des parents", FORFAIT_TRANSPORT]);
+    const fraisDeplacements = fraisTransport(sim.personnes[0].age, sim.lieuLogement.canton, sim.personnes[0].lieuInstitution.canton);
+    bourses.UER.charges.push(["Frais de déplacement liés à la formation des parents", fraisDeplacements]);
     bourses.UER.charges.push(["Frais de repas liés à la formation des parents", FORFAIT_REPAS]);
     bourses.UER.charges.push(["Frais de formation des parents", FRAIS_FORMATION[sim.personnes[0].niveauEtude.niveau]]);
   }
@@ -78,7 +96,7 @@ export function bourseEtudeGE(sim) {
                       bourses.UER.charges.reduce((total, charge) => total + charge[1], 0);
 
   // contribution par enfant ou jeune en formation
-  const nbEnfantsOuJeune = nombreEnfants(sim) + sim.etudiants.filter(x => x.age >= 19 && x.age < 26);
+  const nbEnfantsOuJeune = nbMineursEtEtudiants(sim);
   bourses.UER.contributionParEnfant = nbEnfantsOuJeune > 0 ? bourses.UER.solde / nbEnfantsOuJeune : bourses.UER.solde;
   // budget personne en formation
   for (let i = 0; i < nbEtudiants; i++) {
@@ -88,7 +106,8 @@ export function bourseEtudeGE(sim) {
     const niveau = etudiant.niveauEtude.niveau;
 
     // charges
-    charges.push(["Frais de déplacement", FORFAIT_TRANSPORT]);
+    const fraisDeplacements = fraisTransport(etudiant.age, sim.lieuLogement.canton, etudiant.lieuInstitution.canton);
+    charges.push(["Frais de déplacement", fraisDeplacements]);
     charges.push(["Forfait pour frais de repas", FORFAIT_REPAS]);
     charges.push(["Frais de formation", FRAIS_FORMATION[niveau]]);
 
@@ -121,7 +140,7 @@ export function bourseEtudeGE(sim) {
     } else {
       aide.push(["Part de la personne en formation des frais du ménage non couverts", -contribParents, "substract"]);
     }
-    const decouvertTotal = aide.reduce((total, montant) =>
+    const decouvertTotal = -1 * aide.reduce((total, montant) =>
                           montant[2] === 'add' ? total + montant[1] : total - montant[1], 0);
     aide.push(["Total du découvert", decouvertTotal]);
     const maxBourse = MAX_BOURSE[niveau];
@@ -135,9 +154,9 @@ export function bourseEtudeGE(sim) {
     montantAide = Math.min(montantAide, maxBourse + maxBourseEnfants);
     montantAide = 10 * Math.round(montantAide / 10); // arrondi dizaine
     aide.push(["Montant de l'aide possible", montantAide]);
-
+    boursesTotales += montantAide;
     bourses.etudiants.push({prenom: etudiant.prenom, charges, revenus, solde, aide});
   }
-
-  return bourses;
+  sim.bourses = bourses;
+  return boursesTotales;
 }
