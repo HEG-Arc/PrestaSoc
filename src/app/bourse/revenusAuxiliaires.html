@@ -4,6 +4,7 @@
       <h2>Revenus auxiliaires</h2>
 
       <div layout="column">
+        <base-input-container ng-if="$ctrl.sim.lieuLogement.canton === 'GE'" src="$ctrl.personne" var="personne.revenueAuxiliaireSalaire"></base-input-container>
         <base-input-container src="$ctrl.personne" var="personne.revenueAuxiliaireContributionsEntretien"></base-input-container>
         <base-input-container src="$ctrl.personne" var="personne.revenueAuxiliairesAutresPrestationsFinancieres"></base-input-container>
       </div>

@@ -53,7 +53,8 @@ class CalculeBourse {
         return sim.boursesTotales;
       }
       if (this.sim.lieuLogement.canton === 'GE') {
-        sim.boursesTotales = bourseEtudeGE(sim);
+        sim.bourses = bourseEtudeGE(sim);
+        sim.boursesTotales = sim.bourses.boursesTotales;
         return sim.boursesTotales;
       }
       throw new Error('Canton not supported');
