@@ -29,11 +29,11 @@ function fraisTransport(age, cantonResidence, cantonEtude) {
 
 function forfaitLamal(age) {
   if (age <= 18) {
-    return 1260;
+    return 1560;
   } else if (age <= 25) {
-    return 5220;
+    return 6252;
   }
-  return 5640;
+  return 6648;
 }
 
 function nbMineursEtEtudiants(sim) {
