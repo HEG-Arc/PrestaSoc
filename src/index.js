@@ -25,6 +25,7 @@ Raven
 import routesConfig from './routes';
 
 import {main} from './app/main';
+import {mainDE} from './app/main_de';
 import {header} from './app/header';
 import {footer} from './app/footer';
 import {sidenav} from './app/sidenav';
@@ -113,6 +114,7 @@ angular
   .constant('COMMIT_HASH', COMMIT_HASH)
   /*eslint-enable */
   .component('appMain', main)
+  .component('appMainDE', mainDE)
   .component('appHeader', header)
   .component('appFooter', footer)
   .component('appSidenav', sidenav)

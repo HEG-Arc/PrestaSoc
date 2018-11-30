@@ -10,6 +10,10 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/',
       component: 'appMain'
     })
+    .state('main_de', {
+      url: '/de',
+      component: 'appMainDE'
+    })
     .state('about', {
       url: '/apropos',
       component: 'pageAbout'
