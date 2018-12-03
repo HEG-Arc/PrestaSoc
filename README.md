@@ -9,15 +9,13 @@ Calculateur de prestations sociales
 
 Requires NodeJS > 6
 
-`npm install -g gulp-cli`
-
 `npm install`
 
-`gulp serve` http://localhost:3000
+`npm run serve` http://localhost:3000
 
-`gulp simvars` see which variables are used in html compared to vars.fr.json
+`npm run simvars` see which variables are used in html compared to vars.fr.json
 
-`gulp test:auto` run unit-test
+`npm run test:auto` run unit-test
 
 ### sending codecoverage to codacy
 
